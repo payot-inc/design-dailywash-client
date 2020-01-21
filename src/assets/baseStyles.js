@@ -11,7 +11,7 @@ export default StyleSheet.create({
     shadowRadius: 4.65,
     elevation: 0,
     borderWidth: 1,
-    borderColor: '#d2d2d2',
+    borderColor: '#e2e2e2',
   },
 
   inputBox: {

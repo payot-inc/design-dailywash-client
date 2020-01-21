@@ -1,0 +1,40 @@
+import React from 'react';
+import {View, Text} from 'react-native';
+import {createStackNavigator} from 'react-navigation-stack'
+
+import Login from './login';
+import User from './user';
+import Search from './search';
+import Spot from './spot';
+
+const FirstUser = createStackNavigator(
+  {
+    login:{
+      screen:Login,
+      navigationOptions:{
+        header:null,
+      }
+    },
+    user:{
+      screen:User,
+      navigationOptions:{
+        title:'수거/배달 주소설정'
+      }
+    },
+    spot:{
+      screen:Spot,
+    },
+    search:Search,
+  },
+  {
+    initialRouteName:'login',
+    defaultNavigationOptions:{
+      title:null,
+      headerStyle:{backgroundColor:'#F4F5F8',elevation:0,height:70},
+    }
+    
+  }
+
+)
+
+export default FirstUser;

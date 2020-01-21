@@ -30,7 +30,7 @@ export default props => {
     const sliderWidth = Dimensions.get('window').width;
 
     return(
-        <View style={{backgroundColor:'#eaeaea',paddingVertical:20,}}>
+        <View style={{backgroundColor:'#f2f2f2',paddingVertical:20,}}>
             <View style={{flexDirection:'row',justifyContent:'space-between',paddingHorizontal:10}}>
                 <View style={{flexDirection:'row',alignItems:'center'}}>
                     <Text style={{fontSize:16,marginRight:10,}}>최근 주문내역</Text>
@@ -51,7 +51,15 @@ export default props => {
                 inactiveSlideScale={1}
                 layoutCardOffset={30}
                 renderItem={({item, index})=>
-                    <View style={{borderRadius:10,backgroundColor:'#fff',height:160,borderWidth:1,borderColor:'#d2d2d2',justifyContent:'space-between',overflow:'hidden'}}>
+                    <View style={{
+                        borderRadius:10,
+                        backgroundColor:'#fff',
+                        height:160,
+                        borderWidth:1,
+                        borderColor:'#e2e2e2',
+                        justifyContent:'space-between',
+                        overflow:'hidden',
+                    }}>
                         <View style={{padding:15,justifyContent:'space-between',flex:1,}}>
                             <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
                                 <Text style={{fontSize:12,borderWidth:1,borderRadius:3,paddingHorizontal:3,color:'#21D1FF',borderColor:'#21D1FF',letterSpacing:-1}}>{item.state}</Text>
@@ -65,15 +73,14 @@ export default props => {
                                 </View>
                             </View>
                         </View>
-                        <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+                        <View style={{flexDirection:'row',justifyContent:'space-around',borderTopWidth:1,borderTopColor:'#e2e2e2',backgroundColor:'#F4F5F8'}}>
                             <TouchableHighlight 
                                 onPress={()=> props.navigation.navigate('myOrderDetail')}
-                                style={{flex:1,alignItems:'center',justifyContent:'center',height:40,backgroundColor:'#292929'}}
-                            >
-                                <Text style={{color:'#fff'}}>상세보기</Text>
+                                style={{flex:1,alignItems:'center',justifyContent:'center',height:40}}>
+                                <Text style={{color:'#292929'}}>상세보기</Text>
                             </TouchableHighlight>
-                            <TouchableHighlight style={{flex:1,alignItems:'center',justifyContent:'center',height:40,backgroundColor:'#292929'}}>
-                                <Text style={{color:'#fff'}}>취소하기</Text>
+                            <TouchableHighlight style={{flex:1,alignItems:'center',justifyContent:'center',height:40}}>
+                                <Text style={{color:'#292929'}}>취소하기</Text>
                             </TouchableHighlight>
                         </View>
                     </View>

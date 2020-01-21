@@ -1,15 +1,16 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet, ScrollView,TouchableOpacity, StatusBar, Image, TouchableHighlight } from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, ScrollView,TouchableOpacity, StatusBar, Image, TouchableHighlight, Animated} from 'react-native';
 import {DrawerActions} from 'react-navigation-drawer';
-import { Divider } from 'react-native-paper';
+import { Divider, Button } from 'react-native-paper';
+import faker from 'faker';
 
-
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import BaseStyles from '../assets/baseStyles';
 import MainVisual from '../components/mainVisual';
 import MainVisualSecond from '../components/mainVisualSecond';
 import MainOrderState from '../components/mainOrderState';
+import { Easing } from 'react-native-reanimated';
 
 export default props => {
 
@@ -25,7 +26,19 @@ export default props => {
             date:'2019년 11월 29일'
         },    
     ]
-    
+
+    const [Rotate] = useState(new Animated.Value(0));
+
+    React.useEffect(()=>{
+        Animated.timing(
+        Rotate,
+        {
+            toValue:200,
+            duration:50000,
+            
+        }
+        ).start();
+    },[Rotate])
   
     return (
         
@@ -42,50 +55,44 @@ export default props => {
                         activeOpacity={0.7}
                     >
                         <View style={{width:60,height:60,alignItems:'center',justifyContent:'center'}}>
-                            <Icon name="bars" color={'#fff'} size={20}></Icon>
+                            <Icon name="menu" color={'#fff'} size={30}></Icon>
                         </View>
                     </TouchableOpacity>
                     <View>
                         <Image
                             source={require('../assets/logo.png')}
-                            style={{width:125, height:34,resizeMode: 'contain'}}
+                            style={{width:140, resizeMode: 'contain'}}
                         >
                         </Image> 
                     </View>
                 </View>
-                <View style={styles.visual}>
-                    <MainVisual color={blue}/>
-                </View>
-                <View style={{paddingTop:20}}>
-                    <TouchableOpacity
-                        activeOpacity={1}
-                        onPress={() => {props.navigation.navigate('order')}}
-                    >
-                        <View style={
-                        {
-                            backgroundColor:'#fff',
-                            height:80,
-                            flexDirection:'row',
-                            flex:1,
-                            justifyContent:'space-between',
 
+                <View style={styles.visual}>
+                    <MainVisual />
+        
+                </View>
+
+                <View style={{flex:1,paddingHorizontal:10,paddingBottom:20,justifyContent:'center',alignItems:'center'}}>
+
+                    <TouchableHighlight
+                        onPress={()=> props.navigation.navigate('order')}
+                        style={{width:'100%',borderRadius:10,backgroundColor:'#292929'}}
+                        underlayColor={'#393939'}
+                    >  
+                        <View style={{
+                            width:'100%',
+                            flexDirection:'row',
+                            justifyContent:'center',
+                            alignItems:'center',
+                            height:54,
+                            borderRadius:10,
+                            overflow:'hidden'
                         }}>
-                            <View style={{flexBasis:80,justifyContent:'center',alignItems:'center'}}>
-                                <Image
-                                    source={require('../assets/orderIcon.png')}
-                                    style={{height:50,resizeMode: 'contain'}}
-                                >
-                                </Image>
-                            </View>
-                            <View style={{flex:1,justifyContent:'center'}}>
-                                <Text style={{color:'#292929',fontSize:18,fontWeight:'bold',letterSpacing:-1}}>수거배달 신청하기</Text>
-                                <Text style={{color:'#9a9a9a',marginTop:2}}>생활빨래에서부터 특수세탁까지</Text>
-                            </View>
-                            <View style={{flexBasis:40,alignItems:'center',justifyContent:'center'}}>
-                                <Icon name={'angle-right'} color={'#292929'} size={24}></Icon>
-                            </View>
+                            <Icon name="truck-fast" size={24} color={'#fff'} />
+                            <Text style={{letterSpacing:-0.7,fontSize:18,marginLeft:10,color:'#fff'}}>수거배달 신청하기</Text>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableHighlight>
+
                 </View>
 
                 <MainOrderState {...props} />
@@ -125,7 +132,7 @@ export default props => {
                             </TouchableHighlight>
                         </View>
                         <Divider style={{height:1,backgroundColor:'#e2e2e2'}}/>
-                        <View style={{flex:1,padding:10,}}>
+                        <View style={{flex:1,padding:10}}>
                         {cardData.map((item) => (
                             <View style={{flexDirection:'row',marginVertical:5,alignItems:'center'}}>
                                 <View>
@@ -150,32 +157,29 @@ export default props => {
   
 }
 
-const blue = '#21d1ff';
+const blue = '#0087FF';
 
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:'#f5f6f8'
+        backgroundColor:'#fff'
     },
     head:{
         position:'absolute', 
         top:0,
         left:0,
-        height:60,
+        height:70,
         width:'100%',
         zIndex:9,
         flexDirection:'row',
         alignItems:'center',
-        backgroundColor:'rgba(0,0,0,0.05)'
+        //backgroundColor:'rgba(0,0,0,0.05)'
     },
     visual:{
-        height:400,
-        backgroundColor:'#000',
-        borderBottomRightRadius:45,
-        justifyContent:'center',
-        alignItems:'center',
-        zIndex:2,
-        overflow:'hidden',
+        position:'relative',
+        backgroundColor:'#03C1E8',
+        height:300,
+        marginBottom:150,
     },
 
     basicBorder:{

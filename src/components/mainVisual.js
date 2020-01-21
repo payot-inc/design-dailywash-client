@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, Dimensions, Image} from 'react-native';
+import {View, Text, Dimensions, Image, Animated} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import faker from 'faker';
 
@@ -27,34 +27,43 @@ export default class MainVisual extends React.Component {
 
     render(){
         return(
-            <>
+            <View style={{
+                zIndex:1,
+                position:'absolute',
+                top:70,
+                marginHorizontal:10,
+                borderRadius:10,
+                overflow:'hidden',
+                elevation:0,
+            }}>
                 <Carousel
                     layout={'default'}
+                    layoutCardOffset={'18'}
                     data={mainVisualData}
                     itemWidth={sliderWidth}
-                    sliderWidth={sliderWidth}
+                    sliderWidth={sliderWidth-20}
                     inactiveSlideScale={1}
                     loop={true}
                     autoplayDelay={5000}
                     autoplayInterval={5000}
                     autoplay={true}
                     renderItem={({item, index})=>
-                        <View style={{borderRadius:10,height:400,alignItems:'center',justifyContent:'center'}}>
-                            <Image source={require('../assets/main01.png')} style={{width:'100%',height:'100%'}}/>
+                        <View style={{borderRadius:10,height:360,alignItems:'center',justifyContent:'center'}}>
+                            <Image source={require('../assets/main01.png')} resizeMode="center"/>
                         </View>
                     }
-                    onSnapToItem={(index) => this.setState({activeSlide:index})}              
+                    onSnapToItem={(index) => this.setState({activeSlide:index})}           
                 />
 
                 <Pagination 
                     dotsLength={mainVisualData.length}
                     activeDotIndex={this.state.activeSlide}
-                    containerStyle={{position:'absolute',bottom:0}}
+                    containerStyle={{position:'absolute',bottom:0,width:'100%'}}
                     dotStyle={{
                         width: 10,
                         height: 10,
                         borderRadius: 5,
-                        backgroundColor: 'rgba(255, 255, 255, 0.92)'
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)'
                     }}
                     inactiveDotStyle={{
                         // Define styles for inactive dots here
@@ -63,7 +72,7 @@ export default class MainVisual extends React.Component {
                     inactiveDotScale={0.6}
                 />
                 
-            </>
+            </View>
         );
 
     }
