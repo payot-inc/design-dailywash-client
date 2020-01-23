@@ -1,5 +1,8 @@
 import {StyleSheet} from 'react-native';
 
+const MainColor = '#396eee';
+const SubColor = '#172959'
+
 export default StyleSheet.create({
   shadowBox: {
     shadowColor: '#000',
@@ -15,7 +18,7 @@ export default StyleSheet.create({
   },
 
   inputBox: {
-    borderRadius: 10,
+    borderRadius: 5,
     borderWidth: 1,
     borderColor: '#d2d2d2',
     height: 40,

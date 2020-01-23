@@ -1,6 +1,6 @@
 import React, {useState, setState} from 'react';
 import {View, Text, StyleSheet, TouchableHighlight,FlatList,TouchableOpacity, Modal, ImageBackground } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import faker from 'faker';
 
 export default props => {
@@ -50,7 +50,7 @@ export default props => {
                     >
                         <View style={item.selectState ? styles.selectedOn : styles.selectedOff}>
                             <View style={{flexBasis:60,alignItems:'center'}}>
-                                <Icon name={'check-circle'} size={30} color={item.selectState ?'#03C1E8' : '#d2d2d2'}/> 
+                                <Icon name={'check-circle'} size={30} color={item.selectState ?'#396eee' : '#d2d2d2'}/> 
                             </View>
                             <View style={{flex:1,}}>
                                 <Text style={{marginBottom:5,fontSize:16}}>{item.addressName}</Text>
@@ -60,9 +60,9 @@ export default props => {
                                     <Text style={{color:'#9a9a9a'}}>{item.doorInfo}</Text>
                                 </View>
                             </View>
-                            <View style={{flexBasis:30,alignItems:'center'}}>
+                            <View style={{flexBasis:50,alignItems:'center'}}>
                                 <TouchableOpacity>
-                                    <Icon name={'ellipsis-v'}/>
+                                    <Icon name={'close'} size={24} color={'#d2d2d2'}/>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -73,7 +73,7 @@ export default props => {
                     <TouchableOpacity
                     onPress={() => props.navigation.navigate('addressAdd')}
                     >
-                        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',borderWidth:1,borderRadius:10,height:50,borderColor:'#d2d2d2'}}>
+                        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',borderWidth:1,borderRadius:5,height:50,borderColor:'#d2d2d2'}}>
                             <Icon name={'plus-circle'} size={18}></Icon>
                             <Text style={{fontSize:16,marginLeft:10}}>주소지 추가하기</Text>
                         </View>
@@ -85,13 +85,13 @@ export default props => {
                     <View style={{height:15,}}>
                     </View>
                 }
-                contentContainerStyle={{padding:15}}
+                contentContainerStyle={{paddingHorizontal:25, paddingVertical:15}}
             />
 
-            <View style={{borderTopWidth:1,paddingHorizontal:15,paddingVertical:10,borderColor:'#d2d2d2',backgroundColor:'#fff'}}>
+            <View style={{borderTopWidth:1,paddingHorizontal:10,paddingVertical:10,borderColor:'#d2d2d2',backgroundColor:'#fff'}}>
                 <TouchableHighlight
                     onPress={() => {setModalVisible(true)}}
-                    style={{height:45,backgroundColor:'#292929',borderRadius:10,alignItems:'center',justifyContent:'center'}}
+                    style={{height:45,backgroundColor:'#292929',borderRadius:5,alignItems:'center',justifyContent:'center'}}
                 >
                     <Text style={{color:'#fff'}}>다음으로</Text>
                 </TouchableHighlight>
@@ -120,7 +120,7 @@ export default props => {
                                     props.navigation.navigate('when'), 
                                     setModalVisible(false)
                                 }}
-                                style={{height:40,alignItems:'center',justifyContent:'center',fontSize:16,backgroundColor:'#03C1E8',borderRadius:10}}
+                                style={{height:40,alignItems:'center',justifyContent:'center',fontSize:16,backgroundColor:'#396eee',borderRadius:10}}
                             >
                                 <Text style={{color:'#fff'}}>동의합니다</Text>
                             </TouchableHighlight>
@@ -141,7 +141,7 @@ export default props => {
 
 
 const styles = StyleSheet.create({
-    selectedOn:{borderWidth:1,borderRadius:10,flexDirection:'row',paddingVertical:15,borderColor:'#03C1E8',backgroundColor:'#fff'},
+    selectedOn:{borderWidth:1,borderRadius:10,flexDirection:'row',paddingVertical:15,borderColor:'#396eee',backgroundColor:'#fff'},
     selectedOff:{borderWidth:1,borderRadius:10,flexDirection:'row',paddingVertical:15,borderColor:'#d2d2d2',backgroundColor:'#fff'}
 })
 

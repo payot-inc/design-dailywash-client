@@ -14,7 +14,7 @@ export default props => {
       onRequestClose={props.close}
       
     >
-      <Appbar style={{backgroundColor:'#03C1E8'}}>
+      <Appbar style={{backgroundColor:'#006FFF'}}>
         <Appbar.BackAction color="#fff" onPress={props.close}/>
         <Appbar.Content title="장바구니" color="#fff"/>
         <Appbar.Action 
@@ -46,7 +46,7 @@ export default props => {
                 <View style={{flexDirection:'row',alignItems:'center'}}>
                   <Text style={{color:'#8a8a8a'}}>{item.defaultPrice}</Text>
                   <Text style={{marginHorizontal:10,color:'#c2c2c2'}}>X</Text>
-                  <Text style={{color:'#03C1E8',fontWeight:'bold'}}>{item.amount}개</Text>
+                  <Text style={{color:'#006FFF',fontWeight:'bold'}}>{item.amount}개</Text>
                 </View>
               </View>
               <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>

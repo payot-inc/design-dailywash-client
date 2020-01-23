@@ -13,7 +13,7 @@ const ItemBox = props => {
         <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',borderBottomWidth:1,borderColor:'#e2e2e2',paddingVertical:15,paddingHorizontal:10,backgroundColor:'#fff'}}>
             <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',flex:1,marginRight:20,}}>
                 <View style={{flex:1,}}>
-                    {props.data.eventTitle === null ? null : <Text style={{fontSize:12,color:'#1E1FE8'}}>{'세일'}</Text>}
+                    {props.data.eventTitle === null ? null : <Text style={{fontSize:12,color:'#d22828'}}>{'세일'}</Text>}
                     <Text style={{fontSize:18,}}>{name}</Text>
                     {description === null ? null : <Text style={{fontSize:12,color:'#888'}}>{description}</Text>}
                 </View>
@@ -93,11 +93,11 @@ const TabContainer = props => {
         return(
             <TabBar {...props}
                 inactiveColor={'#999'}
-                activeColor={'#03C1E8'}
+                activeColor={'#396eee'}
                 scrollEnabled={true}
                 pressColor={'#e2e2e2'}
                 tabStyle={{width:80}}
-                indicatorStyle={{backgroundColor:'#03C1E8'}}    
+                indicatorStyle={{backgroundColor:'#396eee'}}    
                 style={{backgroundColor:'#fff'}}
             />
         )
@@ -115,19 +115,19 @@ const TabContainer = props => {
                     renderScene={renderScene}
                     onIndexChange={setIndex}
                     initialLayout={initialLayout}
-                    swipeEnabled={false}
+                    swipeEnabled={true}
                 />
             </View>
-            <View style={{backgroundColor:'#fff',height:110,width:'100%',zIndex:2, borderTopWidth:1,borderColor:'#e2e2e2'}}>
-                <View style={{justifyContent:'center',alignItems:'center'}}>
-                    <TouchableHighlight
-                        underlayColor={'#f2f2f2'}
-                        onPress={()=> setBasketVisible(true)}
-                        style={{position:'absolute',top:-25,width:50,height:50,borderRadius:25,backgroundColor:'#fff',alignItems:'center',justifyContent:'center', zIndex:1,borderWidth:1,borderColor:'#e2e2e2'}}
-                    >
-                        <Icon name="chevron-up" size={24}/>
-                    </TouchableHighlight>
-                </View>
+                
+
+            <View style={{backgroundColor:'#fff',height:135,width:'100%',borderTopWidth:1,borderColor:'#e2e2e2'}}>
+                <TouchableHighlight
+                    underlayColor={'#fff'}
+                    onPress={()=> setBasketVisible(true)}
+                    style={{alignItems:'center',justifyContent:'center', zIndex:1,borderWidth:1,borderColor:'#e2e2e2',height:25,backgroundColor:'#e2e2e2'}}
+                >
+                    <Icon name="chevron-up" size={20}/>
+                </TouchableHighlight>
                 <View style={{flexDirection:'row',height:50,justifyContent:'space-between',paddingHorizontal:10,}}>
                     <View style={{flexDirection:'row',alignItems:'center'}}>
                         <Text style={{marginRight:5}}>선택한상품</Text>
@@ -155,7 +155,7 @@ const TabContainer = props => {
                 navigation={props.navigation}
             />
 
-        </View>
+         </View>
     )
 }
 

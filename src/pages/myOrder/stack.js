@@ -21,6 +21,7 @@ const MyOrderStack = createStackNavigator(
           backgroundColor: '#F5F6F8',
           elevation: 0,
           height: 60,
+          zIndex:1,
         },
       }),
     },

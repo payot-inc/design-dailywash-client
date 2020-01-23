@@ -1,16 +1,13 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, ScrollView,TouchableOpacity, StatusBar, Image, TouchableHighlight, Animated} from 'react-native';
 import {DrawerActions} from 'react-navigation-drawer';
-import { Divider, Button } from 'react-native-paper';
+
 import faker from 'faker';
-
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-import BaseStyles from '../assets/baseStyles';
+import Thema from '../assets/css/thema';
 import MainVisual from '../components/mainVisual';
 import MainVisualSecond from '../components/mainVisualSecond';
-import MainOrderState from '../components/mainOrderState';
-import { Easing } from 'react-native-reanimated';
+
 
 export default props => {
 
@@ -60,24 +57,25 @@ export default props => {
                     </TouchableOpacity>
                     <View>
                         <Image
-                            source={require('../assets/logo.png')}
+                            source={require('../assets/img/logo.png')}
                             style={{width:140, resizeMode: 'contain'}}
                         >
                         </Image> 
                     </View>
                 </View>
 
-                <View style={styles.visual}>
-                    <MainVisual />
-        
+                <MainVisual />
+
+                <View style={styles.visualBackground}>
+                    {/* <Image source={require('../assets/img/wave_pattern.png')} resizeMode="repeat" style={{height:'100%',opacity:0.2}}/> */}
                 </View>
 
-                <View style={{flex:1,paddingHorizontal:10,paddingBottom:20,justifyContent:'center',alignItems:'center'}}>
+                <View style={{paddingHorizontal:25,paddingBottom:30}}>
 
                     <TouchableHighlight
                         onPress={()=> props.navigation.navigate('order')}
-                        style={{width:'100%',borderRadius:10,backgroundColor:'#292929'}}
-                        underlayColor={'#393939'}
+                        style={{width:'100%',borderRadius:10,backgroundColor:'#172959',marginTop:30,marginBottom:30,elevation:10}}
+                        underlayColor={'#111F44'}
                     >  
                         <View style={{
                             width:'100%',
@@ -89,64 +87,83 @@ export default props => {
                             overflow:'hidden'
                         }}>
                             <Icon name="truck-fast" size={24} color={'#fff'} />
-                            <Text style={{letterSpacing:-0.7,fontSize:18,marginLeft:10,color:'#fff'}}>수거배달 신청하기</Text>
+                            <Text style={{letterSpacing:-0.7,fontSize:18,marginLeft:10,color:'#fff',fontWeight:'bold'}}>세탁하기</Text>
                         </View>
                     </TouchableHighlight>
 
-                </View>
+                    <View style={{flex:1,flexDirection:'row',backgroundColor:'#fff',padding:15,borderRadius:10,marginBottom:30,elevation:10}}>
+                        <View style={{alignItems:'center',width:34,}}>
+                            <Icon name="map-marker" style={{backgroundColor:'#396eee',width:34,height:34,borderRadius:17,textAlign:'center',lineHeight:34}} size={26} color={'#fff'}/>
+                            <Text style={{fontSize:12,marginTop:5,color:'#396eee'}}>대표</Text>
+                        </View>
+                        <View style={{flex:1,paddingLeft:20}}>
+                            <Text style={{fontSize:18,color:'#396eee',fontWeight:'bold'}}>우리집</Text>
+                            <Text style={{marginTop:5,color:'#8a8a8a',lineHeight:19}}>부산광역시 금정구 부산대학로 63번길 2 과학기술연구동 201호</Text>
+                            <View style={{alignItems:'flex-end'}}>
+                                <TouchableOpacity style={{flexDirection:'row',alignItems:'center',marginTop:15}}>
+                                    <Text style={{fontSize:12,color:'#396eee'}}>추가/변경하기</Text>
+                                    <Icon name="chevron-right" color={'#396eee'}/>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
 
-                <MainOrderState {...props} />
+                    <View style={{borderWidth:0,borderColor:'#e2e2e2',borderRadius:10,backgroundColor:'#fff',elevation:10}}>
+                        <View style={{justifyContent:'center',height:40,paddingHorizontal:15,borderBottomWidth:1,borderColor:'#e2e2e2'}}>
+                            <Text style={{fontSize:16,fontWeight:'bold'}}>우리동네 기사님</Text>
+                        </View>
+                        <View style={{flex:1,flexDirection:'row',padding:15}}>
+                            <Image source={{uri:faker.image.avatar()}} style={{width:80,height:80,borderRadius:40}}/>
+                            <View style={{flex:1,paddingLeft:20}}>
+                                <Text style={{fontSize:18,fontWeight:'bold'}}>홍길동 기사님</Text>
+                                <Text style={{marginTop:5,color:'#8a8a8a',fontSize:13}}>오늘도 열심히 달립니다</Text>
+            
+                                <Text style={{marginTop:10,fontSize:12}}>이번달 휴무 공지</Text>
+                                <View style={{flexDirection:'row',marginTop:5,flex:1,}}>
+                                    <Text style={{fontSize:12,color:'#d22828'}}>7일, 8일, 15일, 16일, 25일, 30일</Text>
+                                   
+                                </View>
+                            </View>
+                        </View>
+                    </View>
 
-                <View style={{paddingHorizontal:10,paddingVertical:20}}>
-                    <View style={[BaseStyles.shadowBox, {padding:30,backgroundColor:'#fff',alignItems:'center',borderRadius:10,marginBottom:20}]}>
-                        <Text style={{fontSize:14,color:'#9a9a9a',marginBottom:10}}>등록된 수거배달 장소가 없습니다</Text>
-                        <TouchableHighlight
-                            underlayColor={'#f2f2f2'}
-                            style={[styles.basicBorder,{height:40,lineHeight:40,paddingHorizontal:15,borderRadius:20,justifyContent:'center',alignItems:'center'}]}
-                            onPress={()=> props.navigation.navigate('addressAdd')}
-                        >
-                            <Text>
-                                장소등록하로 가기
-                            </Text>
-                        </TouchableHighlight>
+                    <View style={{flexDirection:'row',justifyContent:'space-around',marginVertical:50}}>
+                        <View style={{alignItems:'center',flex:1}}>
+                            <Icon name="credit-card-multiple" size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#f2f2f2'}}></Icon>
+                            <Text style={{marginTop:10,fontSize:13}}>카드관리</Text>
+                        </View>
+                            <View style={{alignItems:'center',flex:1,borderRightWidth:1,borderLeftWidth:1,borderColor:'#e2e2e2'}}>
+                            <Icon name="ticket-outline" size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#f2f2f2'}}></Icon>
+                            <Text style={{marginTop:10,fontSize:13}}>나의 쿠폰</Text>
+                        </View>
+                        <View style={{alignItems:'center',flex:1,}}>
+                            <Icon name="file-document-box-outline" size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#f2f2f2'}}></Icon>
+                            <Text style={{marginTop:10,fontSize:13}}>이용내역</Text>
+                        </View>
+
                     </View>
 
 
-                    <View style={[BaseStyles.shadowBox, {backgroundColor:'#fff',alignItems:'center',borderRadius:10,marginBottom:20,overflow:'hidden'}]}>
+                    <View style={{borderRadius:10,marginBottom:30,overflow:'hidden',elevation:10}}>
                         <MainVisualSecond />
                     </View>
 
-
-                    <View style={[BaseStyles.shadowBox, {flex:1,backgroundColor:'#fff',borderRadius:10}]}>
-                        <View style={{flexDirection:'row',justifyContent:'space-between',width:'100%',alignItems:'center',height:40,paddingHorizontal:10,}}>
-                            <Text style={{fontSize:16}}>등록된 결제카드</Text>
+                    <View style={{flex:1,backgroundColor:'#fff',borderRadius:10,elevation:10}}>
+                        <View style={{justifyContent:'center',height:40,paddingHorizontal:15,borderBottomWidth:1,borderColor:'#e2e2e2'}}>
+                            <Text style={{fontSize:16,fontWeight:'bold'}}>공지사항</Text>
+                        </View>
+                        <View style={{padding:15}}>
                             <TouchableHighlight
-                                onPress={()=> props.navigation.navigate('cardAdd')}
+                                onPress={()=>{}}
                                 underlayColor={'#f2f2f2'}
-                                style={{paddingHorizontal:5,height:20,borderRadius:3}}
+                                style={{marginBottom:5}}
                             >
-                                <View style={{flexDirection:'row',alignItems:'center'}}>
-                                    <Text style={{marginRight:5}}>카드추가</Text>
-                                    <Icon name={'plus-circle'}></Icon>
+                                <View style={{flex:1,flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+                                    <Text>데일리세탁 오픈!</Text>
+                                    <Text>03.24</Text>
                                 </View>
                             </TouchableHighlight>
-                        </View>
-                        <Divider style={{height:1,backgroundColor:'#e2e2e2'}}/>
-                        <View style={{flex:1,padding:10}}>
-                        {cardData.map((item) => (
-                            <View style={{flexDirection:'row',marginVertical:5,alignItems:'center'}}>
-                                <View>
-                                    <View style={{borderRadius:5,width:90,height:55,justifyContent:'space-between',backgroundColor:'#1E89E8',padding:6,}}>
-                                        <Text style={{fontSize:11,color:'#fff'}}>CARD</Text>
-                                        <Text style={{textAlign:'right',color:'#fff'}}>{item.number}</Text>
-                                    </View>
-                                </View>
-                                <View style={{paddingHorizontal:15,}}>
-                                    <Text style={{fontSize:16}}>{item.name}</Text>
-                                    <Text style={{fontSize:12,color:'#9a9a9a',marginTop:3,}}>등록일: {item.date}</Text>
-                                </View>
-                            </View>
-                        ))}
+                            
                         </View>
                     </View>
                 </View>
@@ -165,9 +182,6 @@ const styles = StyleSheet.create({
         backgroundColor:'#fff'
     },
     head:{
-        position:'absolute', 
-        top:0,
-        left:0,
         height:70,
         width:'100%',
         zIndex:9,
@@ -175,11 +189,15 @@ const styles = StyleSheet.create({
         alignItems:'center',
         //backgroundColor:'rgba(0,0,0,0.05)'
     },
-    visual:{
-        position:'relative',
-        backgroundColor:'#03C1E8',
-        height:300,
+    visualBackground:{
+        position:'absolute',
+        top:0,
+        width:'100%',
+        backgroundColor:'#396eee',
+        height:360,
         marginBottom:150,
+        zIndex:1,
+        overflow:'hidden'
     },
 
     basicBorder:{

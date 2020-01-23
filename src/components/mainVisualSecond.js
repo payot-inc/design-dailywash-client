@@ -23,7 +23,33 @@ export default class MainVisualSecond extends React.Component {
 
   render() {
     return (
-      <View style={{position: 'relative', flex: 1, alignItems: 'flex-end'}}>
+      <View style={{height:150}}>
+        <Carousel
+          layout={'default'}
+          layoutCardOffset={10}
+          data={visualData}
+          itemWidth={sliderWidth-50}
+          sliderWidth={sliderWidth-50}
+          inactiveSlideScale={1}
+          loop={true}
+          autoplayDelay={5000}
+          autoplayInterval={5000}
+          autoplay={true}
+          activeAnimationOptions={''}
+          renderItem={({item, index}) => (
+            <View
+              style={{
+                height: 150,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#EBE8E0',
+              }}>
+              <Text style={{fontSize: 24, color: '#292929'}}>{item.text}</Text>
+            </View>
+          )}
+          onSnapToItem={index => this.setState({activeSlide: index})}
+        />
+
         <Pagination
           dotsLength={visualData.length}
           activeDotIndex={this.state.activeSlide}
@@ -47,30 +73,6 @@ export default class MainVisualSecond extends React.Component {
           }
           inactiveDotOpacity={0.4}
           inactiveDotScale={0.6}
-        />
-
-        <Carousel
-          data={visualData}
-          itemWidth={sliderWidth}
-          sliderWidth={sliderWidth}
-          inactiveSlideScale={1}
-          loop={true}
-          autoplayDelay={5000}
-          autoplayInterval={5000}
-          autoplay={true}
-          activeAnimationOptions={''}
-          renderItem={({item, index}) => (
-            <View
-              style={{
-                height: 150,
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: '#EBE8E0',
-              }}>
-              <Text style={{fontSize: 24, color: '#292929'}}>{item.text}</Text>
-            </View>
-          )}
-          onSnapToItem={index => this.setState({activeSlide: index})}
         />
       </View>
     );

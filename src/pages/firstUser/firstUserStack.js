@@ -4,7 +4,6 @@ import {createStackNavigator} from 'react-navigation-stack'
 
 import Login from './login';
 import User from './user';
-import Search from './search';
 import Spot from './spot';
 
 const FirstUser = createStackNavigator(
@@ -18,13 +17,15 @@ const FirstUser = createStackNavigator(
     user:{
       screen:User,
       navigationOptions:{
-        title:'수거/배달 주소설정'
+        title:null
       }
     },
     spot:{
       screen:Spot,
+      navigationOptions:{
+        title:'수거/배달 주소설정'
+      }
     },
-    search:Search,
   },
   {
     initialRouteName:'login',

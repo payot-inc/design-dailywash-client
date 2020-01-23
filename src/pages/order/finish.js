@@ -5,19 +5,19 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default props =>{
   return(
-    <View style={{flex:1,backgroundColor:'#03C1E8'}}>
+    <View style={{flex:1,backgroundColor:'#396eee'}}>
       <View style={{marginTop:50,flex:1,backgroundColor:'#fff',borderTopRightRadius:30,padding:10,justifyContent:'center',alignItems:'center'}}>
         <View>
-          <View style={{width:150,height:150,borderWidth:5,borderColor:'#03C1E8',borderRadius:75}}>
+          <View style={{width:150,height:150,borderWidth:5,borderColor:'#396eee',borderRadius:75}}>
             <View style={{position:'absolute',top:-20,right:-20,}}>
-              <Icon name="check-circle" size={60} color={'#03C1E8'}/>
+              <Icon name="check-circle" size={60} color={'#396eee'}/>
             </View>
           </View>
         </View>
         <Divider style={{height:8,width:50,borderRadius:4,backgroundColor:'#e2e2e2',marginVertical:40,}}/>
         <View> 
           <View style={{alignItems:'center'}}>
-            <Text style={{fontSize:26,letterSpacing:-0.7,lineHeight:36,}}><Text style={{color:'#03C1E8',fontWeight:'bold'}}>수거예약 및 결제</Text>가</Text>
+            <Text style={{fontSize:26,letterSpacing:-0.7,lineHeight:36,}}><Text style={{color:'#396eee',fontWeight:'bold'}}>수거예약 및 결제</Text>가</Text>
             <Text style={{fontSize:26,letterSpacing:-0.7,lineHeight:36,}}>정상적으로 완료되었습니다</Text>
           </View>
           <View style={{alignItems:'center',marginTop:20,}}>

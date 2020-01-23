@@ -66,7 +66,7 @@ export default props =>{
       description: () => {
         return(
             <TouchableHighlight onPress={()=> setAgrmtModal(true)} underlayColor={'#f2f2f2'} style={{borderRadius:5}}>
-              <Text style={{flex:1,lineHeight:20}}> <Text style={{color:'#03C1E8', textDecorationLine:'underline'}}>서비스정책 </Text>(세탁정책, 보상정책, 유실물처리방침)에 대한 동의</Text>
+              <Text style={{flex:1,lineHeight:20}}> <Text style={{color:'#006FFF', textDecorationLine:'underline'}}>서비스정책 </Text>(세탁정책, 보상정책, 유실물처리방침)에 대한 동의</Text>
             </TouchableHighlight>
         )
       }
@@ -76,7 +76,7 @@ export default props =>{
       description: () => {
         return(
             <TouchableHighlight onPress={()=>console.log('true')} underlayColor={'#f2f2f2'} style={{borderRadius:5}}>
-              <Text style={{flex:1,lineHeight:20}}> <Text style={{color:'#03C1E8', textDecorationLine:'underline'}}>개인정보 취급방침</Text>에 대한 동의</Text>
+              <Text style={{flex:1,lineHeight:20}}> <Text style={{color:'#006FFF', textDecorationLine:'underline'}}>개인정보 취급방침</Text>에 대한 동의</Text>
             </TouchableHighlight>            
         )
       }
@@ -86,7 +86,7 @@ export default props =>{
       description: () => {
         return(
             <TouchableHighlight onPress={()=>console.log('true')} underlayColor={'#f2f2f2'} style={{borderRadius:5}}>
-              <Text style={{flex:1,lineHeight:20}}><Text style={{color:'#03C1E8', textDecorationLine:'underline'}}>생체정보</Text>사용에 대한 동의</Text>
+              <Text style={{flex:1,lineHeight:20}}><Text style={{color:'#006FFF', textDecorationLine:'underline'}}>생체정보</Text>사용에 대한 동의</Text>
             </TouchableHighlight>
         )
       }
@@ -108,7 +108,7 @@ export default props =>{
       <View style={{flexDirection:'row',alignItems:'center', flex:1,borderWidth:1,borderColor:'#e2e2e2',borderRadius:5,marginBottom:5}}>
         <View style={{overflow:'hidden',paddingHorizontal:10,}}>
           <TouchableHighlight underlayColor={'#fff'} onPress={()=> checkHandle(index)}>
-            {item.active === true ? <Icon name="check-circle" size={32} color={'#03C1E8'}/> : <Icon name="check-circle" size={32} color={'#e2e2e2'}/> }
+            {item.active === true ? <Icon name="check-circle" size={32} color={'#006FFF'}/> : <Icon name="check-circle" size={32} color={'#e2e2e2'}/> }
           </TouchableHighlight>
         </View>
         <View style={{borderLeftWidth:1,borderColor:'#e2e2e2',flex:1,padding:10,}}>
@@ -125,7 +125,7 @@ export default props =>{
       <ScrollView contentContainerStyle={{paddingVertical:20,}}>
         <Loading/>
 
-        <View style={{paddingHorizontal:10,marginBottom:30}}>
+        <View style={{paddingHorizontal:25,marginBottom:30}}>
           <Text style={{marginBottom:10,}}>수거&배달장소</Text>
           <View style={{borderWidth:1,borderRadius:5,borderColor:'#e2e2e2',padding:15}}>
             <Text style={{fontSize:16,}}>우리집</Text>
@@ -141,7 +141,7 @@ export default props =>{
           </View>
         </View>
 
-        <View style={{paddingHorizontal:10,marginBottom:30}}>
+        <View style={{paddingHorizontal:25,marginBottom:30}}>
           <Text style={{marginBottom:10,}}>선택한 상품</Text>
           <View style={{borderWidth:1,borderRadius:5,borderColor:'#e2e2e2',padding:15}}>
             <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center',marginBottom:10,}}>
@@ -166,7 +166,7 @@ export default props =>{
           </View>
         </View> */}
 
-        <View style={{paddingHorizontal:10,marginBottom:30}}>
+        <View style={{paddingHorizontal:25,marginBottom:30}}>
           <Text style={{marginBottom:10,}}>결제예정내역</Text>
           <View style={{borderRadius:5,padding:15, backgroundColor:'#f8f8f8'}}>
             <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:10}}>
@@ -195,14 +195,14 @@ export default props =>{
          </View>
          
          <View style={{marginBottom:30,overflow:'hidden'}}>
-           <Text style={{marginBottom:10,paddingHorizontal:10}}>결제카드 선택</Text>
+           <Text style={{marginBottom:10,paddingHorizontal:25}}>결제카드 선택</Text>
             <View style={{backgroundColor:'#f2f2f2',paddingVertical:15}}>
               <Carousel
                 data={cards}
                 itemWidth={200}
                 sliderWidth={sliderWidth}
                 activeSlideAlignment={'start'}
-                containerCustomStyle={{paddingLeft:10}}
+                containerCustomStyle={{paddingLeft:25}}
                 slideStyle={{marginRight:10}}
                 inactiveSlideScale={1}
                 inactiveSlideOpacity={1}
@@ -214,7 +214,7 @@ export default props =>{
             </View>
          </View>
 
-         <View style={{paddingHorizontal:10,marginBottom:30}}>
+         <View style={{paddingHorizontal:25,marginBottom:30}}>
             <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',}}>
               <Text style={{marginBottom:10,}}>이용약관 동의</Text>
             </View>
@@ -239,6 +239,7 @@ export default props =>{
               icon="check"
               disabled={false}
               contentStyle={{height:50,}}
+              labelStyle={{fontSize:16,fontWeight:'bold',letterSpacing:-0.7}}
               style={{marginTop:30,backgroundColor:'#d22828'}}
               onPress={()=>props.navigation.navigate('finish')}
             >

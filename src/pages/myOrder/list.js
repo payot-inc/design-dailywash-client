@@ -101,7 +101,7 @@ export default class MyOrderList extends React.Component {
 
         <View style={{flex: 1, backgroundColor: '#F5F6F8',}}>
           <SectionList
-            style={{paddingHorizontal:15}}
+            style={{paddingHorizontal:25}}
             sections={this.state.list[this.state.selectMonth].dateList}
             keyExtractor={(item, index) => index}
             renderSectionHeader={({section}, index) => (
@@ -114,7 +114,7 @@ export default class MyOrderList extends React.Component {
                 >
                     <View style={{borderWidth:1,borderRadius:10,minHeight:120,padding:15,borderColor:'#d2d2d2',backgroundColor:'#fff'}}>
                         <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                            <Text style={{fontSize:11,borderWidth:1,borderColor:'#21D1FF',paddingHorizontal:3,borderRadius:3,color:'#21D1FF'}}>배송완료</Text>
+                            <Text style={{fontSize:11,borderWidth:1,borderColor:'#396eee',paddingHorizontal:3,borderRadius:3,color:'#396eee'}}>배송완료</Text>
                             <Text style={{fontSize:12,color:'#9a9a9a'}}>2019.08.11 12:45</Text>
                         </View>
                         <Text style={{fontSize:16,marginTop:10,}}>{item.goodsName}</Text>

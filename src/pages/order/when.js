@@ -40,10 +40,10 @@ export default class When extends React.Component{
         return(
             <View style={{flex:1,backgroundColor:'#F5F6F8'}}>
                 <ScrollView
-                    contentContainerStyle={{paddingBottom:15,}}
+                    contentContainerStyle={{paddingVertical:15,paddingHorizontal:25}}
                 >
                     <View style={{marginBottom:20}}>
-                        <View style={{padding:15}}>
+                        <View style={{marginBottom:15}}>
                             <Text style={{fontSize:16}}>수거날짜 선택</Text>
                             <Text style={{fontSize:13,color:'#9a9a9a',marginTop:5}}>희망하시는 수거날짜를 선택해주세요</Text>
                         </View>
@@ -52,7 +52,7 @@ export default class When extends React.Component{
                             itemWidth={90}
                             sliderWidth={sliderWidth}
                             activeSlideAlignment={'start'}
-                            containerCustomStyle={{paddingLeft:15}}
+                            containerCustomStyle={{}}
                             slideStyle={{marginRight:10}}
                             inactiveSlideScale={1}
                             layoutCardOffset={10}
@@ -67,7 +67,7 @@ export default class When extends React.Component{
                                             alignItems:'center',
                                             backgroundColor:'#fff'
                                         },
-                                        item.on === true ? {borderColor:'#03C1E8'} : {borderColor:'#d2d2d2'}
+                                        item.on === true ? {borderColor:'#396eee'} : {borderColor:'#d2d2d2'}
                                     ]}
                                 >
                                     <Text style={{fontSize:20}}>{item.date}</Text>
@@ -79,11 +79,11 @@ export default class When extends React.Component{
 
 
                     <View style={{marginBottom:20}}>
-                        <View style={{padding:15}}>
+                        <View style={{marginBottom:15}}>
                             <Text style={{fontSize:16}}>수거시간 선택</Text>
                             <Text style={{fontSize:13,color:'#9a9a9a',marginTop:5}}>주문량에 따라 수거시간이 변경될 수 있습니다</Text>
                         </View>
-                        <View style={{flexDirection:'row',paddingHorizontal:15}}>
+                        <View style={{flexDirection:'row'}}>
                             <TouchableOpacity 
                                 style={[styles.selectBox,{marginRight:5,height:90}]}
                             >
@@ -115,11 +115,10 @@ export default class When extends React.Component{
                     </View>
 
                     <View style={{marginBottom:20}}>
-                        <View style={{padding:15}}>
+                        <View style={{marginBottom:15}}>
                             <Text style={{fontSize:16}}>수거방식 선택</Text>
-                            <Text style={{fontSize:13,color:'#9a9a9a',marginTop:5}}>주문량에 따라 수거시간이 변경될 수 있습니다</Text>
                         </View>
-                        <View style={{flexDirection:'row',paddingHorizontal:15}}>
+                        <View style={{flexDirection:'row'}}>
                             <TouchableOpacity 
                                 style={[styles.selectBox,{marginRight:5}]}
                             >
@@ -145,10 +144,9 @@ export default class When extends React.Component{
                         </View>
                     </View>
 
-                    <View style={{paddingHorizontal:15}}>
+                    <View style={{}}>
                         <View style={{marginBottom:15}}>
                             <Text style={{fontSize:16}}>요청사항</Text>
-                            <Text style={{fontSize:13,color:'#9a9a9a',marginTop:5}}>주문량에 따라 수거시간이 변경될 수 있습니다</Text>
                         </View>
                         <TextInput
                             multiline
@@ -161,10 +159,10 @@ export default class When extends React.Component{
                     </View>   
                 </ScrollView>
 
-                <View style={{borderTopWidth:1,paddingHorizontal:15,paddingVertical:10,borderColor:'#d2d2d2',backgroundColor:'#fff'}}>
+                <View style={{borderTopWidth:1,paddingHorizontal:10,paddingVertical:10,borderColor:'#d2d2d2',backgroundColor:'#fff'}}>
                     <TouchableHighlight
-                        onPress={() => {this.props.navigation.navigate('product')}}
-                        style={{height:45,backgroundColor:'#292929',borderRadius:10,alignItems:'center',justifyContent:'center',}}
+                        onPress={() => {this.props.navigation.navigate('items')}}
+                        style={{height:45,backgroundColor:'#292929',borderRadius:5,alignItems:'center',justifyContent:'center',}}
                     >
                         <Text style={{color:'#fff'}}>다음으로</Text>
                     </TouchableHighlight>

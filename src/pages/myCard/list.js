@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity, FlatList, StyleSheet,Alert} from 'react-na
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import SubHeader from '../../components/subHeader'
-import BaseStyles from '../../assets/baseStyles';
+import BaseStyles from '../../assets/css/thema';
 
 
 const Data = [
@@ -61,12 +61,13 @@ export default props => {
             <SubHeader navigation={props.navigation} title={'카드관리'}/>
 
             <View style={{flex:1,paddingVertical:22.5}}>
-                <View style={{flexDirection:'row',flexBasis:30,paddingHorizontal:10}}>
+                <View style={{flexDirection:'row',flexBasis:30,paddingHorizontal:25}}>
                     <Text style={{marginRight:10}}>등록된 카드</Text>
                     <Text style={{color:'#5D21FF',fontSize:16,fontWeight:'bold'}}>2</Text>
                 </View>
                 <View style={{flex:1,}}>
                     <FlatList
+                        contentContainerStyle={{paddingHorizontal:25}}
                         data = {state.cards}
                         renderItem={({item, index}) => 
                             <View style={[styles.cardItem, BaseStyles.shadowBox]}>
@@ -105,7 +106,7 @@ export default props => {
                                 })}
                                 style={{marginTop:20}}
                             >
-                                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',borderWidth:1,borderRadius:10,height:50,borderColor:'#292929',marginHorizontal:10,}}>
+                                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',borderWidth:1,borderRadius:10,height:50,borderColor:'#292929'}}>
                                     <Icon name={'plus-circle'} size={18}></Icon>
                                     <Text style={{fontSize:16,marginLeft:10}}>카드 등록하기</Text>
                                 </View>
@@ -125,7 +126,6 @@ const styles = StyleSheet.create({
         paddingHorizontal:10,
         backgroundColor:'#fff',
         marginVertical:5,
-        marginHorizontal:10,
         flexDirection:'row',
         alignItems:'center',
     }

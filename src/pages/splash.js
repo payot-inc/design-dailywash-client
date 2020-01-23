@@ -16,9 +16,9 @@ export default props => {
   setTimeout(() => { props.navigation.navigate('firstUser') }, 3000);
 
   return (
-    <View style={{flex:1,backgroundColor:'#03C1E8',padding:30,}}>
+    <View style={{flex:1,backgroundColor:'#396eee',padding:30,}}>
       <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-        <Animated.Image source={require('../assets/logo_v.png')} resizeMode="contain" style={{width:logoWidth}}/>
+        <Animated.Image source={require('../assets/img/logo_v.png')} resizeMode="contain" style={{width:logoWidth}}/>
       </View>
       <View style={{flexBasis:50,}}>
         <ActivityIndicator color={'#fff'}/>

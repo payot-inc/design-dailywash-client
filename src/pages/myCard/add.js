@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TextInput, ScrollView, TouchableHighlight} from 'react-native';
 import moment from 'moment';
 
-import BaseStyles from '../../assets/baseStyles';
+import BaseStyles from '../../assets/css/thema';
 
 export default class CardAdd extends React.Component{
     state = {
@@ -17,7 +17,9 @@ export default class CardAdd extends React.Component{
         return(
             <View style={{flex:1,backgroundColor:'#F5F6F8',paddingTop:10,}}>
                 <View style={{flex:1,backgroundColor:'#fff',borderTopEndRadius:45,elevation:15}}>
-                    <ScrollView style={{paddingHorizontal:15,paddingVertical:30,}}>
+                    <ScrollView 
+                        contentContainerStyle={{paddingHorizontal:25,paddingVertical:30}}
+                    >
                         <View style={{marginBottom:20}}>
                             <Text style={{marginBottom:8,}}>카드명</Text>
                             <TextInput

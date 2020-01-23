@@ -8,7 +8,6 @@ import Order from './pages/order/stack';
 import DrawerNavigator from './pages/drawerNavigator';
 import FirstUser from './pages/firstUser/firstUserStack'
 
-
 const MainStoryBorad = createStackNavigator(
   {
     main: {
@@ -36,7 +35,7 @@ const AppSwitch = createSwitchNavigator(
     firstUser:FirstUser,
   },
   {
-    initialRouteName:'home',
+    initialRouteName:'splash',
   }
 )
 

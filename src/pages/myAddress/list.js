@@ -4,7 +4,7 @@ import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import SubHeader from '../../components/subHeader';
-import BaseStyles from '../../assets/baseStyles';
+import BaseStyles from '../../assets/css/thema';
 
 
 
@@ -31,13 +31,14 @@ export default props => {
             <SubHeader navigation={props.navigation} title={'수거/배달 장소관리'}/>
 
             <View style={{flex:1,paddingTop:22.5}}>
-                <View style={{flexDirection:'row',flexBasis:30,paddingHorizontal:10}}>
+                <View style={{flexDirection:'row',flexBasis:30,paddingHorizontal:25}}>
                     <Text style={{marginRight:10}}>등록된 주소지</Text>
                     <Text style={{color:'#5D21FF',fontSize:16,fontWeight:'bold'}}>2</Text>
                 </View>
                 <View style={{flex:1,}}>
                     <FlatList
                         data = {Data}
+                        contentContainerStyle={{paddingHorizontal:25}}
                         renderItem={({item, index}) => 
                             <View style={[BaseStyles.shadowBox, styles.addressCard,{flexDirection:'row',alignItems:'flex-start',justifyContent:'space-between'}]}>
                                 <View style={{flex:1,}}>
@@ -71,7 +72,7 @@ export default props => {
                                 onPress={() => props.navigation.navigate('addressAdd')}
                                 style={{marginTop:20}}
                             >
-                                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',borderWidth:1,borderRadius:10,height:50,borderColor:'#292929',marginHorizontal:10,}}>
+                                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',borderWidth:1,borderRadius:10,height:50,borderColor:'#292929'}}>
                                     <Icon name={'plus-circle'} size={18}></Icon>
                                     <Text style={{fontSize:16,marginLeft:10}}>주소지 추가하기</Text>
                                 </View>
@@ -89,7 +90,6 @@ export default props => {
 const styles = StyleSheet.create({
     addressCard:{
         borderRadius:10,
-        marginHorizontal:10,
         marginVertical:5,
         backgroundColor:'#fff',
         padding:15,

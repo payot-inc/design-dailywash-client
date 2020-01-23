@@ -27,32 +27,29 @@ export default class MainVisual extends React.Component {
 
     render(){
         return(
+ 
             <View style={{
-                zIndex:1,
-                position:'absolute',
-                top:70,
-                marginHorizontal:10,
+                zIndex:10,
                 borderRadius:10,
-                overflow:'hidden',
-                elevation:0,
+                paddingHorizontal:15,
             }}>
                 <Carousel
                     layout={'default'}
                     layoutCardOffset={'18'}
                     data={mainVisualData}
-                    itemWidth={sliderWidth}
-                    sliderWidth={sliderWidth-20}
+                    itemWidth={sliderWidth-30}
+                    sliderWidth={sliderWidth-30}
                     inactiveSlideScale={1}
                     loop={true}
                     autoplayDelay={5000}
                     autoplayInterval={5000}
                     autoplay={true}
                     renderItem={({item, index})=>
-                        <View style={{borderRadius:10,height:360,alignItems:'center',justifyContent:'center'}}>
-                            <Image source={require('../assets/main01.png')} resizeMode="center"/>
+                        <View style={{borderRadius:10,height:360,alignItems:'center',justifyContent:'center',overflow:'hidden',backgroundColor:'#f2f2f2',}}>
+                            <Image source={require('../assets/img/main01.png')} resizeMode="center" style={{height:'100%'}}/>
                         </View>
                     }
-                    onSnapToItem={(index) => this.setState({activeSlide:index})}           
+                    onSnapToItem={(index) => this.setState({activeSlide:index})}        
                 />
 
                 <Pagination 

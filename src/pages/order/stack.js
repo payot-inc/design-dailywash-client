@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import Spot from './spot';
 import When from './when';
-import Product from './product';
+import Items from './items';
 import Payment from './payment';
 import Finish from './finish';
 
@@ -21,8 +21,8 @@ const orderStack = createStackNavigator(
     when: {
       screen: When,
     },
-    product: {
-      screen: Product,
+    items:{
+      screen:Items,
     },
     payment:{
       screen: Payment,
@@ -42,13 +42,13 @@ const orderStack = createStackNavigator(
       headerShown: true,
       header: ({navigation}) => {
         const position = navigation.state.index;
-        const title = ['어디에서 수거할까요?', '언제 수거할까요?','세탁 상품을 선택해주세요','마지막으로 확인해주세요!'][position];
+        const title = ['어디에서 수거할까요?', '언제 수거할까요?','세탁 상품을 선택해주세요','세탁 상품을 선택해주세요','마지막으로 확인해주세요!'][position];
         const pageNumber = [position + 1];
 
         return (
 
         <View style={position === 2 || position === 3 ? {backgroundColor:'#fff'} : {backgroundColor:'#F5F6F8'}}>
-            <View style={{height:120,borderBottomRightRadius:45,backgroundColor:'#03C1E8'}}>
+            <View style={{height:120,borderBottomRightRadius:45,backgroundColor:'#396eee'}}>
               <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                 <TouchableOpacity
                     style={{width:50,height:50,alignItems:'center',justifyContent:'center'}}

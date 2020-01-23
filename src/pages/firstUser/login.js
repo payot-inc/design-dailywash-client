@@ -6,7 +6,7 @@ export default props =>{
   return(
     <View style={{flex:1,padding:30,alignItems:'center'}}>
       <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-        <Image source={require('../../assets/logo_v_blue.png')} resizeMode="contain" style={{width:150}}/>
+        <Image source={require('../../assets/img/logo_v_blue.png')} resizeMode="contain" style={{width:150}}/>
       </View>
       <View style={{flexBasis:50,width:'100%'}}>
         <Button mode="contained" 
