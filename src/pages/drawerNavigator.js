@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import MainPage from './MainPage';
 import Coupon from './coupon';
@@ -10,6 +10,7 @@ import MyCard from './myCard/stack';
 import MyAddress from './myAddress/stack';
 import MyOrder from './myOrder/stack';
 import CustomDrawer from '../components/customDrawer';
+import Option from '../pages/option';
 
 export default DrawerNavigator = createDrawerNavigator(
   {
@@ -42,7 +43,7 @@ export default DrawerNavigator = createDrawerNavigator(
           <Text style={{fontSize:15}}>나의 쿠폰</Text>
         ),
         drawerIcon: () => (
-          <Icon name={'ticket-alt'} size={18} color={'#9a9a9a'}/>
+          <Icon name={'ticket-percent'} size={18} color={'#9a9a9a'}/>
         )
       }),
     },
@@ -53,7 +54,7 @@ export default DrawerNavigator = createDrawerNavigator(
           <Text style={{fontSize:15}}>수거/배달 장소관리</Text>
         ),
         drawerIcon: () => (
-          <Icon name={'map-marker-alt'} size={18} color={'#9a9a9a'}/>
+          <Icon name={'map-marker'} size={18} color={'#9a9a9a'}/>
         )
       }),
     },
@@ -64,7 +65,18 @@ export default DrawerNavigator = createDrawerNavigator(
           <Text style={{fontSize:15}}>이용내역</Text>
         ),
         drawerIcon: () => (
-          <Icon name={'list'} size={18} color={'#9a9a9a'}/>
+          <Icon name={'format-list-bulleted'} size={18} color={'#9a9a9a'}/>
+        )
+      }),
+    },
+    option: {
+      screen: Option,
+      navigationOptions: () => ({
+        drawerLabel: () => (
+          <Text style={{fontSize:15}}>설정</Text>
+        ),
+        drawerIcon: () => (
+          <Icon name={'settings'} size={18} color={'#9a9a9a'}/>
         )
       }),
     },

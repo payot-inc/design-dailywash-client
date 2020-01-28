@@ -30,8 +30,11 @@ export default class MainVisual extends React.Component {
  
             <View style={{
                 zIndex:10,
+                marginHorizontal:15,
+                elevation:10,
+                backgroundColor:'#f2f2f2',
                 borderRadius:10,
-                paddingHorizontal:15,
+                overflow:'hidden'
             }}>
                 <Carousel
                     layout={'default'}
@@ -45,11 +48,11 @@ export default class MainVisual extends React.Component {
                     autoplayInterval={5000}
                     autoplay={true}
                     renderItem={({item, index})=>
-                        <View style={{borderRadius:10,height:360,alignItems:'center',justifyContent:'center',overflow:'hidden',backgroundColor:'#f2f2f2',}}>
+                        <View style={{height:360,alignItems:'center',justifyContent:'center',overflow:'hidden',backgroundColor:'#f2f2f2',}}>
                             <Image source={require('../assets/img/main01.png')} resizeMode="center" style={{height:'100%'}}/>
                         </View>
                     }
-                    onSnapToItem={(index) => this.setState({activeSlide:index})}        
+                    onSnapToItem={(index) => this.setState({activeSlide:index})} 
                 />
 
                 <Pagination 

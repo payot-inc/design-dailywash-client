@@ -7,6 +7,7 @@ import Splash from './pages/splash';
 import Order from './pages/order/stack';
 import DrawerNavigator from './pages/drawerNavigator';
 import FirstUser from './pages/firstUser/firstUserStack'
+import NoticeStack from './pages/notice/noticeStack';
 
 const MainStoryBorad = createStackNavigator(
   {
@@ -22,6 +23,12 @@ const MainStoryBorad = createStackNavigator(
         header: null,
       }),
     },
+    notice:{
+      screen:NoticeStack,
+      navigationOptions: () => ({
+        header: null,
+      }),
+    }
   },
   {
     initialRouteName: 'main',

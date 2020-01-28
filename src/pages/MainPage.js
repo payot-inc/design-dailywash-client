@@ -63,8 +63,10 @@ export default props => {
                         </Image> 
                     </View>
                 </View>
+                
 
                 <MainVisual />
+ 
 
                 <View style={styles.visualBackground}>
                     {/* <Image source={require('../assets/img/wave_pattern.png')} resizeMode="repeat" style={{height:'100%',opacity:0.2}}/> */}
@@ -128,33 +130,59 @@ export default props => {
                     </View>
 
                     <View style={{flexDirection:'row',justifyContent:'space-around',marginVertical:50}}>
-                        <View style={{alignItems:'center',flex:1}}>
-                            <Icon name="credit-card-multiple" size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#f2f2f2'}}></Icon>
-                            <Text style={{marginTop:10,fontSize:13}}>카드관리</Text>
-                        </View>
-                            <View style={{alignItems:'center',flex:1,borderRightWidth:1,borderLeftWidth:1,borderColor:'#e2e2e2'}}>
-                            <Icon name="ticket-outline" size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#f2f2f2'}}></Icon>
-                            <Text style={{marginTop:10,fontSize:13}}>나의 쿠폰</Text>
-                        </View>
-                        <View style={{alignItems:'center',flex:1,}}>
-                            <Icon name="file-document-box-outline" size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#f2f2f2'}}></Icon>
-                            <Text style={{marginTop:10,fontSize:13}}>이용내역</Text>
-                        </View>
+                        <TouchableHighlight
+                            onPress={()=>{props.navigation.navigate('card')}}
+                            underlayColor={'#fff'}
+                            style={{flex:1}}
+                        >
+                            <View style={{alignItems:'center',flex:1}}>
+                                <Icon name="credit-card-multiple" color={'#396eee'} size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#f2f2f2'}}></Icon>
+                                <Text style={{marginTop:10,fontSize:13}}>카드관리</Text>
+                            </View>
+                        </TouchableHighlight>
 
+                        <TouchableHighlight
+                            onPress={()=>{props.navigation.navigate('coupon')}}
+                            underlayColor={'#fff'}
+                            style={{flex:1}}
+                        >
+                            <View style={{alignItems:'center',flex:1,borderRightWidth:1,borderLeftWidth:1,borderColor:'#e2e2e2'}}>
+                                <Icon name="ticket-outline" color={'#396eee'} size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#f2f2f2'}}></Icon>
+                                <Text style={{marginTop:10,fontSize:13}}>나의 쿠폰</Text>
+                            </View>
+                        </TouchableHighlight>
+
+                        <TouchableHighlight
+                            onPress={()=>{props.navigation.navigate('myOrder')}}
+                            underlayColor={'#fff'}
+                            style={{flex:1}}
+                        >
+                            <View style={{alignItems:'center',flex:1,}}>
+                                <Icon name="file-document-box-outline" color={'#396eee'} size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#f2f2f2'}}></Icon>
+                                <Text style={{marginTop:10,fontSize:13}}>이용내역</Text>
+                            </View>
+                        </TouchableHighlight>
                     </View>
 
 
-                    <View style={{borderRadius:10,marginBottom:30,overflow:'hidden',elevation:10}}>
+                    <View style={{borderRadius:10,marginBottom:30,overflow:'hidden',elevation:10,backgroundColor:'#fff'}}>
                         <MainVisualSecond />
                     </View>
 
-                    <View style={{flex:1,backgroundColor:'#fff',borderRadius:10,elevation:10}}>
-                        <View style={{justifyContent:'center',height:40,paddingHorizontal:15,borderBottomWidth:1,borderColor:'#e2e2e2'}}>
+                    <View style={{flex:1,backgroundColor:'#fff',borderRadius:10,elevation:10,overflow:'hidden'}}>
+                        <View style={{justifyContent:'space-between',height:40,paddingLeft:15,borderBottomWidth:1,borderColor:'#e2e2e2',flexDirection:'row',alignItems:'center',}}>
                             <Text style={{fontSize:16,fontWeight:'bold'}}>공지사항</Text>
+                            <TouchableHighlight
+                                onPress={()=> props.navigation.navigate('notice')}
+                                style={{height:40,width:40,justifyContent:'center',alignItems:'center'}}
+                                underlayColor={'#f2f2f2'}
+                            >
+                                <Icon name={'plus'} size={18} />
+                            </TouchableHighlight>
                         </View>
                         <View style={{padding:15}}>
                             <TouchableHighlight
-                                onPress={()=>{}}
+                                onPress={()=> {}}
                                 underlayColor={'#f2f2f2'}
                                 style={{marginBottom:5}}
                             >

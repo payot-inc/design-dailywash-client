@@ -26,7 +26,7 @@ export default class MainVisualSecond extends React.Component {
       <View style={{height:150}}>
         <Carousel
           layout={'default'}
-          layoutCardOffset={10}
+          layoutCardOffset={'10'}
           data={visualData}
           itemWidth={sliderWidth-50}
           sliderWidth={sliderWidth-50}
@@ -42,7 +42,7 @@ export default class MainVisualSecond extends React.Component {
                 height: 150,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: '#EBE8E0',
+                backgroundColor: '#396eee',
               }}>
               <Text style={{fontSize: 24, color: '#292929'}}>{item.text}</Text>
             </View>
