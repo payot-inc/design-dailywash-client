@@ -4,10 +4,11 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import {Button} from 'react-native-paper';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Basket from '../../components/basket';
-import DummyData from './ServiceList.json';
+import Basket from '../components/basket';
+import DummyData from './order/ServiceList.json';
 
 const ItemBox = props => {
+
     const { name, description, userPrice, } = props.data;
     return(
         <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',borderBottomWidth:1,borderColor:'#e2e2e2',paddingVertical:15,paddingHorizontal:10,backgroundColor:'#fff'}}>
@@ -51,7 +52,8 @@ const TabContainer = props => {
   
 
   export default props => {   
-      
+    
+       
     const DATA = [
         {   
             eventTitle:'겨울윈터세일',

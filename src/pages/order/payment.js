@@ -141,22 +141,6 @@ export default props =>{
           </View>
         </View>
 
-        <View style={{paddingHorizontal:25,marginBottom:30}}>
-          <Text style={{marginBottom:10,}}>선택한 상품</Text>
-          <View style={{borderWidth:1,borderRadius:5,borderColor:'#e2e2e2',padding:15}}>
-            <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center',marginBottom:10,}}>
-              <Text style={{flex:1,}}>생활빨래 50리터</Text>
-              <Text style={{width:50,textAlign:'center'}}>1개</Text>
-              <Text style={{width:80,textAlign:'right'}}>113,400원</Text>
-            </View>
-            <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-              <Text style={{flex:1,}}>일반셔츠</Text>
-              <Text style={{width:50,textAlign:'center'}}>3개</Text>
-              <Text style={{width:80,textAlign:'right'}}>9,000원</Text>
-            </View>
-          </View>
-        </View>
-
         {/* <View style={{paddingHorizontal:10,marginBottom:30}}>
           <Text style={{marginBottom:10,}}>쿠폰사용</Text>
           <View style={{borderWidth:1,borderRadius:5,borderColor:'#e2e2e2',padding:15}}>
@@ -166,33 +150,7 @@ export default props =>{
           </View>
         </View> */}
 
-        <View style={{paddingHorizontal:25,marginBottom:30}}>
-          <Text style={{marginBottom:10,}}>결제예정내역</Text>
-          <View style={{borderRadius:5,padding:15, backgroundColor:'#f8f8f8'}}>
-            <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:10}}>
-              <Text style={{flex:1,}}>선택한 상품</Text>
-              <Text style={{width:80,textAlign:'right'}}>42,200원</Text>
-            </View>
-            {/* <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:10}}>
-              <Text style={{flex:1,}}>쿠폰할인</Text>
-              <Text style={{width:80,textAlign:'right'}}>-3,200원</Text>
-            </View> */}
-            <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:10}}>
-              <Text style={{flex:1,}}>수거배달료</Text>
-              <Text style={{width:80,textAlign:'right'}}>0 원</Text>
-            </View>
-            <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:10}}>
-              <Text style={{flex:1,color:'#1E1FE8'}}>이벤트(겨울윈터세일)</Text>
-              <Text style={{width:80,textAlign:'right'}}>-1,000원</Text>
-            </View>
-          </View>
-          <View style={{borderRadius:5,padding:15, backgroundColor:'#f8f8f8',marginTop:10}}>
-            <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
-              <Text style={{flex:1,}}>최종결제금액</Text>
-              <Text style={{width:80,textAlign:'right',color:'#d22828', fontWeight:'bold', fontSize:18}}>41,200원</Text>
-            </View>
-          </View>
-         </View>
+      
          
          <View style={{marginBottom:30,overflow:'hidden'}}>
            <Text style={{marginBottom:10,paddingHorizontal:25}}>결제카드 선택</Text>
@@ -243,7 +201,7 @@ export default props =>{
               style={{marginTop:30,backgroundColor:'#d22828'}}
               onPress={()=>props.navigation.navigate('finish')}
             >
-               결제하기
+               예약완료하기
             </Button>
          </View>
 

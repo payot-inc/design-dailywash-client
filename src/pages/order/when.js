@@ -161,7 +161,7 @@ export default class When extends React.Component{
 
                 <View style={{borderTopWidth:1,paddingHorizontal:10,paddingVertical:10,borderColor:'#d2d2d2',backgroundColor:'#fff'}}>
                     <TouchableHighlight
-                        onPress={() => {this.props.navigation.navigate('items')}}
+                        onPress={() => {this.props.navigation.navigate('payment')}}
                         style={{height:45,backgroundColor:'#292929',borderRadius:5,alignItems:'center',justifyContent:'center',}}
                     >
                         <Text style={{color:'#fff'}}>다음으로</Text>

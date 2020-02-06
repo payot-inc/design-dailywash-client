@@ -17,11 +17,11 @@ export default props =>{
         <Divider style={{height:8,width:50,borderRadius:4,backgroundColor:'#e2e2e2',marginVertical:40,}}/>
         <View> 
           <View style={{alignItems:'center'}}>
-            <Text style={{fontSize:26,letterSpacing:-0.7,lineHeight:36,}}><Text style={{color:'#396eee',fontWeight:'bold'}}>수거예약 및 결제</Text>가</Text>
+            <Text style={{fontSize:26,letterSpacing:-0.7,lineHeight:36,}}><Text style={{color:'#396eee',fontWeight:'bold'}}>수거예약</Text>이</Text>
             <Text style={{fontSize:26,letterSpacing:-0.7,lineHeight:36,}}>정상적으로 완료되었습니다</Text>
           </View>
           <View style={{alignItems:'center',marginTop:20,}}>
-            <Text style={{color:'#9a9a9a'}}>해당 상품의 주문, 배송정보는 <Text style={{color:'#292929'}}>이용내역</Text>에서</Text>
+            <Text style={{color:'#9a9a9a'}}>해당 상품의 주문, 배송정보는 <Text style={{color:'#396eee'}}>이용내역</Text>에서</Text>
             <Text style={{color:'#9a9a9a',marginTop:3,}}>다시 확인 할 수 있습니다</Text>
           </View>
         </View>

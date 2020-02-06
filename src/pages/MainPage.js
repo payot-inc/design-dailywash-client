@@ -44,26 +44,7 @@ export default props => {
             <StatusBar backgroundColor={'#292929'}/>
             
             <ScrollView>
-                <View style={styles.head}>
-                    <TouchableOpacity
-                        onPress={() => {
-                            props.navigation.dispatch(DrawerActions.openDrawer())
-                        }}
-                        activeOpacity={0.7}
-                    >
-                        <View style={{width:60,height:60,alignItems:'center',justifyContent:'center'}}>
-                            <Icon name="menu" color={'#fff'} size={30}></Icon>
-                        </View>
-                    </TouchableOpacity>
-                    <View>
-                        <Image
-                            source={require('../assets/img/logo.png')}
-                            style={{width:140, resizeMode: 'contain'}}
-                        >
-                        </Image> 
-                    </View>
-                </View>
-                
+               
 
                 <MainVisual />
  
@@ -74,24 +55,40 @@ export default props => {
 
                 <View style={{paddingHorizontal:25,paddingBottom:30}}>
 
-                    <TouchableHighlight
-                        onPress={()=> props.navigation.navigate('order')}
-                        style={{width:'100%',borderRadius:10,backgroundColor:'#172959',marginTop:30,marginBottom:30,elevation:10}}
-                        underlayColor={'#111F44'}
-                    >  
-                        <View style={{
-                            width:'100%',
-                            flexDirection:'row',
-                            justifyContent:'center',
-                            alignItems:'center',
-                            height:54,
-                            borderRadius:10,
-                            overflow:'hidden'
-                        }}>
-                            <Icon name="truck-fast" size={24} color={'#fff'} />
-                            <Text style={{letterSpacing:-0.7,fontSize:18,marginLeft:10,color:'#fff',fontWeight:'bold'}}>세탁하기</Text>
-                        </View>
-                    </TouchableHighlight>
+                    <View style={{flex:1,flexDirection:'row'}}>
+                        <TouchableHighlight
+                            onPress={()=> props.navigation.navigate('priceTable')}
+                            style={{marginVertical:30,marginRight:5,backgroundColor:'#396EEE',borderRadius:10,padding:15,width:120,height:120}}
+                            underlayColor={'#3464D6'}
+                        >  
+                            <View style={{flex:1,justifyContent:'space-between'}}>
+                                <View>
+                                    <Text style={{letterSpacing:-0.7,fontSize:16,color:'#fff'}}>세탁가격</Text>
+                                    <Text style={{letterSpacing:-0.7,fontSize:16,color:'#fff'}}>조회하기</Text>
+                                </View>
+                                <View style={{alignItems:'flex-end'}}>
+                                    <Icon name="arrow-right" color="#fff" size={20}></Icon>
+                                </View>
+                            </View>
+                        </TouchableHighlight>
+                        <TouchableHighlight
+                            onPress={()=> props.navigation.navigate('order')}
+                            style={{flex:1,marginVertical:30,marginLeft:5,backgroundColor:'#111F44',borderRadius:10,padding:15,height:120}}
+                            underlayColor={'#0D1834'}
+                        >  
+                            <View style={{flex:1,justifyContent:'space-between'}}>
+                                <View>
+                                    <Text style={{letterSpacing:-0.7,fontSize:16,color:'#fff'}}>세탁 수거/배달</Text>
+                                    <Text style={{letterSpacing:-0.7,fontSize:16,color:'#fff'}}>예약하기</Text>
+                                </View>
+                                <View style={{alignItems:'flex-end'}}>
+                                    <Icon name="arrow-right" color="#fff" size={20}></Icon>
+                                </View>
+                            </View>
+                        </TouchableHighlight>
+                    </View>
+
+                    
 
                     <View style={{flex:1,flexDirection:'row',backgroundColor:'#fff',padding:15,borderRadius:10,marginBottom:30,elevation:10}}>
                         <View style={{alignItems:'center',width:34,}}>
@@ -209,20 +206,12 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor:'#fff'
     },
-    head:{
-        height:70,
-        width:'100%',
-        zIndex:9,
-        flexDirection:'row',
-        alignItems:'center',
-        //backgroundColor:'rgba(0,0,0,0.05)'
-    },
     visualBackground:{
         position:'absolute',
         top:0,
         width:'100%',
         backgroundColor:'#396eee',
-        height:360,
+        height:240,
         marginBottom:150,
         zIndex:1,
         overflow:'hidden'
