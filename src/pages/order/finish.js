@@ -8,11 +8,7 @@ export default props =>{
     <View style={{flex:1,backgroundColor:'#396eee'}}>
       <View style={{marginTop:50,flex:1,backgroundColor:'#fff',borderTopRightRadius:30,padding:10,justifyContent:'center',alignItems:'center'}}>
         <View>
-          <View style={{width:150,height:150,borderWidth:5,borderColor:'#396eee',borderRadius:75}}>
-            <View style={{position:'absolute',top:-20,right:-20,}}>
-              <Icon name="check-circle" size={60} color={'#396eee'}/>
-            </View>
-          </View>
+          <Icon name="check-circle" size={150} color={'#396eee'}/>
         </View>
         <Divider style={{height:8,width:50,borderRadius:4,backgroundColor:'#e2e2e2',marginVertical:40,}}/>
         <View> 

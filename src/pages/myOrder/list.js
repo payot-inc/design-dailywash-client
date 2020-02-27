@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {View, Text, SectionList, Picker, TouchableHighlight, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Lodash from 'lodash';
@@ -44,6 +44,8 @@ function dateList(targetMonth, count) {
 //     }
 // })
 
+
+
 export default class MyOrderList extends React.Component {
   state = {
     selectMonth: Number(Moment().format('M')) - 1,
@@ -65,7 +67,7 @@ export default class MyOrderList extends React.Component {
   };
 
   render() {
-    console.log('refresh');
+
     return (
       <View style={{flex: 1, backgroundColor: '#fff'}}>
         <SubHeader navigation={this.props.navigation} title={'이용내역'} />
@@ -78,38 +80,43 @@ export default class MyOrderList extends React.Component {
             flexDirection: 'row',
             alignItems: 'center',
             paddingHorizontal: 15,
+            justifyContent:'flex-start'
+            
           }}>
-          <Text style={{marginRight:10}}>타임라인</Text>
-          <View>
-          <Picker
-            style={{height:50,width:100,}}
-            mode={'dialog'}
-            selectedValue={this.state.selectMonth}
-            onValueChange={(itemValue, itemIndex) => {
-              this.setState({selectMonth: itemValue});
-            }}>
-            {Lodash.range(12).map(index => (
-              <Picker.Item
-                value={index}
-                label={`${index + 1}월`} 
-                style={{fontSize:12}}
-              />
-            ))}
-          </Picker>
-          </View>
+            <Text style={{marginRight:10}}>타임라인</Text>
+    
+         
+            <Picker
+              mode="dialog"
+              selectedValue={this.state.selectMonth}
+              onValueChange={(itemValue, itemIndex) => {
+                this.setState({selectMonth: itemValue});
+              }}
+              style={{width:100,color:'#888'}}
+              >
+                {Lodash.range(12).map(index => (
+                    <Picker.Item
+                      value={index}
+                      label={`${index + 1}월`} 
+                      style={{fontSize:12}}
+                    />
+                ))}
+            </Picker>
+          
         </View>
 
         <View style={{flex: 1, backgroundColor: '#F5F6F8',}}>
           <SectionList
-            style={{paddingHorizontal:25}}
+            style={{paddingHorizontal:25,}}
+            contentContainerStyl={{paddingVertical:30}}
             sections={this.state.list[this.state.selectMonth].dateList}
             keyExtractor={(item, index) => index}
             renderSectionHeader={({section}, index) => (
-              <Text style={{marginTop:20,marginBottom:15,fontSize:16}}>{section.dataName.format('D일')}</Text>
+              <Text style={{marginVertical:10,fontSize:16}}>{section.dataName.format('D일')}</Text>
             )}
             renderItem={({item}) => (
                 <TouchableHighlight
-                    style={{marginBottom:15,borderRadius:10,}}
+                    style={{marginBottom:10,borderRadius:10,}}
                     onPress={() => this.props.navigation.navigate('myOrderDetail', { item: item })}
                 >
                     <View style={{borderWidth:1,borderRadius:10,minHeight:120,padding:15,borderColor:'#d2d2d2',backgroundColor:'#fff'}}>
@@ -121,18 +128,14 @@ export default class MyOrderList extends React.Component {
                         <Text style={{fontSize:18,fontWeight:'bold',marginTop:3}}>{numeral(item.amount).format('0,0')}원</Text>
 
                         {item.isCancel && 
-                        <TouchableOpacity style={{marginTop:10}}>
-                          <View style={{borderWidth:1,borderColor:'#d2d2d2',borderRadius:5,flexDirection:'row',justifyContent:'space-between',height:40,paddingHorizontal:10,alignItems:'center'}}>
+                        
+                          <View style={{marginTop:5}}>
                             <View style={{flexDirection:'row',alignItems:'center'}}>
                                 <Text style={{marginRight:5,color:'#9a9a9',fontSize:12}}>취소가능시간</Text>
                                 <Text style={{color:'#1E1FE8',fontSize:12}}>29분 남음</Text>
                             </View>
-                            <View style={{flexDirection:'row',alignItems:'center'}}>
-                              <Text style={{marginRight:5,fontSize:12}}>취소하기</Text>
-                              <Icon name={'angle-right'} size={18} color={'#d2d2d2'}></Icon>
-                            </View>
                           </View>
-                        </TouchableOpacity> }
+                        }
                     </View>
                 </TouchableHighlight>
             )}

@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1,
+    "name": "80L 물빨래",
+    "image": "",
+    "description": null,
+    "category1": "물빨래",
+    "category2": "일반",
+    "category3": "일반",
+    "userPrice": "20900"
+  },
+  {
+    "id": 2,
+    "name": "와이셔츠",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "일반",
+    "userPrice": "1500"
+  },
+  {
+    "id": 3,
+    "name": "정장상의",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "정장",
+    "userPrice": "3900"
+  },
+  {
+    "id": 4,
+    "name": "정장하의",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "하의",
+    "category3": "정장",
+    "userPrice": "3900"
+  },
+  {
+    "id": 5,
+    "name": "정장자켓",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "정장",
+    "userPrice": "5900"
+  },
+  {
+    "id": 6,
+    "name": "니트/스웨트",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "일반",
+    "userPrice": "3900"
+  },
+  {
+    "id": 7,
+    "name": "가디건/집업",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "일반",
+    "userPrice": "3900"
+  },
+  {
+    "id": 8,
+    "name": "일반 티셔츠",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "일반",
+    "userPrice": "3900"
+  },
+  {
+    "id": 9,
+    "name": "맨투맨 티셔츠",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "일반",
+    "userPrice": "3900"
+  },
+  {
+    "id": 10,
+    "name": "청바지",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "하의",
+    "category3": "일반",
+    "userPrice": "3900"
+  },
+  {
+    "id": 11,
+    "name": "면바지",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "하의",
+    "category3": "일반",
+    "userPrice": "3900"
+  },
+  {
+    "id": 12,
+    "name": "원피스",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "일반",
+    "userPrice": "5900"
+  },
+  {
+    "id": 13,
+    "name": "스커트",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "하의",
+    "category3": "일반",
+    "userPrice": "3900"
+  },
+  {
+    "id": 14,
+    "name": "레깅스",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "하의",
+    "category3": "일반",
+    "userPrice": "3000"
+  },
+  {
+    "id": 15,
+    "name": "점퍼자켓",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "일반",
+    "userPrice": "5900"
+  },
+  {
+    "id": 16,
+    "name": "패딩점퍼",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "특수",
+    "userPrice": "15900"
+  },
+  {
+    "id": 17,
+    "name": "반코트/롱코트",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "특수",
+    "userPrice": "9900"
+  },
+  {
+    "id": 18,
+    "name": "트랜치코트",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "특수",
+    "userPrice": "9900"
+  },
+  {
+    "id": 19,
+    "name": "경량패딩",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "특수",
+    "userPrice": "10900"
+  },
+  {
+    "id": 20,
+    "name": "오리/거위털 패딩",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "특수",
+    "userPrice": "15900"
+  },
+  {
+    "id": 21,
+    "name": "오리/거위털 조끼",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "특수",
+    "userPrice": "15900"
+  },
+  {
+    "id": 22,
+    "name": "스키/보드복",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "특수",
+    "userPrice": "19900"
+  },
+  {
+    "id": 23,
+    "name": "낚시/등산복",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "상의",
+    "category3": "특수",
+    "userPrice": "19900"
+  },
+  {
+    "id": 24,
+    "name": "운동화",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "신발",
+    "category3": "일반",
+    "userPrice": "6000"
+  },
+  {
+    "id": 25,
+    "name": "어그부츠",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "신발",
+    "category3": "특수",
+    "userPrice": "20000"
+  },
+  {
+    "id": 26,
+    "name": "목도리/스카프",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "액세서리",
+    "category3": "일반",
+    "userPrice": "2000"
+  },
+  {
+    "id": 27,
+    "name": "책가방/컨버스가방",
+    "image": "",
+    "description": null,
+    "category1": "세탁",
+    "category2": "액세서리",
+    "category3": "일반",
+    "userPrice": "8000"
+  }
+]

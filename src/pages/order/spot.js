@@ -20,7 +20,7 @@ export default props => {
         },
     ]
 
-    const [modalVisible, setModalVisible] = useState(false);
+    
 
     const [spot, setSpot] = useState(data);
 
@@ -90,50 +90,14 @@ export default props => {
 
             <View style={{borderTopWidth:1,paddingHorizontal:10,paddingVertical:10,borderColor:'#d2d2d2',backgroundColor:'#fff'}}>
                 <TouchableHighlight
-                    onPress={() => {setModalVisible(true)}}
+                    onPress={() => {props.navigation.navigate('when')}}
                     style={{height:45,backgroundColor:'#292929',borderRadius:5,alignItems:'center',justifyContent:'center'}}
                 >
                     <Text style={{color:'#fff'}}>다음으로</Text>
                 </TouchableHighlight>
             </View>
 
-            <Modal
-                visible={modalVisible}
-                transparent={true}
-                animationType={'fade'}
-                onRequestClose={()=> setModalVisible(false)}
-            >
-                <View style={{flex:1,justifyContent:'center',alignItems:'center',paddingHorizontal:30}}>
-                    <View style={{backgroundColor:'#fff',minHeight:350,width:'100%',borderRadius:10,overflow:'hidden',zIndex:2}}>
-                        <ImageBackground
-                            style={{width:'100%',height:160,backgroundColor:'#f2f2f2'}}
-                            source={{uri:faker.image.abstract()}}
-                        >
-                        </ImageBackground>
-                        <View style={{flex:1,padding:15,justifyContent:'space-between'}}>
-                            <View>
-                                <Text style={{fontSize:18}}>수거배달</Text>
-                                <Text style={{marginTop:5,color:'#9a9a9a'}}>안녕하세요 수거배달입니다</Text>
-                            </View>
-                            <TouchableHighlight
-                                onPress={()=>{
-                                    props.navigation.navigate('when'), 
-                                    setModalVisible(false)
-                                }}
-                                style={{height:40,alignItems:'center',justifyContent:'center',fontSize:16,backgroundColor:'#396eee',borderRadius:10}}
-                            >
-                                <Text style={{color:'#fff'}}>동의합니다</Text>
-                            </TouchableHighlight>
-                        </View>
-                    </View>
-                    <TouchableOpacity
-                        onPress={()=>{setModalVisible(false)}}
-                        activeOpacity={1}
-                        style={{width:'200%',height:'100%',backgroundColor:'rgba(0,0,0,0.8)',position:'absolute',top:0,left:0,zIndex:1}}
-                    >
-                    </TouchableOpacity>
-                </View>
-            </Modal>
+            
         </View>
     )
     

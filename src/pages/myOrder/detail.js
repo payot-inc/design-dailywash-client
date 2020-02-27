@@ -5,6 +5,8 @@ import Timeline from 'react-native-timeline-flatlist';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import faker from 'faker';
 
+import Confirm from '../../components/confirm'
+
 export default props => {
 
     const state = {
@@ -23,7 +25,6 @@ export default props => {
         {time:'17:56', title:'배송완료', description: '배송이 완료되었습니다', image:faker.image.abstract(),},
     ]
 
-
     const data = props.navigation.getParam('item', {});
 
     const screen = {
@@ -31,11 +32,15 @@ export default props => {
     }
 
     const [modalVisible, setModalVisible] = useState(false)
+    
 
     const modalHandle = {
         modalOpen: () => setModalVisible(true),
         modalClose: () => setModalVisible(false)
     }
+
+    const [CancleConfirm, setCancleConfirm] = useState(false);
+    const [CancleConfirm2, setCancleConfirm2] = useState(false);
 
     return(
         
@@ -84,9 +89,9 @@ export default props => {
                         circleColor={'#396eee'}
                         circleSize={12}
                         renderTime={ item => 
-                            <View style={{width:60}}>
-                            {item.date ? <Text style={styles.date}>{item.date}</Text> : null}
-                            <Text style={styles.time}>{item.time}</Text>
+                            <View style={{width:56}}>
+                                {item.date ? <Text style={styles.date}>{item.date}</Text> : null}
+                                <Text style={styles.time}>{item.time}</Text>
                             </View>
                         }
                         detailContainerStyle={{
@@ -107,7 +112,7 @@ export default props => {
 
                                 : null
                             }
-                                <View>
+                                <View style={{flex:1}}>
                                     <Text style={styles.title}>{item.title}</Text>
                                     <Text style={styles.description}>{item.description}</Text>
                                 </View>
@@ -115,11 +120,35 @@ export default props => {
                         }
                     />
 
+                    <TouchableHighlight
+                        onPress={()=> setCancleConfirm(true)}
+                        style={{background:'#f2f2f2',borderWidth:1,borderColor:'#e2e2e2',justifyContent:'center',alignItems:'center',height:40,marginTop:20}}
+                        underlayColor={'#f2f2f2'}
+                    >   
+                        <View style={{flexDirection:'row'}}>
+                            <Text>무료주문취소</Text>
+                            <Text style={{fontSize:12,color:'#d22828'}}> (가능시간 29:34)</Text>
+                        </View>
+                        
+                    </TouchableHighlight>
+
+                    <TouchableHighlight
+                        onPress={()=> setCancleConfirm2(true)}
+                        style={{background:'#f2f2f2',borderWidth:1,borderColor:'#e2e2e2',justifyContent:'center',alignItems:'center',height:40,marginTop:20}}
+                        underlayColor={'#f2f2f2'}
+                    >   
+                        <View style={{flexDirection:'row'}}>
+                            <Text>주문취소</Text>
+                            <Text style={{fontSize:12,color:'#d22828'}}> (수수료: 3,000원)</Text>
+                        </View>
+                        
+                    </TouchableHighlight>
+
                     <Divider style={{height:1,backgroundColor:'#e2e2e2',marginVertical:30,}}/>
 
                     <View>
                         <View style={{flex:1,}}>
-                            <View>
+                            <View style={{marginBottom:30}}>
                                 <Text style={{marginBottom:15,color:'#9a9a9a'}}>수거/배달 장소</Text>
                                 <View style={{backgroundColor:'#f8f8f8',padding:10,borderRadius:5}}>
                                     <Text style={{marginBottom:5,}}>우리집</Text>
@@ -127,10 +156,7 @@ export default props => {
                                     <Text style={{fontSize:13,color:'#9a9a9a'}}>과학기술연구동 201호</Text>
                                 </View>
                             </View>
-
-                            <Divider style={{height:1,backgroundColor:'#e2e2e2',marginVertical:20,}}/>
-
-                            <View>
+                            <View style={{marginBottom:30}}>
                                 <Text style={{marginBottom:15,color:'#9a9a9a'}}>선택정보</Text>
                                 <View style={{backgroundColor:'#f8f8f8',padding:10,borderRadius:5}}>
                                     <View style={{flexDirection:'row',marginVertical:5,justifyContent:'space-between'}}>
@@ -152,9 +178,9 @@ export default props => {
                                 </View>
                             </View>
 
-                            <Divider style={{height:1,backgroundColor:'#e2e2e2',marginVertical:20,}}/>
+        
 
-                            <View style={{}}>
+                            <View style={{marginBottom:30}}>
                                 <Text style={{marginBottom:15,color:'#9a9a9a'}}>상품정보</Text>
                                 <View style={{backgroundColor:'#f8f8f8',padding:10,borderRadius:5}}>
                                     {state.goodsItem.map((item) => (
@@ -168,9 +194,8 @@ export default props => {
                                 </View>
                             </View>
 
-                            <Divider style={{height:1,backgroundColor:'#e2e2e2',marginVertical:20,}}/>
 
-                            <View>
+                            <View style={{marginBottom:30}}>
                                 <Text style={{marginBottom:15,color:'#9a9a9a'}}>할인금액</Text>
                                 <View style={{backgroundColor:'#f8f8f8',padding:10,borderRadius:5}}>
                                     <View style={{flexDirection:'row',marginVertical:5,justifyContent:'space-between'}}>
@@ -184,7 +209,7 @@ export default props => {
                                 </View>
                             </View>
 
-                            <Divider style={{height:1,backgroundColor:'#e2e2e2',marginVertical:20,}}/>
+                    
 
                             <View>
                                 <Text style={{marginBottom:15,color:'#9a9a9a'}}>결제정보</Text>
@@ -229,6 +254,22 @@ export default props => {
                 </View>
          
             </Modal>
+
+            <Confirm 
+                title="주문취소"
+                description="해당 주문건을 취소하시겠습니까?"
+                visible={CancleConfirm}
+                close={()=> setCancleConfirm(false)}
+            />
+
+            <Confirm 
+                title="주문취소"
+                description="해당 주문건은 무료주문취소 가능시간을 초과하였습니다. 지금 취소시 수수료(3,000원)이 발생되며 등록된카드에서 자동결제됩니다"
+                guide="취소하시겠습니까?"
+                visible={CancleConfirm2}
+                close={()=> setCancleConfirm2(false)}
+            />
+
         </View>
     )
 }
@@ -238,7 +279,7 @@ const styles = StyleSheet.create({
         fontSize:10,color:'#292929',marginBottom:3
     },
     time:{
-        fontSize:14,color:'#292929',borderWidth:1,textAlign:'center',borderRadius:3,borderColor:'#396eee'
+        fontSize:12,color:'#292929',borderWidth:1,textAlign:'center',borderRadius:3,borderColor:'#396eee'
     },
     image:{
         width:50,height:50,borderRadius:50,marginRight:10

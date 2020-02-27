@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, ScrollView,TouchableOpacity, StatusBar, Image, TouchableHighlight, Animated} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, StyleSheet, ScrollView,TouchableOpacity, StatusBar, Image, TouchableHighlight,} from 'react-native';
 import {DrawerActions} from 'react-navigation-drawer';
-
 import faker from 'faker';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Thema from '../assets/css/thema';
@@ -22,21 +21,9 @@ export default props => {
             number:'9392',
             date:'2019년 11월 29일'
         },    
-    ]
+    ];
 
-    const [Rotate] = useState(new Animated.Value(0));
 
-    React.useEffect(()=>{
-        Animated.timing(
-        Rotate,
-        {
-            toValue:200,
-            duration:50000,
-            
-        }
-        ).start();
-    },[Rotate])
-  
     return (
         
         <View style={styles.container}>
@@ -44,7 +31,27 @@ export default props => {
             <StatusBar backgroundColor={'#292929'}/>
             
             <ScrollView>
-               
+
+                <View style={{height:70,width:'100%',zIndex:9,flexDirection:'row',alignItems:'center',backgroundColor:'#396eee'}}>
+                    <TouchableHighlight
+                        onPress={() => {
+                            props.navigation.dispatch(DrawerActions.openDrawer())
+                        }}
+                        underlayColor={'rgba(255,255,255,0.1)'}
+                        style={{borderRadius:30}}
+                    >
+                        <View style={{width:60,height:60,alignItems:'center',justifyContent:'center'}}>
+                            <Icon name="menu" color={'#fff'} size={30}></Icon>
+                        </View>
+                    </TouchableHighlight>
+                    <View>
+                        <Image
+                            source={require('../assets/img/logo.png')}
+                            style={{width:140, resizeMode: 'contain'}}
+                        />
+                    </View>
+                </View>
+                
 
                 <MainVisual />
  
@@ -56,14 +63,15 @@ export default props => {
                 <View style={{paddingHorizontal:25,paddingBottom:30}}>
 
                     <View style={{flex:1,flexDirection:'row'}}>
+            
                         <TouchableHighlight
-                            onPress={()=> props.navigation.navigate('priceTable')}
-                            style={{marginVertical:30,marginRight:5,backgroundColor:'#396EEE',borderRadius:10,padding:15,width:120,height:120}}
+                            onPress={()=> props.navigation.navigate('myOrder')}
+                            style={{marginVertical:30,marginRight:5,backgroundColor:'#396EEE',borderRadius:10,padding:15,width:120,height:120, }}
                             underlayColor={'#3464D6'}
                         >  
-                            <View style={{flex:1,justifyContent:'space-between'}}>
+                            <View style={{flex:1,justifyContent:'space-between',}}>
                                 <View>
-                                    <Text style={{letterSpacing:-0.7,fontSize:16,color:'#fff'}}>세탁가격</Text>
+                                    <Text style={{letterSpacing:-0.7,fontSize:16,color:'#fff'}}>세탁내역</Text>
                                     <Text style={{letterSpacing:-0.7,fontSize:16,color:'#fff'}}>조회하기</Text>
                                 </View>
                                 <View style={{alignItems:'flex-end'}}>
@@ -71,6 +79,7 @@ export default props => {
                                 </View>
                             </View>
                         </TouchableHighlight>
+            
                         <TouchableHighlight
                             onPress={()=> props.navigation.navigate('order')}
                             style={{flex:1,marginVertical:30,marginLeft:5,backgroundColor:'#111F44',borderRadius:10,padding:15,height:120}}
@@ -86,6 +95,7 @@ export default props => {
                                 </View>
                             </View>
                         </TouchableHighlight>
+   
                     </View>
 
                     
@@ -162,9 +172,9 @@ export default props => {
                     </View>
 
 
-                    <View style={{borderRadius:10,marginBottom:30,overflow:'hidden',elevation:10,backgroundColor:'#fff'}}>
+                    {/* <View style={{borderRadius:10,marginBottom:30,overflow:'hidden',elevation:10,backgroundColor:'#fff'}}>
                         <MainVisualSecond />
-                    </View>
+                    </View> */}
 
                     <View style={{flex:1,backgroundColor:'#fff',borderRadius:10,elevation:10,overflow:'hidden'}}>
                         <View style={{justifyContent:'space-between',height:40,paddingLeft:15,borderBottomWidth:1,borderColor:'#e2e2e2',flexDirection:'row',alignItems:'center',}}>

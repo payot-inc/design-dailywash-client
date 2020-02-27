@@ -49,7 +49,7 @@ export default class MainVisual extends React.Component {
                     autoplay={true}
                     renderItem={({item, index})=>
                         <View style={{height:360,alignItems:'center',justifyContent:'center',overflow:'hidden',backgroundColor:'#f2f2f2',}}>
-                            <Image source={require('../assets/img/main01.png')} resizeMode="center" style={{height:'100%'}}/>
+                            <Image source={require('../assets/img/main01.png')} resizeMode="contain" style={{height:'100%'}}/>
                         </View>
                     }
                     onSnapToItem={(index) => this.setState({activeSlide:index})} 

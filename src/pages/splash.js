@@ -5,7 +5,8 @@ import {ActivityIndicator} from 'react-native-paper'
 export default props => {
 
   const logoWidth = new Animated.Value(130);
-
+  const [state, setState] = useState(false);
+  
   useEffect(()=> { 
     Animated.timing(logoWidth, {
       toValue:150,
@@ -26,3 +27,4 @@ export default props => {
     </View>
   );
 }
+

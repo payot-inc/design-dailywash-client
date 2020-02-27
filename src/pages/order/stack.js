@@ -11,6 +11,7 @@ import Spot from './spot';
 import When from './when';
 import Payment from './payment';
 import Finish from './finish';
+import PriceTable from './priceTable';
 
 const orderStack = createStackNavigator(
   {
@@ -19,6 +20,9 @@ const orderStack = createStackNavigator(
     },
     when: {
       screen: When,
+    },
+    priceTable:{
+      screen: PriceTable,
     },
     payment:{
       screen: Payment,
@@ -38,7 +42,7 @@ const orderStack = createStackNavigator(
       headerShown: true,
       header: ({navigation}) => {
         const position = navigation.state.index;
-        const title = ['어디에서 수거할까요?', '언제 수거할까요?','마지막으로 확인해주세요!'][position];
+        const title = ['어디에서 수거할까요?', '언제 수거할까요?','상품을 선택해주세요','마지막으로 확인해주세요!'][position];
         const pageNumber = [position + 1];
 
         return (
@@ -66,7 +70,7 @@ const orderStack = createStackNavigator(
                   <View style={{flexDirection:'row',alignItems:'center'}}>
                       <Text style={{color:'#fff',marginRight:5,}}>STEP</Text>
                       <Text style={{color:'#fff',marginRight:5,fontWeight:'bold',fontSize:16}}>{pageNumber}</Text>
-                      <Text style={{color:'rgba(255,255,255,0.6)'}}>/ 03</Text>
+                      <Text style={{color:'rgba(255,255,255,0.6)'}}>/ 04</Text>
                   </View>
                   <Text style={{fontSize:21,color:'#fff'}}>
                     {title}

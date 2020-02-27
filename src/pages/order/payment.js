@@ -123,23 +123,60 @@ export default props =>{
   return(
     <View style={{flex:1,}}>
       <ScrollView contentContainerStyle={{paddingVertical:20,}}>
+
         <Loading/>
 
-        <View style={{paddingHorizontal:25,marginBottom:30}}>
-          <Text style={{marginBottom:10,}}>수거&배달장소</Text>
-          <View style={{borderWidth:1,borderRadius:5,borderColor:'#e2e2e2',padding:15}}>
-            <Text style={{fontSize:16,}}>우리집</Text>
-            <Divider style={{height:1,backgroundColor:'#e2e2e2',marginVertical:15}}/>
-            <View style={{flexDirection:'row',alignItems:'flex-start'}}>
-              <Text style={{width:80,color:'#9a9a9a'}}>주소지</Text>
-              <Text style={{flex:1,lineHeight:20}}>부산광역시 금정구 부산대학로 63번길 2 과학기술연구동 201호</Text>
+
+
+        <View style={{paddingHorizontal:25,marginBottom:40}}>
+          <Text style={{marginBottom:10,}}>수거/배달장소</Text>
+          <View style={{borderWidth:1,borderRadius:5,borderColor:'#e2e2e2',marginBottom:40}}>
+            <View style={{paddingHorizontal:15,height:40,justifyContent:'center',backgroundColor:'#f2f2f2'}}>
+              <Text>우리집</Text>
             </View>
-            <View style={{flexDirection:'row', alignItems:'center',marginTop:6,}}>
-              <Text style={{width:80,color:'#9a9a9a'}}>공동출입문</Text>
-              <Text style={{flex:1,lineHeight:20}}> #1023</Text>
+            <View style={{padding:15,borderTopWidth:1,borderColor:'#e2e2e2',}}>
+              <View style={{flexDirection:'row',alignItems:'flex-start'}}>
+                <Text style={{width:80,color:'#9a9a9a'}}>주소지</Text>
+                <Text style={{flex:1,lineHeight:20}}>부산광역시 금정구 부산대학로 63번길 2 과학기술연구동 201호</Text>
+              </View>
+              <View style={{flexDirection:'row', alignItems:'center',marginTop:6,}}>
+                <Text style={{width:80,color:'#9a9a9a'}}>전화번호</Text>
+                <Text style={{flex:1,lineHeight:20}}>010-0000-0000</Text>
+              </View>
+              <View style={{flexDirection:'row', alignItems:'center',marginTop:6,}}>
+                <Text style={{width:80,color:'#9a9a9a'}}>공동출입문</Text>
+                <Text style={{flex:1,lineHeight:20}}> #1023</Text>
+              </View>
             </View>
           </View>
+
+    
+          <Text style={{marginBottom:10,}}>선택한 상품</Text>
+          <View style={{borderWidth:1,borderColor:'#e2e2e2',borderRadius:5}}>
+            <View style={{padding:15}}>
+              <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:5}}>
+                <Text style={{flex:1,}}>패딩</Text>
+                <Text style={{flexBasis:50,textAlign:'center'}}>1</Text>
+                <Text style={{flexBasis:80,textAlign:'right'}}>8,000원</Text>
+              </View>
+              <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:5}}>
+                <Text style={{flex:1,}}>와이셔츠</Text>
+                <Text style={{flexBasis:50,textAlign:'center'}}>2</Text>
+                <Text style={{flexBasis:80,textAlign:'right'}}>6,000원</Text>
+              </View>
+            </View>
+            <View style={{borderTopWidth:1,borderColor:'#e2e2e2',height:40,alignItems:'center',flexDirection:'row',justifyContent:'space-between',backgroundColor:'#f2f2f2',paddingHorizontal:15}}>
+              <Text>예상합계</Text>
+              <Text  style={{fontWeight:'bold'}}>14,000원</Text>
+            </View>
+          </View>
+
+          <View style={{marginTop:15}}>
+            <Text style={{fontSize:12}}>※ 수거 후 검수시 세탁물의 오염 정도에 따라 세탁비용이 추가발생 할 수 있으며 <Text style={{color:'#d22828'}}>추가 발생된 금액은 선택된 결제카드에 의해 자동 결제됩니다</Text></Text>
+          </View>
         </View>
+
+      
 
         {/* <View style={{paddingHorizontal:10,marginBottom:30}}>
           <Text style={{marginBottom:10,}}>쿠폰사용</Text>
@@ -152,7 +189,7 @@ export default props =>{
 
       
          
-         <View style={{marginBottom:30,overflow:'hidden'}}>
+         <View style={{marginBottom:40,overflow:'hidden'}}>
            <Text style={{marginBottom:10,paddingHorizontal:25}}>결제카드 선택</Text>
             <View style={{backgroundColor:'#f2f2f2',paddingVertical:15}}>
               <Carousel

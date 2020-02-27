@@ -1,15 +1,17 @@
 import React,{useState, useEffect} from 'react';
-import {View, Text, StyleSheet, Dimensions,TouchableHighlight, FlatList} from 'react-native';
+import {View, Text,Dimensions,TouchableHighlight, FlatList} from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import {Button} from 'react-native-paper';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Basket from '../components/basket';
-import DummyData from './order/ServiceList.json';
+import Basket from '../../components/basket';
+import DummyData from './ServiceList.json';
+import ImageConfirm from '../../components/imageConfirm';
 
 const ItemBox = props => {
 
     const { name, description, userPrice, } = props.data;
+
     return(
         <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',borderBottomWidth:1,borderColor:'#e2e2e2',paddingVertical:15,paddingHorizontal:10,backgroundColor:'#fff'}}>
             <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',flex:1,marginRight:20,}}>
@@ -49,10 +51,7 @@ const TabContainer = props => {
 
   const initialLayout = { width: Dimensions.get('window').width };
 
-  
-
-  export default props => {   
-    
+  export default props => {     
        
     const DATA = [
         {   
@@ -75,6 +74,8 @@ const TabContainer = props => {
 
     const [services, setServices] = useState([], []);
     const [index, setIndex] = React.useState(0);
+    const [confirm, setConfirm] = useState(false);
+
     const [routes] = React.useState([
       { key: 'first', title: '생활빨래' },
       { key: 'second', title: '상의' },
@@ -145,8 +146,10 @@ const TabContainer = props => {
                         mode="contained" 
                         contentStyle={{height:50,backgroundColor:'#292929'}} 
                         style={{borderRadius:5}}
-                        onPress={()=>props.navigation.navigate('payment')}
-                    >선택완료</Button>
+                        onPress={()=> setConfirm(true)}
+                    >
+                        선택완료
+                    </Button>
                 </View>
             </View>
 
@@ -155,6 +158,15 @@ const TabContainer = props => {
                 open={basketVisible}
                 close={()=> setBasketVisible(false)}
                 navigation={props.navigation}
+            />
+
+            <ImageConfirm
+                goTo={() => props.navigation.navigate('payment')}
+                title={'결제안내'}
+                description={'선택하신 상품과 수거된 세탁물의 수량이 다를 경우 검수를 통해 수량 및 결제금액이 조정될 수 있으며, 세탁물 상태에 따라 추가금이 발생될 수 있습니다'}
+                guide={'이에 동의하십니까?'}
+                visible={confirm}
+                close={()=>setConfirm(false)}
             />
 
          </View>
