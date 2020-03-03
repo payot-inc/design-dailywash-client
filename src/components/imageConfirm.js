@@ -1,10 +1,12 @@
 import React from 'react';
-import {View, Text, Modal, Image, TouchableHighlight,TouchableOpacity} from 'react-native';
+import {View, Text, Modal, Image, TouchableHighlight,TouchableOpacity, Dimensions} from 'react-native';
 import faker from 'faker';
 
 export default props => {
 
-  return (
+    const screenWidth = Dimensions.get('window').width;
+
+    return (
 
     <Modal
       visible={props.visible}
@@ -14,18 +16,18 @@ export default props => {
      >
       <View style={{flex:1,justifyContent:'center'}}>
           <View style={{zIndex:2,padding:40,}}>
-              <View style={{backgroundColor:'#fff',borderRadius:0,overflow:'hidden',backgroundColor:'#fff',elevation:10}}>
-                  {/* <View style={{flexBasis:200,backgroundColor:'#e2e2e2'}}>
-                      <Image
-                          style={{width:'100%',height:200,backgroundColor:'#f2f2f2'}}
-                          source={{uri:faker.image.abstract()}}
-                      >
-                      </Image>
-                  </View> */}
+              <View style={{backgroundColor:'#fff',borderRadius:0,overflow:'hidden',elevation:10,borderRadius:10}}>
+                  <View style={{justifyContent:'center',alignItems:'center',paddingVertical:15}}>                   
+                    <Image
+                        style={{width:screenWidth ,height:200}}
+                        source={props.img}
+                        resizeMode={'contain'}
+                    />  
+                  </View>
                   <View style={{backgroundColor:'#fff'}}>
-                      <View style={{padding:20}}>
-                        <Text style={{fontSize:18}}>{props.title}</Text>
-                        <Text style={{marginTop:10,color:'#9a9a9a'}}>{props.description}</Text>
+                      <View style={{padding:20,alignItems:'center'}}>
+                        <Text style={{fontSize:18,textAlign:'center'}}>{props.title}</Text>
+                        <Text style={{marginTop:10,color:'#9a9a9a',textAlign:'center'}}>{props.description}</Text>
                         {props.guide && <Text style={{marginTop:10,color:'#9a9a9a'}}>{props.guide}</Text>}
                       </View>
                       <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'center',borderTopWidth:1,borderColor:'#e2e2e2'}}>

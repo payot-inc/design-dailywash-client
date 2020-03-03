@@ -123,7 +123,7 @@ const TabContainer = props => {
             </View>
                 
 
-            <View style={{backgroundColor:'#fff',height:135,width:'100%',borderTopWidth:1,borderColor:'#e2e2e2'}}>
+            <View style={{backgroundColor:'#fff',height:130,width:'100%',borderTopWidth:1,borderColor:'#e2e2e2'}}>
                 <TouchableHighlight
                     underlayColor={'#fff'}
                     onPress={()=> setBasketVisible(true)}
@@ -144,7 +144,7 @@ const TabContainer = props => {
                 <View style={{paddingHorizontal:10,}}>
                     <Button 
                         mode="contained" 
-                        contentStyle={{height:50,backgroundColor:'#292929'}} 
+                        contentStyle={{height:45,backgroundColor:'#292929'}} 
                         style={{borderRadius:5}}
                         onPress={()=> setConfirm(true)}
                     >
@@ -162,11 +162,11 @@ const TabContainer = props => {
 
             <ImageConfirm
                 goTo={() => props.navigation.navigate('payment')}
-                title={'결제안내'}
-                description={'선택하신 상품과 수거된 세탁물의 수량이 다를 경우 검수를 통해 수량 및 결제금액이 조정될 수 있으며, 세탁물 상태에 따라 추가금이 발생될 수 있습니다'}
-                guide={'이에 동의하십니까?'}
+                title={'추가비용안내'}
+                description={'세탁물의 오염 정도에 따라 세탁비용이 추가로 발생될 수 있으며, 발생된 추가금액은 선택한 결제카드에 의해 자동결제됩니다'}
                 visible={confirm}
                 close={()=>setConfirm(false)}
+                img={require('../../assets/img/guide02.png')}
             />
 
          </View>

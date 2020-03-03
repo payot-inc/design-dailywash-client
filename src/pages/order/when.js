@@ -30,6 +30,10 @@ export default props => {
         },
     ]
 
+    const itemSelectHandle = {
+
+    }
+
     const [modalVisible, setModalVisible] = useState(false);
     const sliderWidth = Dimensions.get('window').width;
 
@@ -41,13 +45,14 @@ export default props => {
                 visible={modalVisible}
                 close={()=> setModalVisible(false)}
                 title={'수거/배달 안내'}
+                img={require('../../assets/img/guide01.png')}
                 description={'주문이 많을 경우 세탁물 수거 및 배달이 다소 지연될 수 있습니다'}
             />
 
             <ScrollView
                 contentContainerStyle={{paddingVertical:15,paddingHorizontal:25}}
             >
-                <View style={{marginBottom:20}}>
+                <View style={{marginBottom:40}}>
                     <View style={{marginBottom:15}}>
                         <Text style={{fontSize:16}}>수거날짜 선택</Text>
                         <Text style={{fontSize:13,color:'#9a9a9a',marginTop:5}}>희망하시는 수거날짜를 선택해주세요</Text>
@@ -63,17 +68,7 @@ export default props => {
                         layoutCardOffset={10}
                         renderItem={({item, index})=>
                             <TouchableOpacity 
-                                style={[
-                                    {
-                                        borderWidth:2,
-                                        borderRadius:10,
-                                        height:70,
-                                        justifyContent:'center',
-                                        alignItems:'center',
-                                        backgroundColor:'#fff'
-                                    },
-                                    item.on === true ? {borderColor:'#396eee'} : {borderColor:'#d2d2d2'}
-                                ]}
+                                 style={item.on === true ? styles.selectOn : styles.selectOff} 
                             >
                                 <Text style={{fontSize:20}}>{item.date}</Text>
                                 {item.dateText === '' ? null : <Text style={{fontSize:12,}}>{item.dateText}</Text>}
@@ -83,35 +78,35 @@ export default props => {
                 </View>
 
 
-                <View style={{marginBottom:20}}>
+                <View style={{marginBottom:40}}>
                     <View style={{marginBottom:15}}>
                         <Text style={{fontSize:16}}>수거시간 선택</Text>
                         <Text style={{fontSize:13,color:'#9a9a9a',marginTop:5}}>주문량에 따라 수거시간이 변경될 수 있습니다</Text>
                     </View>
                     <View style={{flexDirection:'row'}}>
                         <TouchableOpacity 
-                            style={[styles.selectBox,{marginRight:5,height:90}]}
+                            style={[styles.selectOff,{marginRight:5}]}
                         >
-                            <Icon name={'check-circle'} size={24} color={'#d2d2d2'}></Icon>
+                            <Image source={require('../../assets/img/morning.png')} resizeMode={'contain'} style={{width:'100%',height:120}}/>
                             <View style={{marginTop:5}}>
-                                <Text>
+                                <Text style={{color:'#396EEE',textAlign:'center'}}>
                                     오전
                                 </Text>
-                                <Text>
+                                <Text style={{textAlign:'center'}}>
                                     08:00 ~ 11:00
                                 </Text>
                             </View>
-                            </TouchableOpacity>
+                        </TouchableOpacity>
                     
                         <TouchableOpacity
-                            style={[styles.selectBox,{marginLeft:5,height:90}]}
+                            style={[styles.selectOff,{marginLeft:5}]}
                         >
-                            <Icon name={'check-circle'} size={24} color={'#d2d2d2'}></Icon>
+                            <Image source={require('../../assets/img/evening.png')} resizeMode={'contain'} style={{width:'100%',height:120}}/>
                             <View style={{marginTop:5}}>
-                                <Text>
+                                <Text style={{color:'#E33A16',textAlign:'center'}}>
                                     오후
                                 </Text>
-                                <Text>
+                                <Text style={{textAlign:'center'}}>
                                     15:00 ~ 17:00
                                 </Text>
                             </View>
@@ -119,30 +114,30 @@ export default props => {
                     </View>
                 </View>
 
-                <View style={{marginBottom:20}}>
+                <View style={{marginBottom:40}}>
                     <View style={{marginBottom:15}}>
                         <Text style={{fontSize:16}}>수거방식 선택</Text>
                     </View>
                     <View style={{flexDirection:'row'}}>
-                        <TouchableOpacity 
-                            style={[styles.selectBox,{marginRight:5}]}
-                        >
-                            
-                            <Icon name={'check-circle'} size={24} color={'#d2d2d2'}></Icon>
-                            <Text style={{marginTop:5}}>
-                                직접만남
-                            </Text>
-                            
-                            </TouchableOpacity>
-                    
                         <TouchableOpacity
-                            style={[styles.selectBox,{marginLeft:5}]}
+                            style={[styles.selectOff,{marginRight:5}]}
                         >
-                            <Icon name={'check-circle'} size={24} color={'#d2d2d2'}></Icon>
-                            <Text style={{marginTop:5}}>
-                                안만나요
-                            </Text>
-                            
+                            <Image source={require('../../assets/img/service01.png')} resizeMode={'contain'} style={{width:'100%',height:120}}/>
+                            <View style={{marginTop:20}}>
+                                <Text style={{textAlign:'center'}}>
+                                    만나서 드릴게요
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={[styles.selectOff,{marginLeft:5}]}
+                        >
+                            <Image source={require('../../assets/img/service02.png')} resizeMode={'contain'} style={{width:'100%',height:120}}/>
+                            <View style={{marginTop:20}}>
+                                <Text style={{textAlign:'center'}}>
+                                    집앞에 둘게요
+                                </Text>
+                            </View>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -178,13 +173,12 @@ export default props => {
 }
 
 const styles = StyleSheet.create({
-    selectBox:{
-        flex:1,
-        borderWidth:1,
-        borderColor:'#d2d2d2',
-        borderRadius:10,
-        justifyContent:'space-between',
-        padding:15,
-        backgroundColor:'#fff'
+    selectOff:{
+        flex:1,padding:15,borderWidth:1,borderColor:'#e2e2e2',borderRadius:10,backgroundColor:'#fff',
+        justifyContent:'center',alignItems:'center'
+    },
+    selectOn:{
+        flex:1,padding:15,borderWidth:1,borderColor:'#396EEE',borderRadius:10,backgroundColor:'#fff',
+        justifyContent:'center',alignItems:'center'
     }
 })

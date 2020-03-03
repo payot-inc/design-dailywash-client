@@ -1,36 +1,37 @@
-import React from 'react';
-import {View,Text} from 'react-native';
+import React,{useEffect,useState} from 'react';
+import {View,Text,Image,ScrollView, Dimensions,Animated} from 'react-native';
 import {Divider, Button} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default props =>{
-  return(
-    <View style={{flex:1,backgroundColor:'#396eee'}}>
-      <View style={{marginTop:50,flex:1,backgroundColor:'#fff',borderTopRightRadius:30,padding:10,justifyContent:'center',alignItems:'center'}}>
-        <View>
-          <Icon name="check-circle" size={150} color={'#396eee'}/>
-        </View>
-        <Divider style={{height:8,width:50,borderRadius:4,backgroundColor:'#e2e2e2',marginVertical:40,}}/>
-        <View> 
-          <View style={{alignItems:'center'}}>
-            <Text style={{fontSize:26,letterSpacing:-0.7,lineHeight:36,}}><Text style={{color:'#396eee',fontWeight:'bold'}}>수거예약</Text>이</Text>
-            <Text style={{fontSize:26,letterSpacing:-0.7,lineHeight:36,}}>정상적으로 완료되었습니다</Text>
-          </View>
-          <View style={{alignItems:'center',marginTop:20,}}>
-            <Text style={{color:'#9a9a9a'}}>해당 상품의 주문, 배송정보는 <Text style={{color:'#396eee'}}>이용내역</Text>에서</Text>
-            <Text style={{color:'#9a9a9a',marginTop:3,}}>다시 확인 할 수 있습니다</Text>
-          </View>
-        </View>
 
-        <View style={{marginTop:50}}>
-          <Button
-            mode="contained"
-            contentStyle={{height:50, backgroundColor:'#292929',paddingHorizontal:20}}
-            style={{borderRadius:25,}}
-            labelStyle={{color:'#fff'}}
-            onPress={()=> props.navigation.navigate('main')}
-          >메인으로 돌아가기</Button>
-        </View>
+  const screenWidth = Dimensions.get('window').width;
+  const screenHeight = Dimensions.get('window').height;
+
+  return(
+    <View style={{flex:1,padding:25,justifyContent:'center',alignItems:'center'}}>
+      <View style={{alignItems:'center'}}>
+        <Text style={{fontSize:32,letterSpacing:-1,fontWeight:'bold'}}>예약이 완료되었습니다</Text>
+        <Text style={{color:'#888',marginTop:10}}>선택하신 <Text  style={{color:'#396EEE'}}>2019년 2월 14일 오전</Text>에 세탁물을 수거합니다</Text>
+      </View>
+
+
+      <View style={{alignItems:'center',justifyContent:'center',marginVertical:25}}>
+        <Image source={require('../../assets/img/finishImg.png')} resizeMode={'contain'} style={{width:screenWidth-25,height:240}}/>
+      </View>
+
+      <View style={{alignItems:'center',marginBottom:25}}>
+        <Text style={{textAlign:'center'}}>수거 후 검수시 세탁물의 오염 정도에 따라 세탁비용이 추가발생 할 수 있으며 추가 발생된 금액은 선택된 결제카드에 의해 자동 결제됩니다</Text>
+      </View>
+
+      <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+        <Button
+          mode="contained"
+          contentStyle={{backgroundColor:'#292929',height:45}}
+          style={{elevation:0,width:200,width:150,height:45,overflow:'hidden',borderRadius:22.5}}
+          labelStyle={{fontSize:16,letterSpacing:-0.4}}
+          onPress={()=> props.navigation.navigate('main')}
+        >메인으로</Button>      
       </View>
     </View>
   )
