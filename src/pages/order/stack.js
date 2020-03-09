@@ -48,7 +48,7 @@ const orderStack = createStackNavigator(
         return (
 
         <View style={position === 2 || position === 3 ? {backgroundColor:'#fff'} : {backgroundColor:'#F5F6F8'}}>
-            <View style={{height:120,borderBottomRightRadius:45,backgroundColor:'#396eee'}}>
+            <View style={{height:120,backgroundColor:'#396eee'}}>
               <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                 <TouchableOpacity
                     style={{width:50,height:50,alignItems:'center',justifyContent:'center'}}

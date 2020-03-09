@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 export default props => {   
 
     return(
-        <View style={{backgroundColor:'#292929',flexDirection:'row',borderBottomEndRadius:45,height:65}}>
+        <View style={{backgroundColor:'#292929',flexDirection:'row',height:65}}>
             <TouchableOpacity
                 onPress={()=> props.navigation.goBack(null)}   
             >   

@@ -50,9 +50,22 @@ export default props => {
             />
 
             <ScrollView
-                contentContainerStyle={{paddingVertical:15,paddingHorizontal:25}}
+                contentContainerStyle={{paddingVertical:20,paddingHorizontal:25}}
             >
-                <View style={{marginBottom:40}}>
+                <View style={{marginBottom:25,paddingBottom:25,borderBottomWidth:1,borderColor:'#e2e2e2'}}>
+                    <View style={{marginBottom:15}}>
+                        <Text style={{fontSize:16}}>수거기사</Text>
+                    </View>
+                    <View style={{flexDirection:'row',alignItems:'center',borderWidth:1,borderColor:'#e2e2e2',padding:15,backgroundColor:'#fff',borderRadius:10}}>
+                        <Image source={{uri:faker.image.avatar()}} style={{width:70,height:70,borderRadius:10}}/>
+                        <View style={{marginLeft:15}}>
+                            <Text style={{fontSize:16}}>박수민<Text style={{fontSize:12,color:'#888'}}>(베르나딘)</Text></Text>
+                            <Text style={{marginTop:5}}>010-8525-0000</Text>
+                            <Text style={{marginTop:5,fontSize:12,color:'#888'}}>오늘도 즐거운 하루되세요!</Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={{marginBottom:25,paddingBottom:25,borderBottomWidth:1,borderColor:'#e2e2e2'}}>
                     <View style={{marginBottom:15}}>
                         <Text style={{fontSize:16}}>수거날짜 선택</Text>
                         <Text style={{fontSize:13,color:'#9a9a9a',marginTop:5}}>희망하시는 수거날짜를 선택해주세요</Text>
@@ -78,7 +91,7 @@ export default props => {
                 </View>
 
 
-                <View style={{marginBottom:40}}>
+                <View style={{marginBottom:25,paddingBottom:25,borderBottomWidth:1,borderColor:'#e2e2e2'}}>
                     <View style={{marginBottom:15}}>
                         <Text style={{fontSize:16}}>수거시간 선택</Text>
                         <Text style={{fontSize:13,color:'#9a9a9a',marginTop:5}}>주문량에 따라 수거시간이 변경될 수 있습니다</Text>
@@ -114,7 +127,7 @@ export default props => {
                     </View>
                 </View>
 
-                <View style={{marginBottom:40}}>
+                <View style={{marginBottom:25,paddingBottom:25,borderBottomWidth:1,borderColor:'#e2e2e2'}}>
                     <View style={{marginBottom:15}}>
                         <Text style={{fontSize:16}}>수거방식 선택</Text>
                     </View>

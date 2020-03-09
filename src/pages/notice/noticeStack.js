@@ -20,6 +20,12 @@ const NoticeStack = createStackNavigator(
   },
   {
     initialRouteName: 'noticeList',
+    defaultNavigationOptions:{
+      headerStyle:{
+        elevation:0,
+        backgroundColor:'#f2f2f2'
+      }
+    }
   },
 );
 

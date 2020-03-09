@@ -21,7 +21,7 @@ export default props =>{
       </View>
 
       <View style={{alignItems:'center',marginBottom:25}}>
-        <Text style={{textAlign:'center'}}>수거 후 검수시 세탁물의 오염 정도에 따라 세탁비용이 추가발생 할 수 있으며 추가 발생된 금액은 선택된 결제카드에 의해 자동 결제됩니다</Text>
+        <Text style={{textAlign:'center'}}>수거 후 검수시 세탁물의 오염 정도에 따라 <Text style={{color:'#d22828'}}>세탁비용이 추가발생</Text> 할 수 있으며 추가 발생된 금액은 <Text style={{color:'#d22828'}}>선택된 결제카드에 의해 자동 결제</Text>됩니다</Text>
       </View>
 
       <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>

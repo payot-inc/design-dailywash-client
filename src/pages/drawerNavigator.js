@@ -9,6 +9,7 @@ import Coupon from './coupon';
 import MyCard from './myCard/stack';
 import MyAddress from './myAddress/stack';
 import MyOrder from './myOrder/stack';
+import MyInfo from './myInfo';
 import CustomDrawer from '../components/customDrawer';
 import Option from '../pages/option';
 
@@ -66,6 +67,17 @@ export default DrawerNavigator = createDrawerNavigator(
         ),
         drawerIcon: () => (
           <Icon name={'format-list-bulleted'} size={18} color={'#9a9a9a'}/>
+        )
+      }),
+    },
+    myInfo: {
+      screen: MyInfo,
+      navigationOptions: () => ({
+        drawerLabel: () => (
+          <Text style={{fontSize:15}}>내 정보</Text>
+        ),
+        drawerIcon: () => (
+          <Icon name={'account'} size={18} color={'#9a9a9a'}/>
         )
       }),
     },

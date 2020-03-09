@@ -1,12 +1,12 @@
 import React,{useState, setState} from 'react';
-import {View, Text, ScrollView, Dimensions, TouchableHighlight,FlatList, TouchEvent} from 'react-native';
-import {Button, Divider,Checkbox} from 'react-native-paper';
+import {View, Text, ScrollView, Dimensions, TouchableHighlight,FlatList, Modal,  TouchableOpacity,} from 'react-native';
+import {Button, Divider,Checkbox, RadioButton} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Carousel from 'react-native-snap-carousel';
 
 import Loading from '../../components/loading';
 import AgrmtModal from '../../components/agrmtModal';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+
 
 const CardItem = ({item, index, cardHandle}) => {
 
@@ -31,6 +31,79 @@ const CardItem = ({item, index, cardHandle}) => {
   )
 }
 
+const CouponModal = props => {
+
+  const couponData = [
+    {
+      couponName:'첫회원 가입쿠폰',
+      salePrice:2000,
+      fromDate:'2월 14일까지'
+    },
+    {
+      couponName:'봄맞이 세일쿠폰',
+      salePrice:2000,
+      fromDate:'2월 14일까지'
+    },
+    {
+      couponName:'봄맞이 세일쿠폰',
+      salePrice:2000,
+      fromDate:'2월 14일까지'
+    },
+    {
+      couponName:'봄맞이 세일쿠폰',
+      salePrice:2000,
+      fromDate:'2월 14일까지'
+    },
+    {
+      couponName:'봄맞이 세일쿠폰',
+      salePrice:2000,
+      fromDate:'2월 14일까지'
+    },
+  ]
+
+ return(
+  <Modal
+    visible={props.visible}
+    transparent={true}
+    animationType={'fade'}
+    onRequestClose={props.close}
+  >
+    <View style={{flex:1,justifyContent:'center'}}>
+      <View style={{zIndex:2,padding:40,}}>
+          <View style={{backgroundColor:'#fff',borderRadius:0,overflow:'hidden',backgroundColor:'#fff',borderRadius:10,maxHeight:400}}>
+            <View style={{height:40,paddingHorizontal:15,justifyContent:'center',borderBottomWidth:1,borderColor:'#e2e2e2',backgroundColor:'#396EEE'}}>
+              <Text style={{color:'#fff'}}>쿠폰선택</Text>
+            </View>
+            <FlatList
+              data={couponData}
+              renderItem={({item})=>
+                <TouchableOpacity
+                  onPress={props.close}
+                >
+                  <View style={{padding:15,borderBottomWidth:1,borderColor:'#e2e2e2',flexDirection:'row',}}>
+                    <View style={{flex:1}}>
+                      <Text style={{fontSize:14}}>{item.couponName}</Text>
+                      <Text style={{fontSize:18,color:'#d22828',fontWeight:'bold'}}>{item.salePrice} 원</Text>
+                      <Text style={{fontSize:12,textAlign:'right',color:'#888'}}>{item.fromDate}</Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              }
+            />
+          </View>
+      </View>
+    </View>
+
+    <TouchableOpacity
+      onPress={props.close}
+      activeOpacity={1}
+      style={{flex:1,backgroundColor:'rgba(0,0,0,0.8)',position:'absolute',zIndex:1,width:'100%',height:'100%'}}
+    >
+    </TouchableOpacity>
+
+  </Modal>
+ )
+}
 
 export default props =>{
 
@@ -95,8 +168,8 @@ export default props =>{
   ]
 
   const [agrmtModal, setAgrmtModal] = useState(false)
-
   const [checks, setChecks] = useState(agrmtList);
+  const [couponList, setCouponList] = useState(false)
 
   const checkHandle = index => {
     const baseChecks = [...checks]
@@ -168,12 +241,14 @@ export default props =>{
 
           <Text style={{marginBottom:10}}>쿠폰할인</Text>
           <TouchableOpacity
-            onPress={()=>{}}
-            style={{borderWidth:1,borderColor:'#c2c2c2',flexDirection:'row',justifyContent:'space-between',alignItems:'center',height:40,borderRadius:5,paddingHorizontal:15}}
+            onPress={()=> setCouponList(true)}
+            style={{borderWidth:1,borderColor:'#e2e2e2',flexDirection:'row',justifyContent:'space-between',alignItems:'center',height:40,borderRadius:5,paddingHorizontal:15}}
           >
             <Text>쿠폰선택</Text>
             <Icon name={'arrow-right'}/>
           </TouchableOpacity>
+
+          <CouponModal visible={couponList} close={()=>setCouponList(false)} />
 
           <Text style={{marginBottom:10,marginTop:40}}>최종 결제정보</Text>
           <View style={{borderWidth:1,borderColor:'#e2e2e2',borderRadius:5,padding:15}}>
@@ -186,14 +261,14 @@ export default props =>{
                 <Text>할인금액</Text>
                 <Text>- 6,000 원</Text>
               </View>
-              <View style={{marginTop:10,}}>
-                <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingHorizontal:5,paddingVertical:2,backgroundColor:'#f2f2f2',marginBottom:8,borderRadius:3}}>
+              <View style={{marginTop:10,marginLeft:10}}>
+                <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingHorizontal:5,paddingVertical:2,backgroundColor:'#FBF2F2',marginBottom:8,borderRadius:3}}>
                   <Text style={{fontSize:12,color:'#888'}}>쿠폰할인</Text>
-                  <Text style={{fontSize:12,color:'#888'}}>3,000원</Text>
+                  <Text style={{fontSize:12,color:'#d22828'}}>3,000원</Text>
                 </View>
-                <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingHorizontal:5,paddingVertical:2,backgroundColor:'#f2f2f2',marginBottom:8,borderRadius:3}}>
+                <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingHorizontal:5,paddingVertical:2,backgroundColor:'#FBF2F2',marginBottom:8,borderRadius:3}}>
                   <Text style={{fontSize:12,color:'#888'}}>이벤트할인</Text>
-                  <Text style={{fontSize:12,color:'#888'}}>3,000원</Text>
+                  <Text style={{fontSize:12,color:'#d22828'}}>3,000원</Text>
                 </View>
               </View>
             </View>
@@ -303,6 +378,8 @@ export default props =>{
 
          <AgrmtModal visible={agrmtModal} close={()=> setAgrmtModal(false)}/>
       </ScrollView>
+
+      
                
     </View>
   )

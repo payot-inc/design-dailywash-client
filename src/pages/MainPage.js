@@ -30,7 +30,7 @@ export default props => {
 
             <StatusBar backgroundColor={'#292929'}/>
             
-            <ScrollView>
+            <ScrollView style={{backgroundColor:'#f8f8f8'}}>
 
                 <View style={{height:70,width:'100%',zIndex:9,flexDirection:'row',alignItems:'center',backgroundColor:'#396eee'}}>
                     <TouchableHighlight
@@ -100,7 +100,7 @@ export default props => {
 
                     
 
-                    <View style={{flex:1,flexDirection:'row',backgroundColor:'#fff',padding:15,borderRadius:10,marginBottom:30,elevation:10}}>
+                    <View style={{flex:1,flexDirection:'row',backgroundColor:'#fff',padding:15,borderRadius:10,marginBottom:30,borderWidth:1,borderColor:'#e2e2e2'}}>
                         <View style={{alignItems:'center',width:34,}}>
                             <Icon name="map-marker" style={{backgroundColor:'#396eee',width:34,height:34,borderRadius:17,textAlign:'center',lineHeight:34}} size={26} color={'#fff'}/>
                             <Text style={{fontSize:12,marginTop:5,color:'#396eee'}}>대표</Text>
@@ -117,7 +117,7 @@ export default props => {
                         </View>
                     </View>
 
-                    <View style={{borderWidth:0,borderColor:'#e2e2e2',borderRadius:10,backgroundColor:'#fff',elevation:10}}>
+                    <View style={{borderWidth:0,borderColor:'#e2e2e2',borderRadius:10,backgroundColor:'#fff',borderWidth:1,borderColor:'#e2e2e2',marginBottom:30}}>
                         <View style={{justifyContent:'center',height:40,paddingHorizontal:15,borderBottomWidth:1,borderColor:'#e2e2e2'}}>
                             <Text style={{fontSize:16,fontWeight:'bold'}}>우리동네 기사님</Text>
                         </View>
@@ -135,7 +135,7 @@ export default props => {
                             </View>
                         </View>
                     </View>
-
+{/* 
                     <View style={{flexDirection:'row',justifyContent:'space-around',marginVertical:50}}>
                         <TouchableHighlight
                             onPress={()=>{props.navigation.navigate('card')}}
@@ -143,7 +143,7 @@ export default props => {
                             style={{flex:1}}
                         >
                             <View style={{alignItems:'center',flex:1}}>
-                                <Icon name="credit-card-multiple" color={'#396eee'} size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#f2f2f2'}}></Icon>
+                                <Icon name="credit-card-multiple" color={'#396eee'} size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#fff'}}></Icon>
                                 <Text style={{marginTop:10,fontSize:13}}>카드관리</Text>
                             </View>
                         </TouchableHighlight>
@@ -154,7 +154,7 @@ export default props => {
                             style={{flex:1}}
                         >
                             <View style={{alignItems:'center',flex:1,borderRightWidth:1,borderLeftWidth:1,borderColor:'#e2e2e2'}}>
-                                <Icon name="ticket-outline" color={'#396eee'} size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#f2f2f2'}}></Icon>
+                                <Icon name="ticket-outline" color={'#396eee'} size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#fff'}}></Icon>
                                 <Text style={{marginTop:10,fontSize:13}}>나의 쿠폰</Text>
                             </View>
                         </TouchableHighlight>
@@ -165,18 +165,18 @@ export default props => {
                             style={{flex:1}}
                         >
                             <View style={{alignItems:'center',flex:1,}}>
-                                <Icon name="file-document-box-outline" color={'#396eee'} size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#f2f2f2'}}></Icon>
+                                <Icon name="file-document-box-outline" color={'#396eee'} size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#fff'}}></Icon>
                                 <Text style={{marginTop:10,fontSize:13}}>이용내역</Text>
                             </View>
                         </TouchableHighlight>
-                    </View>
+                    </View> */}
 
 
                     {/* <View style={{borderRadius:10,marginBottom:30,overflow:'hidden',elevation:10,backgroundColor:'#fff'}}>
                         <MainVisualSecond />
                     </View> */}
 
-                    <View style={{flex:1,backgroundColor:'#fff',borderRadius:10,elevation:10,overflow:'hidden'}}>
+                    <View style={{flex:1,backgroundColor:'#fff',borderWidth:1,borderColor:'#e2e2e2',borderRadius:10,overflow:'hidden'}}>
                         <View style={{justifyContent:'space-between',height:40,paddingLeft:15,borderBottomWidth:1,borderColor:'#e2e2e2',flexDirection:'row',alignItems:'center',}}>
                             <Text style={{fontSize:16,fontWeight:'bold'}}>공지사항</Text>
                             <TouchableHighlight
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
         top:0,
         width:'100%',
         backgroundColor:'#396eee',
-        height:240,
+        height:320,
         marginBottom:150,
         zIndex:1,
         overflow:'hidden'
