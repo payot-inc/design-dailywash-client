@@ -10,7 +10,7 @@ export default props => {
       onRequestClose={props.close}
     >
       <View style={{flex:1,justifyContent:'center'}}>
-          <View style={{zIndex:2,padding:40,}}>
+          <View style={{zIndex:2,padding:50,}}>
               <View style={{backgroundColor:'#fff',borderRadius:10,overflow:'hidden',backgroundColor:'#fff',elevation:10,}}>
                 <View style={{padding:20,alignItems:'center'}}>
                   <Text style={{fontSize:18,fontWeight:'bold'}}>{props.title}</Text>
