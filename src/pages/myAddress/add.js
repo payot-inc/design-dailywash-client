@@ -7,11 +7,16 @@ import Thema from '../../assets/css/thema';
 export default class AddressAdd extends React.Component{
     render(){
         return(
-            <View style={{flex:1,backgroundColor:'#F5F6F8',paddingTop:10,}}>
-                <View style={{flex:1,backgroundColor:'#fff',borderTopEndRadius:45,elevation:15}}>
+            <View style={{flex:1,backgroundColor:'#F5F6F8'}}>
+                <View style={{flex:1,backgroundColor:'#fff'}}>
                     <ScrollView
                         contentContainerStyle={{paddingHorizontal:25,paddingVertical:30,}}
                     >
+                        <View style={{marginBottom:30}}>
+                            <Text style={{fontSize:16,marginBottom:10,}}>장소이름</Text>
+                            <TextInput style={[Thema.inputBox,{flex:1,paddingHorizontal:10}]}  placeholder={'장소이름을 입력해주세요'}></TextInput>
+                        </View>
+
                         <View style={{marginBottom:30}}>
                             <Text style={{fontSize:16,marginBottom:10,}}>주소입력</Text>
                             <View style={{flexDirection:'row'}}>
