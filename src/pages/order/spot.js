@@ -2,6 +2,7 @@ import React, {useState, setState} from 'react';
 import {View, Text, StyleSheet, TouchableHighlight,FlatList,TouchableOpacity, Modal, ImageBackground } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import faker from 'faker';
+import Alert from '../../components/alert';
 
 export default props => {
 
@@ -30,8 +31,13 @@ export default props => {
         setSpot(baseData);
     }
 
+    const [alert, setAlert] = useState(false);
+
     return(
         <View style={{backgroundColor:'#F5F6F8',flex:1,}}>
+
+            <Alert open={alert} close={()=>setAlert(false)} title={'경고'} description={'해당 지역은 서비스 불가지역입니다'}/>
+            
             <FlatList
                 data={spot}
                 ListHeaderComponent={({item})=>
@@ -61,7 +67,7 @@ export default props => {
                                 </View>
                             </View>
                             <View style={{flexBasis:50,alignItems:'center'}}>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={() => setAlert(true)}>
                                     <Icon name={'close'} size={24} color={'#d2d2d2'}/>
                                 </TouchableOpacity>
                             </View>
@@ -90,14 +96,12 @@ export default props => {
 
             <View style={{borderTopWidth:1,paddingHorizontal:10,paddingVertical:10,borderColor:'#d2d2d2',backgroundColor:'#fff'}}>
                 <TouchableHighlight
-                    onPress={() => {props.navigation.navigate('when')}}
+                    onPress={()=> props.navigation.navigate('when')}
                     style={{height:45,backgroundColor:'#292929',borderRadius:5,alignItems:'center',justifyContent:'center'}}
                 >
                     <Text style={{color:'#fff'}}>다음으로</Text>
                 </TouchableHighlight>
             </View>
-
-            
         </View>
     )
     
