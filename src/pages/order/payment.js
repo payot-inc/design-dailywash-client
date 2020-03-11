@@ -71,16 +71,22 @@ const CouponModal = props => {
     <View style={{flex:1,justifyContent:'center'}}>
       <View style={{zIndex:2,padding:40,}}>
           <View style={{backgroundColor:'#fff',borderRadius:0,overflow:'hidden',backgroundColor:'#fff',borderRadius:10,maxHeight:400}}>
-            <View style={{height:40,paddingHorizontal:15,justifyContent:'center',borderBottomWidth:1,borderColor:'#e2e2e2',backgroundColor:'#396EEE'}}>
-              <Text style={{color:'#fff'}}>쿠폰선택</Text>
+            <View style={{height:50,paddingHorizontal:15,flexDirection:'row',alignItems:'center',justifyContent:'space-between',borderBottomWidth:1,borderColor:'#e2e2e2',backgroundColor:'#396EEE'}}>
+              <Text style={{color:'#fff',fontSize:16}}>쿠폰선택</Text>
+              <TouchableOpacity
+                onPress={props.close}
+              >
+                <Icon name={'close'} size={24} color={'#fff'}/>
+              </TouchableOpacity>
             </View>
             <FlatList
               data={couponData}
+              contentContainerStyle={{padding:15}}
               renderItem={({item})=>
                 <TouchableOpacity
                   onPress={props.close}
                 >
-                  <View style={{padding:15,borderBottomWidth:1,borderColor:'#e2e2e2',flexDirection:'row',}}>
+                  <View style={{padding:15,borderWidth:1,borderColor:'#e2e2e2',flexDirection:'row',marginBottom:10,borderRadius:5}}>
                     <View style={{flex:1}}>
                       <Text style={{fontSize:14}}>{item.couponName}</Text>
                       <Text style={{fontSize:18,color:'#d22828',fontWeight:'bold'}}>{item.salePrice} 원</Text>
@@ -89,6 +95,7 @@ const CouponModal = props => {
                   </View>
                 </TouchableOpacity>
               }
+              keyExtractor={item => item.index}
             />
           </View>
       </View>
@@ -239,7 +246,9 @@ export default props =>{
             </View>
           </View>
 
-          <Text style={{marginBottom:10}}>쿠폰할인</Text>
+   
+          <Text style={{marginBottom:10,}}>쿠폰할인</Text>
+
           <TouchableOpacity
             onPress={()=> setCouponList(true)}
             style={{borderWidth:1,borderColor:'#e2e2e2',flexDirection:'row',justifyContent:'space-between',alignItems:'center',height:40,borderRadius:5,paddingHorizontal:15}}
@@ -247,6 +256,12 @@ export default props =>{
             <Text>쿠폰선택</Text>
             <Icon name={'arrow-right'}/>
           </TouchableOpacity>
+
+          <View style={{alignItems:'flex-end',marginTop:10}}>
+            <TouchableOpacity>
+              <Text style={{color:'#888'}}>쿠폰 선택취소</Text>
+            </TouchableOpacity>
+          </View>
 
           <CouponModal visible={couponList} close={()=>setCouponList(false)} />
 
