@@ -49,7 +49,7 @@ export default props => {
                 visible={modalVisible}
                 close={()=> setModalVisible(false)}
                 title={'수거/배달 안내'}
-                img={require('../../assets/img/guide01.png')}
+                img={require('../../assets/img/guide01-02.png')}
                 description={'주문이 많을 경우 세탁물 수거 및 배달이 다소 지연될 수 있습니다'}
             />
 

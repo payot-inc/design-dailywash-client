@@ -10,19 +10,22 @@ export default props =>{
 
   return(
     <View style={{flex:1,padding:25,justifyContent:'center',alignItems:'center'}}>
-      <View style={{alignItems:'center'}}>
-        <Text style={{fontSize:32,letterSpacing:-1,fontWeight:'bold'}}>예약이 완료되었습니다</Text>
-        <Text style={{color:'#888',marginTop:10}}>선택하신 <Text  style={{color:'#01a1dd'}}>2019년 2월 14일 오전</Text>에 세탁물을 수거합니다</Text>
+      <View style={{alignItems:'center',justifyContent:'center'}}>
+        <Icon name="check-circle" size={55} style={{marginBottom:20,color:'#01a1dd'}}></Icon>
+        <Text style={{fontSize:28,letterSpacing:-1,fontWeight:'bold'}}>세탁물 수거 주문 결제 완료</Text>
+        <Text style={{color:'#888',marginTop:10,textAlign:'center'}}>선택하신 <Text  style={{color:'#01a1dd'}}>2019년 2월 14일 오전</Text>에 세탁물을 수거합니다</Text>
+      </View>
+
+      <View style={{alignItems:'center',marginTop:20,backgroundColor:'#f2f2f2',padding:15,borderRadius:5,}}>
+        <Text style={{textAlign:'center',color:'#494949'}}>세탁물품 수거가 가능토록 문앞에 세탁품을 놓아주세요</Text>
       </View>
 
 
-      <View style={{alignItems:'center',justifyContent:'center',marginVertical:25}}>
-        <Image source={require('../../assets/img/finishImg.png')} resizeMode={'contain'} style={{width:screenWidth-25,height:240}}/>
+      <View style={{alignItems:'center',justifyContent:'center',marginVertical:50}}>
+        <Image source={require('../../assets/img/finish-img.png')} resizeMode={'contain'} style={{height:200}}/>
       </View>
 
-      <View style={{alignItems:'center',marginBottom:25,backgroundColor:'#f2f2f2',padding:20,borderRadius:5,}}>
-        <Text style={{textAlign:'center',color:'#494949'}}>수거 후 검수시 세탁물의 오염 정도에 따라 <Text style={{color:'#d22828'}}>세탁비용이 추가발생</Text> 할 수 있으며 추가 발생된 금액은 <Text style={{color:'#d22828'}}>선택된 결제카드에 의해 자동 결제</Text>됩니다</Text>
-      </View>
+      
 
       <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
         <Button
