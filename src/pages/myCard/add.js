@@ -1,22 +1,27 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TextInput, ScrollView, TouchableHighlight} from 'react-native';
+import {View, Text, StyleSheet, TextInput, ScrollView, TouchableHighlight,TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import moment from 'moment';
+import SubHeader from '../../components/subHeader';
 
 import BaseStyles from '../../assets/css/thema';
 
-export default class CardAdd extends React.Component{
-    state = {
+export default props => {
+
+    const state = {
         cardName: '',
         lastCardNumber: '',
         cardDate: moment().format('YYYY년 MM월 DD일'),
     }
 
-    render(){
-        const cardAppend = this.props.navigation.getParam('appendCard', null);
+    const cardAppend = props.navigation.getParam('appendCard', null);
 
-        return(
-            <View style={{flex:1,backgroundColor:'#F5F6F8',paddingTop:10,}}>
-                <View style={{flex:1,backgroundColor:'#fff',borderTopEndRadius:45,elevation:15}}>
+    return(
+        <View style={{flex:1}}>
+
+                <SubHeader navigation={props.navigation} title={'카드등록'}/>
+
+                <View style={{flex:1}}>
                     <ScrollView 
                         contentContainerStyle={{paddingHorizontal:25,paddingVertical:30}}
                     >
@@ -24,7 +29,7 @@ export default class CardAdd extends React.Component{
                             <Text style={{marginBottom:8,}}>카드명</Text>
                             <TextInput
                                 style={[BaseStyles.inputBox,]}
-                                onChangeText={(text) => this.setState({ cardName: text })}
+                                onChangeText={(text) => setState({ cardName: text })}
                             />
                         </View>
                         <View style={{marginBottom:20}}>
@@ -71,22 +76,26 @@ export default class CardAdd extends React.Component{
                             />
                         </View>
 
-                        <TouchableHighlight style={{height:45,backgroundColor:'#292929',borderRadius:10,alignItems:'center',justifyContent:'center',marginTop:30,}}
-                            onPress={() => {
-                                // 카드 추가
-                                const cardName = this.state.cardName;
-                                cardAppend(cardName, '1111', '2019년 12월 4일');
-                                // 카드등록이 완료되었다면 뒤로가기
-                                this.props.navigation.goBack();
-                            }}>
-                            <Text style={{color:'#fff',fontSize:16}}>추가하기</Text>
-                        </TouchableHighlight>
-                    </ScrollView>                   
+                        
+                    </ScrollView>
+
+                    <TouchableHighlight style={{height:50,backgroundColor:'#01a1dd',alignItems:'center',justifyContent:'center',marginTop:30,}}
+                        onPress={() => {
+                            // 카드 추가
+                            const cardName = state.cardName;
+                            cardAppend(cardName, '1111', '2019년 12월 4일');
+                            // 카드등록이 완료되었다면 뒤로가기
+                            props.navigation.goBack();
+                        }}>
+                        <Text style={{color:'#fff',fontSize:16}}>등록완료</Text>
+                    </TouchableHighlight>                      
                 </View>
             </View>
-        );
-    }
+
+    )
 }
+
+
 
 const styles = StyleSheet.create({
 

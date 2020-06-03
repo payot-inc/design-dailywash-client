@@ -6,20 +6,6 @@ import SubHeader from '../../components/subHeader'
 import BaseStyles from '../../assets/css/thema';
 
 
-const Data = [
-    {
-        cardName:'신한카드',
-        cardNumber: '0801',
-        cardDate:'2019년 2월 14일',
-    },
-    {
-        cardName:'삼성카드',
-        cardNumber: '8114',
-        cardDate:'2019년 3월 15일',
-    },
-]
-
-
 export default props => {
 
     const state = {
@@ -56,18 +42,14 @@ export default props => {
     )}
 
     return(
-        <View style={{flex:1,backgroundColor:'#F5F6F8'}}>
+        <View style={{flex:1,backgroundColor:'#FFF'}}>
 
-            <SubHeader navigation={props.navigation} title={'카드관리'}/>
+            <SubHeader navigation={props.navigation} title={'결제카드 관리'}/>
 
             <View style={{flex:1,paddingVertical:22.5}}>
-                <View style={{flexDirection:'row',flexBasis:30,paddingHorizontal:25}}>
-                    <Text style={{marginRight:10}}>등록된 카드</Text>
-                    <Text style={{color:'#5D21FF',fontSize:16,fontWeight:'bold'}}>2</Text>
-                </View>
                 <View style={{flex:1,}}>
                     <FlatList
-                        contentContainerStyle={{paddingHorizontal:25}}
+                        contentContainerStyle={{paddingHorizontal:20}}
                         data = {state.cards}
                         renderItem={({item, index}) => 
                             <View style={[styles.cardItem, BaseStyles.shadowBox]}>
@@ -83,15 +65,18 @@ export default props => {
                                     <TouchableOpacity
                                         onPress={() => CardAlert(index)}
                                     >
-                                        <Icon name={'times-circle'} size={28} color={'#d2d2d2'}></Icon>
+                                        <Icon name={'times-circle'} size={28} color={'#e2e2e2'}></Icon>
                                     </TouchableOpacity>
                                 </View>
                             </View>
                         }
                         keyExtractor={item => item.index}
                         ListEmptyComponent={
-                            <View style={{height:120,justifyContent:'center',alignItems:'center',borderWidth:1,borderRadius:10,borderStyle:'dashed',borderColor:'#d2d2d2',marginHorizontal:10}}>
-                                <Text style={{fontSize:16}}>등록된 카드가 없습니다</Text>
+                            <View style={{justifyContent:'center',alignItems:'center',padding:20,borderWidth:1,borderColor:'#e2e2e2',borderRadius:5}}>
+                                <View style={{width:90,height:90,borderRadius:45,backgroundColor:'#01a1dd',justifyContent:'center',alignItems:'center'}}>
+                                    <Icon name="credit-card" size={40} color={'#fff'}></Icon>
+                                </View>
+                                <Text style={{fontSize:16,marginTop:20,color:'#888',}}>등록된 카드가 없습니다</Text>
                             </View>
                         }
 
@@ -104,9 +89,9 @@ export default props => {
                                     },
                                     name: '김용희',
                                 })}
-                                style={{marginTop:20}}
+                                style={{marginTop:5}}
                             >
-                                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',borderWidth:1,borderRadius:10,height:50,borderColor:'#292929'}}>
+                                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',borderWidth:1,height:50,borderColor:'#e2e2e2',marginTop:10,borderRadius:5}}>
                                     <Icon name={'plus-circle'} size={18}></Icon>
                                     <Text style={{fontSize:16,marginLeft:10}}>카드 등록하기</Text>
                                 </View>
@@ -122,11 +107,13 @@ export default props => {
 const styles = StyleSheet.create({
     cardItem:{
         height:90,
-        borderRadius:10,
-        paddingHorizontal:10,
+        paddingHorizontal:15,
         backgroundColor:'#fff',
         marginVertical:5,
         flexDirection:'row',
         alignItems:'center',
+        borderWidth:1,
+        borderColor:'#e2e2e2',
+        borderRadius:5,
     }
 })

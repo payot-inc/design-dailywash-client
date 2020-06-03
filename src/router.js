@@ -7,7 +7,7 @@ import Order from './pages/order/stack';
 import DrawerNavigator from './pages/drawerNavigator';
 import FirstUser from './pages/firstUser/firstUserStack'
 import NoticeStack from './pages/notice/noticeStack';
-
+import History from './pages/history';
 
 const MainStoryBorad = createStackNavigator(
   {
@@ -29,6 +29,12 @@ const MainStoryBorad = createStackNavigator(
         header: null,
       }),
     },
+    history:{
+      screen:History,
+      navigationOptions: () => ({
+        header: null,
+      }),
+    }
 
   },
   {

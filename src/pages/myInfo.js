@@ -74,18 +74,18 @@ export default props => {
   const [confirm, setConfirm] = useState(false);
  
   return(
-    <View style={{flex:1,backgroundColor:'#F5F6F8'}}>
+    <View style={{flex:1,backgroundColor:'#fff'}}>
       <SubHeader title={'내 정보'} navigation={props.navigation}/>
       <View style={{flex:1,}}>
-          <View style={{justifyContent:'center',alignItems:'center',backgroundColor:'#292929',paddingBottom:30}}>
+          <View style={{justifyContent:'center',alignItems:'center',backgroundColor:'#fff',paddingBottom:30}}>
             <Image source={{uri:faker.image.avatar()}} style={{width:120,height:120,borderRadius:60}}/>
             <View style={{marginTop:10,alignItems:'center'}}>
-              <Text style={{fontSize:24,color:'#fff',fontWeight:'bold'}}>{state.name}</Text>
+              <Text style={{fontSize:24,color:'#494949',fontWeight:'bold'}}>{state.name}</Text>
               <Text style={{color:'#888',marginTop:5}}>카카오톡 연동중</Text> 
             </View>
           </View>
           
-          <View style={{flex:1,paddingHorizontal:25}}>
+          <View style={{flex:1,paddingHorizontal:30}}>
             <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',height:60,borderBottomWidth:1,borderBottomColor:'#e2e2e2'}}>
               <Text>전화번호</Text>
               <TouchableOpacity style={{flexDirection:'row',alignItems:'flex-end'}}
@@ -105,19 +105,16 @@ export default props => {
                 <Icon name={'pencil'} size={18} color={'#888'} style={{marginLeft:15}}/>
               </TouchableOpacity>
             </View>
-          </View>
+            <View style={{justifyContent:'center',alignItems:'center',marginTop:40,}}>
+              <TouchableOpacity
+                onPress={()=> setConfirm(true)}
+                style={{width:120,height:40,borderRadius:20,borderWidth:1,borderColor:'#e2e2e2',alignItems:'center',justifyContent:'center'}}
+              >
 
-          <Button
-              mode="contained"
-              disabled={false}
-              contentStyle={{height:50,borderTopWidth:1,borderColor:'#e2e2e2'}}
-              labelStyle={{fontSize:16,fontWeight:'bold',letterSpacing:-0.7,color:'#292929'}}
-              style={{marginTop:30,backgroundColor:'#f8f8f8',borderRadius:0,}}
-              onPress={()=> setConfirm(true)}
-            >
-              로그아웃
-          </Button>
-          
+                  <Text style={{color:'#494949'}}>로그아웃</Text>               
+              </TouchableOpacity>
+            </View>
+          </View>         
       </View>
 
 

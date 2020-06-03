@@ -17,14 +17,9 @@ const MyCardStack = createStackNavigator(
     
     cardAdd: {
       screen: CardAdd,
-      navigationOptions: props => ({
-        title: '카드등록',       
-        headerStyle: {
-          backgroundColor: '#F5F6F8',
-          elevation: 0,
-          height: 60,
-        },
-      }),
+      navigationOptions: {
+        header:null
+      },
     },    
   },
   {

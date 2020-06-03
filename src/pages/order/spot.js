@@ -1,7 +1,6 @@
 import React, {useState, setState} from 'react';
 import {View, Text, StyleSheet, TouchableHighlight,FlatList,TouchableOpacity, Modal, ImageBackground } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import faker from 'faker';
 import Alert from '../../components/alert';
 
 export default props => {
@@ -21,8 +20,6 @@ export default props => {
         },
     ]
 
-    
-
     const [spot, setSpot] = useState(data);
 
     const spotSelectHanble = index => {
@@ -34,20 +31,13 @@ export default props => {
     const [alert, setAlert] = useState(false);
 
     return(
-        <View style={{backgroundColor:'#F5F6F8',flex:1,}}>
+        <View style={{backgroundColor:'#fff',flex:1,paddingTop:20}}>
 
             <Alert open={alert} close={()=>setAlert(false)} title={'경고'} description={'해당 지역은 서비스 불가지역입니다'}/>
             
             <FlatList
                 data={spot}
-                ListHeaderComponent={({item})=>
-                    <View style={{flexDirection:'row'}}>
-                        <Text style={{marginRight:5,}}>등록된 주소지</Text>
-                        <Text style={{color:'#5D21FF'}}>2</Text>
-                    </View>
-                }
                 contentOffset={{y:-50}}
-                ListHeaderComponentStyle={{marginBottom:10}}
                 renderItem={({item, index})=>
                 
                     <TouchableHighlight
@@ -56,7 +46,7 @@ export default props => {
                     >
                         <View style={item.selectState ? styles.selectedOn : styles.selectedOff}>
                             <View style={{flexBasis:60,alignItems:'center'}}>
-                                <Icon name={'check-circle'} size={30} color={item.selectState ?'#396eee' : '#d2d2d2'}/> 
+                                <Icon name={'check-circle'} size={30} color={item.selectState ?'#01a1dd' : '#d2d2d2'}/> 
                             </View>
                             <View style={{flex:1,}}>
                                 <Text style={{marginBottom:5,fontSize:16}}>{item.addressName}</Text>
@@ -79,29 +69,33 @@ export default props => {
                     <TouchableOpacity
                     onPress={() => props.navigation.navigate('addressAdd')}
                     >
-                        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',borderWidth:1,borderRadius:5,height:50,borderColor:'#d2d2d2'}}>
-                            <Icon name={'plus-circle'} size={18}></Icon>
+                        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',borderWidth:1,height:50,borderColor:'#e2e2e2',borderRadius:5,}}>
+                            <Icon name={'plus-circle'} size={24}></Icon>
                             <Text style={{fontSize:16,marginLeft:10}}>주소지 추가하기</Text>
                         </View>
                     </TouchableOpacity>
                 }
-                ListFooterComponentStyle={{marginTop:20,}}
+                ListFooterComponentStyle={{marginTop:15,}}
                 keyExtractor={item => item.index}
                 ItemSeparatorComponent={(item)=>
                     <View style={{height:15,}}>
                     </View>
                 }
-                contentContainerStyle={{paddingHorizontal:25, paddingVertical:15}}
+                contentContainerStyle={{
+                    paddingHorizontal:20, 
+                    paddingVertical:15
+                }}
             />
 
-            <View style={{borderTopWidth:1,paddingHorizontal:10,paddingVertical:10,borderColor:'#d2d2d2',backgroundColor:'#fff'}}>
-                <TouchableHighlight
-                    onPress={()=> props.navigation.navigate('when')}
-                    style={{height:45,backgroundColor:'#292929',borderRadius:5,alignItems:'center',justifyContent:'center'}}
-                >
-                    <Text style={{color:'#fff'}}>다음으로</Text>
-                </TouchableHighlight>
-            </View>
+         
+            <TouchableHighlight
+                onPress={()=> props.navigation.navigate('when')}
+                style={{height:50,backgroundColor:'#01a1dd',alignItems:'center',justifyContent:'center'}}
+                underlayColor="#00B9FF"
+            >
+                <Text style={{color:'#fff',fontSize:16,fontWeight:'bold'}}>다음으로</Text>
+            </TouchableHighlight>
+          
         </View>
     )
     
@@ -109,7 +103,22 @@ export default props => {
 
 
 const styles = StyleSheet.create({
-    selectedOn:{borderWidth:1,borderRadius:10,flexDirection:'row',paddingVertical:15,borderColor:'#396eee',backgroundColor:'#fff'},
-    selectedOff:{borderWidth:1,borderRadius:10,flexDirection:'row',paddingVertical:15,borderColor:'#d2d2d2',backgroundColor:'#fff'}
+    selectedOn:{
+        borderWidth:1,
+        flexDirection:'row',
+        paddingVertical:15,
+        borderColor:'#01a1dd',
+        backgroundColor:'#fff',
+        borderRadius:5,
+    },
+
+    selectedOff:{
+        borderWidth:1,
+        flexDirection:'row',
+        paddingVertical:15,
+        borderColor:'#e2e2e2',
+        backgroundColor:'#fff',
+        borderRadius:5,
+    }
 })
 

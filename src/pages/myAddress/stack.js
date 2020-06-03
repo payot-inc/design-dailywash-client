@@ -17,12 +17,7 @@ const MyAddressStack = createStackNavigator(
     addressAdd: {
       screen: AddressAdd,
       navigationOptions: () => ({
-        title: '주소지 추가하기',
-        headerStyle: {
-          backgroundColor: '#F5F6F8',
-          elevation: 0,
-          height: 60,
-        },
+        headerShown: false,
       }),
     },
    

@@ -17,15 +17,15 @@ export default props => {
       <View style={{flex:1,justifyContent:'center'}}>
           <View style={{zIndex:2,padding:40,}}>
               <View style={{backgroundColor:'#fff',borderRadius:0,overflow:'hidden',elevation:10,borderRadius:10}}>
-                  <View style={{justifyContent:'center',alignItems:'center',paddingVertical:15}}>                   
+                  <View style={{justifyContent:'center',alignItems:'center',paddingVertical:30}}>                   
                     <Image
-                        style={{width:screenWidth ,height:200}}
+                        style={{width:screenWidth ,height:180}}
                         source={props.img}
                         resizeMode={'contain'}
                     />  
                   </View>
                   <View style={{backgroundColor:'#fff'}}>
-                      <View style={{padding:20,alignItems:'center'}}>
+                      <View style={{padding:30,alignItems:'center',paddingTop:0,}}>
                         <Text style={{fontSize:18,textAlign:'center'}}>{props.title}</Text>
                         <Text style={{marginTop:10,color:'#9a9a9a',textAlign:'center'}}>{props.description}</Text>
                         {props.guide && <Text style={{marginTop:10,color:'#9a9a9a'}}>{props.guide}</Text>}
@@ -33,17 +33,17 @@ export default props => {
                       <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'center',borderTopWidth:1,borderColor:'#e2e2e2'}}>
                           <TouchableHighlight
                               onPress={props.close}
-                              underlayColor={'#9a9a9a'}
-                              style={{flex:1,alignItems:'center',backgroundColor:'#aaa',height:45,justifyContent:'center'}}
+                              underlayColor={'#f2f2f2'}
+                              style={{flex:1,alignItems:'center',height:60,justifyContent:'center'}}
                           >
-                              <Text style={{color:'#fff'}}>동의안함</Text>
+                              <Text style={{color:'#494949',fontSize:16,}}>동의안함</Text>
                           </TouchableHighlight>
                           <TouchableHighlight 
                               onPress={() => { props.close(); props.goTo(); }}
-                              style={{flex:1,alignItems:'center',backgroundColor:'#396EEE',height:45,justifyContent:'center'}}
-                              underlayColor={'#3566DC'}
+                              style={{flex:1,alignItems:'center',height:60,justifyContent:'center'}}
+                              underlayColor={'#f2f2f2'}
                           >
-                              <Text style={{color:'#fff'}}>동의함</Text>
+                              <Text style={{color:'#01a1dd',fontSize:16,fontWeight:'bold'}}>동의함</Text>
                           </TouchableHighlight>
                       </View>
                   </View>

@@ -5,7 +5,7 @@ import SubHeader from '../components/subHeader';
 
 export default props => {
     return(
-        <View style={{flex:1,backgroundColor:'#F5F6F8'}}>
+        <View style={{flex:1,backgroundColor:'#fff'}}>
             <SubHeader title={'설정'} navigation={props.navigation}/>
 
             <ScrollView style={{Flex:1,}} contentContainerStyle={{padding:30,}}>

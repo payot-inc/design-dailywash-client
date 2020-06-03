@@ -1,235 +1,412 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, ScrollView,TouchableOpacity, StatusBar, Image, TouchableHighlight,} from 'react-native';
+import React,{useEffect, useState} from 'react';
+import {View, Text, StyleSheet, ScrollView, StatusBar, Image, TouchableHighlight, TouchableOpacity, Dimensions, Animated, } from 'react-native';
 import {DrawerActions} from 'react-navigation-drawer';
-import faker from 'faker';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Thema from '../assets/css/thema';
 import MainVisual from '../components/mainVisual';
-import MainVisualSecond from '../components/mainVisualSecond';
-
+import Carousel from 'react-native-snap-carousel';
 
 export default props => {
 
-    const cardData = [
+    const guideData = [
         {
-            name:'신한카드',
-            number:'0811',
-            date:'2019년 11월 21일'
-        }, 
+            text1:'데일리세탁',
+            text2:'이용방법',
+        },
         {
-            name:'삼성카드',
-            number:'9392',
-            date:'2019년 11월 29일'
-        },    
-    ];
+            text1:'예약 후',
+            text2:'세탁물 맡기는 방법',           
+        },
+    ]
 
+
+    const sliderWidth = Dimensions.get('window').width;
+  
+    // useEffect(()=> { 
+    //     Animated.timing(headLine, {
+    //         toValue:150,
+    //         duration:1000,
+    //     }).start()
+    // }, []);
+
+    const [headerLineVisible, setHeaderLineVisible] = useState(false);
 
     return (
         
-        <View style={styles.container}>
+        <View 
+            style={styles.container}
+        >
 
             <StatusBar backgroundColor={'#292929'}/>
-            
-            <ScrollView style={{backgroundColor:'#f8f8f8'}}>
+            <View style={[styles.header]}>
+                { headerLineVisible ? <View  style={{ width: '100%', height: 1, backgroundColor: '#e2e2e2', position:'absolute',bottom:0,left:0, zIndex:99 }} /> : null }
+                <TouchableHighlight
+                    onPress={() => {
+                        props.navigation.dispatch(DrawerActions.openDrawer())
+                    }}
+                    underlayColor={'rgba(255,255,255,0.1)'}
+                    style={{borderRadius:0,width:60,}}
+                >
+                    <View style={styles.drawerBtn}>
+                        <Icon name="menu" color={'#494949'} size={30}></Icon>
+                    </View>
+                </TouchableHighlight>
+                <View style={{flex:1,alignItems:'center'}}>
+                    {/* <Text style={{fontSize:20,fontWeight:'bold',color:'#494949'}}></Text> */}
+                    <Image source={require('../assets/img/logo.png')} style={{width:80,height:31,resizeMode:'stretch'}}/>
+                </View>
+                <TouchableHighlight
+                    onPress={() => {props.navigation.navigate('history')}}
+                    underlayColor={'rgba(255,255,255,0.1)'}
+                    style={{borderRadius:0,width:60}}
+                >
+                    <View style={styles.drawerBtn}>
+                        <View style={{width:5,height:5,position:'absolute',right:15,top:15,backgroundColor:'#D20A61',justifyContent:'center',alignItems:'center',borderRadius:2.5}}/>
+                            <Icon name="bell-outline" color={'#494949'} size={30}></Icon>
+                    </View>
+                </TouchableHighlight>
+            </View>
 
-                <View style={{height:70,width:'100%',zIndex:9,flexDirection:'row',alignItems:'center',backgroundColor:'#396eee'}}>
+            <ScrollView
+                onScroll={({ nativeEvent }) => {
+                    if (nativeEvent.contentOffset.y > 0 && headerLineVisible !== true) {
+                        setHeaderLineVisible(true);
+                    } else {
+                        setHeaderLineVisible(false);
+                    }
+                }}
+            >
+                <View style={styles.orderBtnWrap}>
                     <TouchableHighlight
-                        onPress={() => {
-                            props.navigation.dispatch(DrawerActions.openDrawer())
-                        }}
-                        underlayColor={'rgba(255,255,255,0.1)'}
-                        style={{borderRadius:30}}
+                        onPress={()=>{props.navigation.navigate('order')}}
+                        underlayColor={'#E4F2F8'}
+                        style={{width:200,height:60,borderTopLeftRadius:30,borderBottomLeftRadius:30,backgroundColor:'#fff',zIndex:10}}
                     >
-                        <View style={{width:60,height:60,alignItems:'center',justifyContent:'center'}}>
-                            <Icon name="menu" color={'#fff'} size={30}></Icon>
+                        <View style={styles.orderStart}>
+                            <View style={{
+                                borderRadius:20,
+                                width:40,height:40,
+                                alignItems:'center',
+                                justifyContent:'center',
+                                backgroundColor:'#01a1dd',
+                                marginLeft:10,
+                            }}>
+                                <Icon name="arrow-right" color="#fff" size={20}></Icon>
+                            </View>
+                            <Text style={{fontSize:18,fontWeight:'bold',color:'#494949',marginLeft:10}}>세탁 예약하기</Text>
+                            
                         </View>
                     </TouchableHighlight>
-                    <View>
-                        <Image
-                            source={require('../assets/img/logo.png')}
-                            style={{width:140, resizeMode: 'contain'}}
-                        />
+                </View>
+                <View style={styles.mainVisual}>
+                    <View style={styles.mainVisualInner}>
+                        <MainVisual></MainVisual>
+                    </View>
+                </View>
+
+                
+                <View style={styles.inner}>
+                    <View style={styles.stateMessage}>
+                        <View style={{flexDirection:'row',alignItems:'center'}}>
+                            <View style={{alignItems:'center',borderRightWidth:1,borderColor:'#e2e2e2',paddingRight:15,}}>                                
+                                <Text style={{color:'#292929',fontSize:22,fontWeight:'bold'}}>05.19</Text>
+                                <Text style={{fontSize:14,color:'#888'}}>알림</Text>
+                            </View>
+                            <Text style={{fontSize:16,flex:1,marginLeft:15,}}>최근 주문건은 현재 <Text style={styles.textPoint}>배송중</Text>입니다</Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.quickBtns}>
+                        <View style={[styles.quickBtnWrap,{marginRight:5}]}>
+                            
+                            <View style={{flexDirection:'row',alignItems:'flex-start'}}>
+                                <Icon name="calendar-text-outline" size={32} color={'#d2d2d2'}></Icon>
+                                <View style={{flex:1,marginLeft:10,alignItems:'flex-end'}}>
+                                    <View style={styles.designBar} />
+                                    <Text style={{fontSize:16}}>주문내역</Text>
+                                    <Text style={{color:'#D20A61',fontSize:20,fontWeight:'bold',marginTop:5,}}>0건</Text>
+                                </View>
+                            </View>
+                            
+                            <View style={{alignItems:'center',marginTop:30,}}>
+                                <TouchableHighlight 
+                                    style={[styles.quickBtn, {borderColor:'#494949'}]} 
+                                    onPress={()=>{props.navigation.navigate('myOrder')}}
+                                    underlayColor={'#f2f2f2'}
+                                >
+                                    <View style={styles.quickBtnInner}>
+                                        <Text style={{color:'#494949'}}>바로가기</Text>
+                                        <Icon name="chevron-right" size={18} color={'#494949'}></Icon>
+                                    </View>
+                                </TouchableHighlight>
+                            </View>
+                        </View>
+
+                        <View style={[styles.quickBtnWrap,{marginLeft:5}]}>
+                            <View style={{flexDirection:'row',alignItems:'flex-start'}}>
+                                <Icon name="alpha-c-circle-outline" size={32} color={'#d2d2d2'}></Icon>
+                                <View style={{flex:1,marginLeft:10,alignItems:'flex-end'}}>
+                                    <View style={styles.designBar} />
+                                    <Text style={{fontSize:16}}>나의쿠폰</Text>
+                                    <Text style={{color:'#D20A61',fontSize:20,fontWeight:'bold',marginTop:5,}}>0개</Text>
+                                </View>
+                            </View>
+                           
+                            <View style={{alignItems:'center',marginTop:30}}>
+                                <TouchableHighlight
+                                    style={[styles.quickBtn, {borderColor:'#494949'}]}
+                                    onPress={()=>{props.navigation.navigate('coupon')}}
+                                    underlayColor={'#f2f2f2'}
+                                >
+                                    <View style={styles.quickBtnInner}>
+                                        <Text style={{color:'#494949'}}>쿠폰확인</Text>
+                                        <Icon name="chevron-right" size={18} color={'#494949'}></Icon>
+                                    </View>
+                                </TouchableHighlight>
+                            </View>
+                        </View>
+                    </View>
+
+                    <View style={[styles.notice]}>
+                        <View style={styles.noticeTitle}>
+                            <Text style={styles.noticeTitleText}>공지사항</Text>
+                        </View>
+                        <View style={styles.noticeList}>
+                            <View style={styles.noticeItem}>
+                                <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
+                                    <Icon name="alpha-n-box" size={20} color={'#D20A61'} style={{marginRight:5,}}></Icon>
+                                    <Text style={styles.noticeItemText}>서버점검 안내</Text>
+                                </View>
+                                <Text style={styles.noticeItemDate}>
+                                    20.05.19
+                                </Text>
+                            </View>
+                            <View style={styles.noticeItem}>
+                                <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
+                                    <Icon name="alpha-n-box" size={20} color={'#D20A61'} style={{marginRight:5,}}></Icon>
+                                    <Text style={styles.noticeItemText}>서버점검 안내</Text>
+                                </View>
+                                <Text style={styles.noticeItemDate}>
+                                    20.05.19
+                                </Text>
+                            </View>
+                        </View>
                     </View>
                 </View>
                 
-
-                <MainVisual />
- 
-
-                <View style={styles.visualBackground}>
-                    {/* <Image source={require('../assets/img/wave_pattern.png')} resizeMode="repeat" style={{height:'100%',opacity:0.2}}/> */}
-                </View>
-
-                <View style={{paddingHorizontal:25,paddingBottom:30}}>
-
-                    <View style={{flex:1,flexDirection:'row'}}>
-            
-                        <TouchableHighlight
-                            onPress={()=> props.navigation.navigate('myOrder')}
-                            style={{marginVertical:30,marginRight:5,backgroundColor:'#396EEE',borderRadius:10,padding:15,width:120,height:120, }}
-                            underlayColor={'#3464D6'}
-                        >  
-                            <View style={{flex:1,justifyContent:'space-between',}}>
-                                <View>
-                                    <Text style={{letterSpacing:-0.7,fontSize:16,color:'#fff'}}>세탁내역</Text>
-                                    <Text style={{letterSpacing:-0.7,fontSize:16,color:'#fff'}}>조회하기</Text>
-                                </View>
-                                <View style={{alignItems:'flex-end'}}>
-                                    <Icon name="arrow-right" color="#fff" size={20}></Icon>
-                                </View>
-                            </View>
-                        </TouchableHighlight>
-            
-                        <TouchableHighlight
-                            onPress={()=> props.navigation.navigate('order')}
-                            style={{flex:1,marginVertical:30,marginLeft:5,backgroundColor:'#111F44',borderRadius:10,padding:15,height:120}}
-                            underlayColor={'#0D1834'}
-                        >  
-                            <View style={{flex:1,justifyContent:'space-between'}}>
-                                <View>
-                                    <Text style={{letterSpacing:-0.7,fontSize:16,color:'#fff'}}>세탁 수거/배달</Text>
-                                    <Text style={{letterSpacing:-0.7,fontSize:16,color:'#fff'}}>예약하기</Text>
-                                </View>
-                                <View style={{alignItems:'flex-end'}}>
-                                    <Icon name="arrow-right" color="#fff" size={20}></Icon>
-                                </View>
-                            </View>
-                        </TouchableHighlight>
-   
+                <View style={{paddingVertical:20}}>
+                    <View style={{paddingHorizontal:20,}}>
+                        <Text style={{fontSize:18,fontWeight:'bold'}}>데일리세탁 가이드</Text>
+                        <Text style={{fontSize:12,color:'#888',marginTop:3}}>간편한 세탁예약시스템 직접 사용해보세요</Text>
                     </View>
-
                     
+                    <View style={{marginVertical:20}}>
+                        <Carousel
+                            layout={'default'}
+                            layoutCardOffset={0}
+                            data={guideData}
+                            itemWidth={240}
+                            sliderWidth={sliderWidth}
+                            inactiveSlideScale={1}
+                            activeSlideAlignment={'start'}
+                            loop={true}
+                            zIndex={1}
+                            autoplayDelay={5000}
+                            autoplayInterval={5000}
+                            autoplay={true}
+                            renderItem={({item, index})=>
+                                <TouchableOpacity 
+                                    style={{height:120,backgroundColor:'#fff',marginLeft:20,borderRadius:5,alignItems:'flex-start',justifyContent:'flex-start',overflow:'hidden',borderWidth:2,borderColor:'#01a1dd'}}
+                                    onPress={()=>props.navigation.navigate('guide')}
+                                >
+                                    <View style={{padding:20,}}>
+                                        <View style={{width:10,height:3,borderRadius:1.5,backgroundColor:'#01a1dd'}}></View>
+                                        <Text style={{color:'#01a1dd',fontSize:18,fontWeight:'bold',zIndex:2,marginTop:10}}>{item.text1}</Text>
+                                        <Text style={{color:'#494949',fontSize:18,fontWeight:'bold',zIndex:2}}>{item.text2}</Text>
+                                    </View>
 
-                    <View style={{flex:1,flexDirection:'row',backgroundColor:'#fff',padding:15,borderRadius:10,marginBottom:30,borderWidth:1,borderColor:'#e2e2e2'}}>
-                        <View style={{alignItems:'center',width:34,}}>
-                            <Icon name="map-marker" style={{backgroundColor:'#396eee',width:34,height:34,borderRadius:17,textAlign:'center',lineHeight:34}} size={26} color={'#fff'}/>
-                            <Text style={{fontSize:12,marginTop:5,color:'#396eee'}}>대표</Text>
-                        </View>
-                        <View style={{flex:1,paddingLeft:20}}>
-                            <Text style={{fontSize:18,color:'#396eee',fontWeight:'bold'}}>우리집</Text>
-                            <Text style={{marginTop:5,color:'#8a8a8a',lineHeight:19}}>부산광역시 금정구 부산대학로 63번길 2 과학기술연구동 201호</Text>
-                            <View style={{alignItems:'flex-end'}}>
-                                <TouchableOpacity style={{flexDirection:'row',alignItems:'center',marginTop:15}}>
-                                    <Text style={{fontSize:12,color:'#396eee'}}>추가/변경하기</Text>
-                                    <Icon name="chevron-right" color={'#396eee'}/>
                                 </TouchableOpacity>
-                            </View>
-                        </View>
+                            }
+
+                        />
+
                     </View>
 
-                    <View style={{borderWidth:0,borderColor:'#e2e2e2',borderRadius:10,backgroundColor:'#fff',borderWidth:1,borderColor:'#e2e2e2',marginBottom:30}}>
-                        <View style={{justifyContent:'center',height:40,paddingHorizontal:15,borderBottomWidth:1,borderColor:'#e2e2e2'}}>
-                            <Text style={{fontSize:16,fontWeight:'bold'}}>우리동네 기사님</Text>
-                        </View>
-                        <View style={{flex:1,flexDirection:'row',padding:15}}>
-                            <Image source={{uri:faker.image.avatar()}} style={{width:80,height:80,borderRadius:40}}/>
-                            <View style={{flex:1,paddingLeft:20}}>
-                                <Text style={{fontSize:18,fontWeight:'bold'}}>홍길동 기사님</Text>
-                                <Text style={{marginTop:5,color:'#8a8a8a',fontSize:13}}>오늘도 열심히 달립니다</Text>
-            
-                                <Text style={{marginTop:10,fontSize:12}}>이번달 휴무 공지</Text>
-                                <View style={{flexDirection:'row',marginTop:5,flex:1,}}>
-                                    <Text style={{fontSize:12,color:'#d22828'}}>7일, 8일, 15일, 16일, 25일, 30일</Text>
-                                   
-                                </View>
-                            </View>
-                        </View>
-                    </View>
-{/* 
-                    <View style={{flexDirection:'row',justifyContent:'space-around',marginVertical:50}}>
-                        <TouchableHighlight
-                            onPress={()=>{props.navigation.navigate('card')}}
-                            underlayColor={'#fff'}
-                            style={{flex:1}}
+                    <View style={[styles.inner,{backgroundColor:'#fff',marginTop:20,}]}>
+                        <TouchableOpacity 
+                            onPress={()=>{}}
+                            style={{borderRadius:5,flexDirection:'row',backgroundColor:'#F9E000',justifyContent:'center',alignItems:'center',height:50,}}
                         >
-                            <View style={{alignItems:'center',flex:1}}>
-                                <Icon name="credit-card-multiple" color={'#396eee'} size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#fff'}}></Icon>
-                                <Text style={{marginTop:10,fontSize:13}}>카드관리</Text>
-                            </View>
-                        </TouchableHighlight>
-
-                        <TouchableHighlight
-                            onPress={()=>{props.navigation.navigate('coupon')}}
-                            underlayColor={'#fff'}
-                            style={{flex:1}}
-                        >
-                            <View style={{alignItems:'center',flex:1,borderRightWidth:1,borderLeftWidth:1,borderColor:'#e2e2e2'}}>
-                                <Icon name="ticket-outline" color={'#396eee'} size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#fff'}}></Icon>
-                                <Text style={{marginTop:10,fontSize:13}}>나의 쿠폰</Text>
-                            </View>
-                        </TouchableHighlight>
-
-                        <TouchableHighlight
-                            onPress={()=>{props.navigation.navigate('myOrder')}}
-                            underlayColor={'#fff'}
-                            style={{flex:1}}
-                        >
-                            <View style={{alignItems:'center',flex:1,}}>
-                                <Icon name="file-document-box-outline" color={'#396eee'} size={32} style={{width:60,height:60,borderRadius:25,lineHeight:60,textAlign:'center',backgroundColor:'#fff'}}></Icon>
-                                <Text style={{marginTop:10,fontSize:13}}>이용내역</Text>
-                            </View>
-                        </TouchableHighlight>
-                    </View> */}
-
-
-                    {/* <View style={{borderRadius:10,marginBottom:30,overflow:'hidden',elevation:10,backgroundColor:'#fff'}}>
-                        <MainVisualSecond />
-                    </View> */}
-
-                    <View style={{flex:1,backgroundColor:'#fff',borderWidth:1,borderColor:'#e2e2e2',borderRadius:10,overflow:'hidden'}}>
-                        <View style={{justifyContent:'space-between',height:40,paddingLeft:15,borderBottomWidth:1,borderColor:'#e2e2e2',flexDirection:'row',alignItems:'center',}}>
-                            <Text style={{fontSize:16,fontWeight:'bold'}}>공지사항</Text>
-                            <TouchableHighlight
-                                onPress={()=> props.navigation.navigate('notice')}
-                                style={{height:40,width:40,justifyContent:'center',alignItems:'center'}}
-                                underlayColor={'#f2f2f2'}
-                            >
-                                <Icon name={'plus'} size={18} />
-                            </TouchableHighlight>
-                        </View>
-                        <View style={{padding:15}}>
-                            <TouchableHighlight
-                                onPress={()=> {}}
-                                underlayColor={'#f2f2f2'}
-                                style={{marginBottom:5}}
-                            >
-                                <View style={{flex:1,flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
-                                    <Text>데일리세탁 오픈!</Text>
-                                    <Text>03.24</Text>
-                                </View>
-                            </TouchableHighlight>
-                            
-                        </View>
+                    
+                            <Icon name={'chat-processing'} color={'#3B1C1C'} size={24} />
+                            <Text style={{marginLeft:5,}}>그래도 궁금증이 해결이 안되셨나요?</Text>
+                    
+                        </TouchableOpacity>
                     </View>
                 </View>
             </ScrollView>
+
+            
         </View>
         
     );
   
 }
 
-const blue = '#0087FF';
-
 const styles = StyleSheet.create({
+
     container:{
         flex:1,
         backgroundColor:'#fff'
     },
-    visualBackground:{
-        position:'absolute',
-        top:0,
-        width:'100%',
-        backgroundColor:'#396eee',
-        height:320,
-        marginBottom:150,
+    mainVisual:{
+        height:500,
+        backgroundColor:'#01a1dd',
+        borderWidth:0,
+    },
+    mainVisualInner:{
+        backgroundColor:'#fff',
+        height:450,
+        overflow:'visible',
         zIndex:1,
-        overflow:'hidden'
+        elevation:5,
     },
 
-    basicBorder:{
-        borderWidth:1,
-        borderColor:'#d2d2d2',
-    }
+    header:{
+        flexDirection:'row',
+        justifyContent:'space-around',
+        alignItems:'center',
+        height:60,
+        position:'relative'
+    },
 
+    drawerBtn:{
+        width:60,
+        height:60,
+        alignItems:'center',
+        justifyContent:'center',
+        position:'relative',
+        zIndex:10
+    },
+
+    orderBtnWrap:{
+        position:'absolute',
+        right:0,
+        top:420,
+        height:50,
+        zIndex:1,
+    },
+
+    orderStart:{
+        flexDirection:'row',
+        justifyContent:'flex-start',
+        alignItems:'center',
+        fontFamily:'SCDream',
+        width:200,
+        height:60,
+        borderRadius:0,
+        borderTopLeftRadius:30,
+        borderBottomLeftRadius:30,
+        borderWidth:2,
+        borderColor:'#01a1dd',
+        backgroundColor:'#fff',
+        borderRightWidth:0,
+        elevation:10,
+    },
+
+    inner:{
+        paddingHorizontal:20,
+        paddingBottom:30,
+        backgroundColor:'#01a1dd'
+    },
+
+    designBar:{
+        width:30,
+        height:4,
+        borderRadius:2,
+        backgroundColor:'#e2e2e2',
+        marginBottom:10,
+    },
+    
+    stateMessage:{
+        backgroundColor:'#fff',
+        padding:20,
+        borderRadius:5,
+        elevation:10,
+    },
+
+    textPoint:{
+        color:'#D20A61'
+    },
+
+    quickBtns:{
+        flexDirection:'row',
+        marginTop:10,
+    },
+
+    quickBtnWrap:{
+        flex:1,
+        padding:20,
+        backgroundColor:'#fff',
+        borderRadius:5,
+        elevation:10,
+    },
+
+    quickBtn:{
+        width:100,
+        borderRadius:15,
+        paddingHorizontal:15,
+        backgroundColor:'#f2f2f2',
+        
+    },
+
+    quickBtnInner:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        height:30,
+    },
+
+    notice:{
+        marginTop:10,
+        backgroundColor:'#fff',
+        borderRadius:5,
+        padding:20,
+        elevation:10,
+    },
+
+    noticeTitle:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        
+    },
+    noticeTitleText:{
+        fontSize:16,
+        color:'#292929',
+        fontWeight:'bold'
+    },
+    noticeList:{
+        marginTop:10,
+    },
+    noticeItem:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        height:30,
+    },
+
+    noticeItemTitle:{
+        fontSize:14,
+        flex:1,
+        color:'#292929'
+    },
+    noticeItemDate:{
+        fontSize:14,
+        color:'#888',
+        marginTop:5,
+        width:80,
+        textAlign:'right'
+    }
+    
+ 
 })

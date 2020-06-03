@@ -1,154 +1,185 @@
 import React, {useState} from 'react';
-import {View, Text, SectionList, Picker, TouchableHighlight, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import Lodash from 'lodash';
-import Faker from 'faker/locale/ko';
-import Moment from 'moment';
+import {View, Text, Picker, TouchableHighlight, StyleSheet, FlatList,TouchableOpacity  } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import numeral from 'numeral';
 import SubHeader from '../../components/subHeader';
 
 
-function orderInfo() {
-  const count = Faker.random.number({min: 1, max: 2})
-  return Lodash.range(count).map(index => ({
-    deliveryState: '배송완료',
-    goodsName: '생활빨래 80리터 외 3',
-    avata: Faker.image.abstract(),
-    amount: Faker.random.number({ min: 2000, max: 50000, precision: 1000 }),
-    isCancel: Faker.random.boolean(),
-  }));
-}
+export default props => {
 
-function dateList(targetMonth, count) {
-  return Lodash.chain()
-    .range(count)
-    .map(() => Faker.random.number({min: 1, max: 30}))
-    .uniq()
-    .map(day => {
-      return {
-        dataName: Moment(targetMonth).startOf('month').add(day - 1, 'day'),
-        data: orderInfo(),
-      };
-    })
-    .orderBy(['dataName'])
-    .reverse()
-    .value();
-}
+  const Data = [
+    {
+        date:'20.05.25',
+        favorite:true,
+        addressTitle:'우리집',
+        address: '부산광역시 구남언덕로 15 3층',
+        doorPW:'#1338',
+        amount: 145800,
+        isCancel:'45'
+    },
+    {
+        date:'20.05.19',
+        favorite:false,
+        addressTitle:'회사',
+        address: '부산광역시 금정구 부산대학로 63번길 2, 과학기술연구동 201호',
+        doorPW:'#1338',
+        amount: 32000
+    }
+  ]
 
-// const DATA = Lodash.range(12).map(index => {
-//     const ramdomNum = Faker.random.number({min:1, max:10});
-//     const randomMonth = Moment().startOf('year').add(index, 'month')
-//     return {
-//         month: randomMonth.format('MMM'),
-//         dateList: dateList(randomMonth, ramdomNum),
-//     }
-// })
+  return(
+    <View style={{flex: 1}}>
+        <SubHeader navigation={props.navigation} title={'이용내역'} />
 
+        
+        <View style={styles.dateSelect}>
+            <TouchableOpacity
+              style={styles.dateSelectBtn}
+            >
+                <Text style={styles.dateSelectText}>2020년 05월</Text>
+            </TouchableOpacity>
+        </View>
 
+        <FlatList
+          data = {Data}
+          keyExtractor={(item, index) => index}
+          contentContainerStyle={{paddingHorizontal:20,}}
+          renderItem={({item}) => (
+            // <TouchableOpacity
+            //     onPress={() => props.navigation.navigate('myOrderDetail', { item: item })}
+            //     style={{padding:20,borderWidth:1,borderColor:'#e2e2e2',backgroundColor:'#fff',marginBottom:10,borderRadius:5}}
+            // >
+            //     <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'flex-end'}}>
+            //         <View style={{flex:1,marginRight:15,}}>
+            //             <View style={{flexDirection:'row'}}>
+            //               <Text style={{fontSize:12,color:'#fff',paddingHorizontal:5,paddingVertical:2,backgroundColor:'#01a1dd',textAlign:'center',borderRadius:3}}>배송완료</Text>
+            //             </View>
+            //             <Text style={{fontSize:14,color:'#9a9a9a',marginTop:5,}}>{item.date}</Text>
+            //             <Text style={{fontSize:16,marginTop:5,}}>생활빨래 80리터 외 3</Text>
+            //         </View>
+                    
+            //         <Text style={{width:100,textAlign:'right',fontSize:18,fontWeight:'bold',color:'#D20A55'}}>{numeral(item.amount).format('0,0')} 원</Text>
 
-export default class MyOrderList extends React.Component {
-  state = {
-    selectMonth: Number(Moment().format('M')) - 1,
-    list: Lodash.range(12).map(index => {
-      const ramdomNum = Faker.random.number({min: 1, max: 5});
-      const randomMonth = Moment().startOf('year').add(index, 'month');
-      return {
-        title: randomMonth.format('MMM'),
-        dateList: dateList(randomMonth, ramdomNum),
-      };
-    }),
+                    
+            //     </View>
+            //     {item.isCancel && 
+                    
+            //         <View style={{marginTop:5}}>
+            //           <View style={{flexDirection:'row',alignItems:'center'}}>
+            //               <Text style={{marginRight:5,color:'#9a9a9',fontSize:12}}>취소가능시간</Text>
+            //               <Text style={{color:'#1E1FE8',fontSize:12}}>29분 남음</Text>
+            //           </View>
+            //         </View>
+            //       }
+            // </TouchableOpacity>
 
-    dummyList: Lodash.range(5).map(index => {
-      return {
-        title: `${index + 1} 번째`,
-        data: Lodash.range(4),
-      };
-    }),
-  };
-
-  render() {
-
-    return (
-      <View style={{flex: 1, backgroundColor: '#fff'}}>
-        <SubHeader navigation={this.props.navigation} title={'이용내역'} />
-
-        <View
-          style={{
-            height: 50,
-            borderBottomWidth: 1,
-            borderColor: '#d2d2d2',
-            flexDirection: 'row',
-            alignItems: 'center',
-            paddingHorizontal: 15,
-            justifyContent:'flex-start'
-            
-          }}>
-            <Text style={{marginRight:10}}>타임라인</Text>
+            <TouchableOpacity
+              style={{flexDirection:'row',alignItems:'center',paddingVertical:20,borderWidth:1,borderColor:'#e2e2e2',borderRadius:5,marginBottom:10,}}
+              onPress={() => props.navigation.navigate('myOrderDetail', { item: item })}
+            >
+              <View style={{justifyContent:'center',alignItems:'center',width:80,}}>
+                <View style={{width:20,height:4,borderRaidus:2,backgroundColor:'#e2e2e2',marginBottom:10,}}></View>
+                <Text style={{fontSize:18,color:'#01a1dd',fontWeight:'bold'}}>05.25</Text>
+                <Text style={{fontSize:12,color:'#888'}}>10:15</Text>
+              </View>
     
-         
-            <Picker
-              mode="dialog"
-              selectedValue={this.state.selectMonth}
-              onValueChange={(itemValue, itemIndex) => {
-                this.setState({selectMonth: itemValue});
-              }}
-              style={{width:100,color:'#888'}}
-              >
-                {Lodash.range(12).map(index => (
-                    <Picker.Item
-                      value={index}
-                      label={`${index + 1}월`} 
-                      style={{fontSize:12}}
-                    />
-                ))}
-            </Picker>
-          
-        </View>
-
-        <View style={{flex: 1, backgroundColor: '#F5F6F8',}}>
-          <SectionList
-            style={{paddingHorizontal:25,}}
-            contentContainerStyl={{paddingVertical:30}}
-            sections={this.state.list[this.state.selectMonth].dateList}
-            keyExtractor={(item, index) => index}
-            renderSectionHeader={({section}, index) => (
-              <Text style={{marginVertical:10,fontSize:16}}>{section.dataName.format('D일')}</Text>
-            )}
-            renderItem={({item}) => (
-                <TouchableHighlight
-                    style={{marginBottom:10,borderRadius:10,}}
-                    onPress={() => this.props.navigation.navigate('myOrderDetail', { item: item })}
-                >
-                    <View style={{borderWidth:1,borderRadius:10,minHeight:120,padding:15,borderColor:'#d2d2d2',backgroundColor:'#fff'}}>
-                        <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                            <Text style={{fontSize:11,borderWidth:1,borderColor:'#396eee',paddingHorizontal:3,borderRadius:3,color:'#396eee'}}>배송완료</Text>
-                            <Text style={{fontSize:12,color:'#9a9a9a'}}>2019.08.11 12:45</Text>
-                        </View>
-                        <Text style={{fontSize:16,marginTop:10,}}>{item.goodsName}</Text>
-                        <Text style={{fontSize:18,fontWeight:'bold',marginTop:3}}>{numeral(item.amount).format('0,0')}원</Text>
-
-                        {item.isCancel && 
-                        
-                          <View style={{marginTop:5}}>
-                            <View style={{flexDirection:'row',alignItems:'center'}}>
-                                <Text style={{marginRight:5,color:'#9a9a9',fontSize:12}}>취소가능시간</Text>
-                                <Text style={{color:'#1E1FE8',fontSize:12}}>29분 남음</Text>
-                            </View>
-                          </View>
-                        }
-                    </View>
-                </TouchableHighlight>
-            )}
-            ListEmptyComponent={()=>
-                <View>
-                    <Text>이용내역이 없습니다</Text>
+              <View style={{flex:1,flexDirection:'row',justifyContent:'space-between',alignItems:'flex-end',paddingRight:20,borderLeftWidth:1,paddingLeft:20,borderColor:'#e2e2e2'}}>
+                <View style={{flex:1,marginRight:15,}}>
+                  <View style={{flexDirection:'row',marginBottom:10}}>
+                    <Text style={{fontSize:11,backgroundColor:'#01a1dd',color:'#fff',height:20,lineHeight:20,paddingHorizontal:5,borderRadius:3,marginRight:5,}}>배송완료</Text>
+                    {/* <Text style={{fontSize:11,backgroundColor:'#46BF33',color:'#fff',height:20,lineHeight:20,paddingHorizontal:5,borderRadius:3,marginRight:5,}}>배송중</Text>
+                    <Text style={{fontSize:11,backgroundColor:'#5D21FF',color:'#fff',height:20,lineHeight:20,paddingHorizontal:5,borderRadius:3,marginRight:5,}}>접수완료</Text>
+                    <Text style={{fontSize:11,backgroundColor:'#FF7700',color:'#fff',height:20,lineHeight:20,paddingHorizontal:5,borderRadius:3,marginRight:5,}}>수거중</Text>
+                    <Text style={{fontSize:11,backgroundColor:'#aaa',color:'#fff',height:20,lineHeight:20,paddingHorizontal:5,borderRadius:3}}>주문취소</Text> */}
+                  </View>
+                  <View style={{flexDirection:'row',alignItems:'flex-start',marginBottom:5}}>
+                    <Text style={{width:60,fontSize:12,color:'#888'}}>주소</Text>
+                    <Text style={{fontSize:12,flex:1,}}>부산광역시 금정구 부산대학로 63번길 2 과학기술연구동 201호</Text>
+                  </View>
+                  <View style={{flexDirection:'row',alignItems:'flex-start',marginBottom:5}}>
+                    <Text style={{width:60,fontSize:12,color:'#888'}}>수거일</Text>
+                    <Text style={{fontSize:12,flex:1,}}>2020년 6월 24일 오후</Text>
+                  </View>
+                  <View style={{flexDirection:'row',alignItems:'flex-start',}}>
+                    <Text style={{width:60,fontSize:12,color:'#888'}}>배송완료</Text>
+                    <Text style={{fontSize:12,flex:1,}}>-</Text>
+                  </View>
+                  <View style={{borderTopWidth:1,borderColor:'#e2e2e2',marginTop:10,borderStyle:'dashed'}}>
+                    <Text style={{fontSize:16,marginTop:10,fontWeight:'bold',color:'#D20A55',textAlign:'right'}}>{numeral(item.amount).format('0,0')} 원</Text>
+                  </View>
                 </View>
-            }
-        >
+              </View>
+        
+            </TouchableOpacity>
+          )}
 
-            </SectionList>
-        </View>
+          ListEmptyComponent={()=>
+            <View style={styles.emptyItem}>
+              <Text style={styles.emptyItemText}>등록된 내역이 없습니다</Text>
+  
+              <TouchableOpacity
+                style={styles.emptyItemBtn}
+              > 
+                <Text style={styles.emptyBtnText}>세탁예약 바로가기</Text>
+                <Icon name="chevron-right" style={styles.emptyBtnIcon}></Icon>
+              </TouchableOpacity>
+
+            </View>
+          }
+        >
+        </FlatList>
+
       </View>
-    );
-  }
+  );
 }
+
+const styles = StyleSheet.create({
+  dateSelect:{
+    minHeight:100,
+    alignItems:'center',
+    justifyContent:'center',
+  },
+  dateSelectBtn:{
+    height:40,
+    borderRadius:25,
+    width:200,
+    alignItems:'center',
+    justifyContent:'center',
+    backgroundColor:'#f2f2f2'
+  },
+  dateSelectText:{
+    fontSize:18,
+  },
+  emptyItem:{
+    padding:20,
+    alignItems:'center',
+    borderWidth:1,
+    borderColor:'#e2e2e2',
+    borderRadius:5,
+  },
+  emptyItemText:{
+    color:'#494949',
+    marginTop:10,
+    fontSize:16,
+  },
+  emptyItemBtn:{
+    flexDirection:'row',
+    width:180,
+    height:40,
+    borderRadius:20,
+    borderWidth:2,
+    borderColor:'#01a1dd',
+    alignItems:'center',
+    justifyContent:'center',
+    marginTop:15
+  },
+  emptyBtnText:{
+    color:'#01a1dd',
+    marginRight:10,
+    fontWeight:'bold',
+  },
+  emptyBtnIcon:{
+    color:'#01a1dd',
+    fontSize:24
+  }
+})

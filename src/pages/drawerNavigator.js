@@ -12,6 +12,7 @@ import MyOrder from './myOrder/stack';
 import MyInfo from './myInfo';
 import CustomDrawer from '../components/customDrawer';
 import Option from '../pages/option';
+import Guide from './guide';
 
 export default DrawerNavigator = createDrawerNavigator(
   {
@@ -70,6 +71,17 @@ export default DrawerNavigator = createDrawerNavigator(
         )
       }),
     },
+    guide: {
+      screen: Guide,
+      navigationOptions: () => ({
+        drawerLabel: () => (
+          <Text style={{fontSize:15}}>가이드</Text>
+        ),
+        drawerIcon: () => (
+          <Icon name={'book'} size={18} color={'#9a9a9a'}/>
+        )
+      }),
+    },
     myInfo: {
       screen: MyInfo,
       navigationOptions: () => ({
@@ -92,6 +104,7 @@ export default DrawerNavigator = createDrawerNavigator(
         )
       }),
     },
+    
   },
 
   {

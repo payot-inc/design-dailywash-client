@@ -1,5 +1,5 @@
 import React,{useState, setState} from 'react';
-import {View, Text, ScrollView, Dimensions, TouchableHighlight,FlatList, Modal,  TouchableOpacity,} from 'react-native';
+import {View, Text, ScrollView, Dimensions, TouchableHighlight,FlatList, Modal,StyleSheet ,TouchableOpacity,} from 'react-native';
 import {Button, Divider,Checkbox, RadioButton} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Carousel from 'react-native-snap-carousel';
@@ -35,29 +35,46 @@ const CouponModal = props => {
 
   const couponData = [
     {
-      couponName:'첫회원 가입쿠폰',
-      salePrice:2000,
-      fromDate:'2월 14일까지'
+      couponTitle: '신규오픈 행사쿠폰',
+      date:'2019-12-12',
+      price:3000,
+      category:'이불'
     },
     {
-      couponName:'봄맞이 세일쿠폰',
-      salePrice:2000,
-      fromDate:'2월 14일까지'
+      couponTitle: '추석기념 세탁세일',
+      date:'2019-12-12',
+      price:5000,
+      category:'전체'
     },
     {
-      couponName:'봄맞이 세일쿠폰',
-      salePrice:2000,
-      fromDate:'2월 14일까지'
+      couponTitle: '추석기념 세탁세일',
+      date:'2019-12-12',
+      price:5000,
+      category:'전체'
     },
     {
-      couponName:'봄맞이 세일쿠폰',
-      salePrice:2000,
-      fromDate:'2월 14일까지'
+      couponTitle: '추석기념 세탁세일',
+      date:'2019-12-12',
+      price:5000,
+      category:'전체'
     },
     {
-      couponName:'봄맞이 세일쿠폰',
-      salePrice:2000,
-      fromDate:'2월 14일까지'
+      couponTitle: '추석기념 세탁세일',
+      date:'2019-12-12',
+      price:5000,
+      category:'전체'
+    },
+    {
+      couponTitle: '추석기념 세탁세일',
+      date:'2019-12-12',
+      price:5000,
+      category:'전체'
+    },
+    {
+      couponTitle: '추석기념 세탁세일',
+      date:'2019-12-12',
+      price:5000,
+      category:'전체'
     },
   ]
 
@@ -69,9 +86,9 @@ const CouponModal = props => {
     onRequestClose={props.close}
   >
     <View style={{flex:1,justifyContent:'center'}}>
-      <View style={{zIndex:2,padding:40,}}>
-          <View style={{backgroundColor:'#fff',borderRadius:0,overflow:'hidden',backgroundColor:'#fff',borderRadius:10,maxHeight:400}}>
-            <View style={{height:50,paddingHorizontal:15,flexDirection:'row',alignItems:'center',justifyContent:'space-between',borderBottomWidth:1,borderColor:'#e2e2e2',backgroundColor:'#396EEE'}}>
+      <View style={{zIndex:2,padding:20,}}>
+          <View style={{backgroundColor:'#fff',overflow:'hidden',backgroundColor:'#fff',maxHeight:600,borderRadius:5,}}>
+            <View style={{height:50,paddingHorizontal:20,flexDirection:'row',alignItems:'center',justifyContent:'space-between',borderBottomWidth:1,borderColor:'#e2e2e2',backgroundColor:'#01a1dd'}}>
               <Text style={{color:'#fff',fontSize:16}}>쿠폰선택</Text>
               <TouchableOpacity
                 onPress={props.close}
@@ -81,17 +98,25 @@ const CouponModal = props => {
             </View>
             <FlatList
               data={couponData}
-              contentContainerStyle={{padding:15}}
+              contentContainerStyle={{}}
               renderItem={({item})=>
                 <TouchableOpacity
                   onPress={props.close}
                 >
-                  <View style={{padding:15,borderWidth:1,borderColor:'#e2e2e2',flexDirection:'row',marginBottom:10,borderRadius:5}}>
-                    <View style={{flex:1}}>
-                      <Text style={{fontSize:14}}>{item.couponName}</Text>
-                      <Text style={{fontSize:18,color:'#d22828',fontWeight:'bold'}}>{item.salePrice} 원</Text>
-                      <Text style={{fontSize:12,textAlign:'right',color:'#888'}}>{item.fromDate}</Text>
-                    </View>
+                  <View style={styles.couponItem}>
+                      <View>
+                          <View style={styles.couponImg}>
+                              <View style={styles.couponImgInner}>
+                                  <Text style={{fontSize:18,fontWeight:'bold'}}>{item.price}</Text>
+                                  <Text style={{fontSize:11}}>할인쿠폰</Text>
+                              </View>
+                          </View>
+                      </View>
+                      <View style={styles.couponCont}>
+                          <Text style={{fontSize:14,marginBottom:5}}>{item.couponTitle}</Text>
+                          <Text style={{color:'#888',marginBottom:3,fontSize:11}}>{item.date} 까지 사용가능</Text>
+                          <Text style={{fontSize:11}}>사용가능대상: {item.category}</Text>
+                      </View>
                   </View>
                 </TouchableOpacity>
               }
@@ -141,41 +166,8 @@ export default props =>{
     setCards(cardItems);
   }
 
-  const agrmtList = [
-    {
-      active:false,
-      description: () => {
-        return(
-            <TouchableHighlight onPress={()=> setAgrmtModal(true)} underlayColor={'#f2f2f2'} style={{borderRadius:5}}>
-              <Text style={{flex:1,lineHeight:20}}> <Text style={{color:'#006FFF', textDecorationLine:'underline'}}>서비스정책 </Text>(세탁정책, 보상정책, 유실물처리방침)에 대한 동의</Text>
-            </TouchableHighlight>
-        )
-      }
-    },
-    {
-      active:false,
-      description: () => {
-        return(
-            <TouchableHighlight onPress={()=>console.log('true')} underlayColor={'#f2f2f2'} style={{borderRadius:5}}>
-              <Text style={{flex:1,lineHeight:20}}> <Text style={{color:'#006FFF', textDecorationLine:'underline'}}>개인정보 취급방침</Text>에 대한 동의</Text>
-            </TouchableHighlight>            
-        )
-      }
-    },
-    {
-      active:false,
-      description: () => {
-        return(
-            <TouchableHighlight onPress={()=>console.log('true')} underlayColor={'#f2f2f2'} style={{borderRadius:5}}>
-              <Text style={{flex:1,lineHeight:20}}><Text style={{color:'#006FFF', textDecorationLine:'underline'}}>생체정보</Text>사용에 대한 동의</Text>
-            </TouchableHighlight>
-        )
-      }
-    },
-  ]
 
   const [agrmtModal, setAgrmtModal] = useState(false)
-  const [checks, setChecks] = useState(agrmtList);
   const [couponList, setCouponList] = useState(false)
 
   const checkHandle = index => {
@@ -186,7 +178,7 @@ export default props =>{
 
   const AgrmtItem = ({item, index}) => {
     return(
-      <View style={{flexDirection:'row',alignItems:'center', flex:1,borderWidth:1,borderColor:'#e2e2e2',borderRadius:5,marginBottom:5}}>
+      <View style={{flexDirection:'row',alignItems:'center', flex:1,borderWidth:1,borderColor:'#e2e2e2',marginBottom:5}}>
         <View style={{overflow:'hidden',paddingHorizontal:10,}}>
           <TouchableHighlight underlayColor={'#fff'} onPress={()=> checkHandle(index)}>
             {item.active === true ? <Icon name="check-circle" size={32} color={'#006FFF'}/> : <Icon name="check-circle" size={32} color={'#e2e2e2'}/> }
@@ -203,199 +195,322 @@ export default props =>{
 
   return(
     <View style={{flex:1,}}>
-      <ScrollView contentContainerStyle={{paddingVertical:20,}}>
-
+      <ScrollView style={{backgroundColor:'#f2f2f2'}}>
         <Loading/>
 
-        <View style={{paddingHorizontal:25,marginBottom:40}}>
-          <Text style={{marginBottom:10,}}>수거/배달장소</Text>
-          <View style={{borderWidth:1,borderRadius:5,borderColor:'#e2e2e2',marginBottom:40}}>
-            <View style={{paddingHorizontal:15,height:40,justifyContent:'center',backgroundColor:'#f2f2f2'}}>
-              <Text>우리집</Text>
+          <View style={styles.section}>
+            <View style={styles.sectionTitle}>
+              <Text style={styles.sectionTitleText}>수거/배달장소</Text>
             </View>
-            <View style={{padding:15,borderTopWidth:1,borderColor:'#e2e2e2',}}>
+            
+            <View style={styles.sectionCont}>
+   
+              <Text style={{marginBottom:10,fontSize:16,}}>우리집</Text>
               <View style={{flexDirection:'row',alignItems:'flex-start'}}>
-                <Text style={{width:80,color:'#9a9a9a'}}>주소지</Text>
+                <Text style={{width:90,color:'#9a9a9a'}}>주소지</Text>
                 <Text style={{flex:1,lineHeight:20}}>부산광역시 금정구 부산대학로 63번길 2 과학기술연구동 201호</Text>
               </View>
               <View style={{flexDirection:'row', alignItems:'center',marginTop:6,}}>
-                <Text style={{width:80,color:'#9a9a9a'}}>전화번호</Text>
+                <Text style={{width:90,color:'#9a9a9a'}}>전화번호</Text>
                 <Text style={{flex:1,lineHeight:20}}>010-0000-0000</Text>
               </View>
               <View style={{flexDirection:'row', alignItems:'center',marginTop:6,}}>
-                <Text style={{width:80,color:'#9a9a9a'}}>공동출입문</Text>
-                <Text style={{flex:1,lineHeight:20}}> #1023</Text>
+                <Text style={{width:90,color:'#9a9a9a'}}>공동출입문</Text>
+                <Text style={{flex:1,lineHeight:20}}>#1023</Text>
               </View>
+ 
             </View>
+
           </View>
 
-    
-          <Text style={{marginBottom:10,}}>선택한 상품</Text>
-          <View style={{borderWidth:1,borderColor:'#e2e2e2',borderRadius:5,marginBottom:40}}>
-            <View style={{padding:15}}>
+          <View style={styles.section}>
+            <View style={styles.sectionTitle}>
+              <Text style={styles.sectionTitleText}>선택한 상품</Text>
+            </View>
+            
+            <View style={styles.sectionCont}>
               <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
                 <Text style={{flex:1,}}>패딩</Text>
-                <Text style={{flexBasis:50,textAlign:'center'}}>1</Text>
+                <Text style={{flexBasis:50,textAlign:'center'}}>1개</Text>
                 <Text style={{flexBasis:80,textAlign:'right'}}>8,000원</Text>
               </View>
               <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginTop:10}}>
                 <Text style={{flex:1,}}>와이셔츠</Text>
-                <Text style={{flexBasis:50,textAlign:'center'}}>2</Text>
+                <Text style={{flexBasis:50,textAlign:'center'}}>2개</Text>
                 <Text style={{flexBasis:80,textAlign:'right'}}>6,000원</Text>
               </View>
+              <View style={{marginTop:15,paddingTop:15,borderTopWidth:1,borderColor:'#e2e2e2',flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+                <Text style={{color:'#898989'}}>합계</Text>
+                <Text style={{fontSize:16,color:'#D20A61'}}>34,800원</Text>
+              </View>
+              <View style={{marginVertical:30}}>
+                <Text style={{fontSize:14,lineHeight:21,padding:10,backgroundColor:'#f2f2f2'}}>수거 후 검수시 세탁물의 오염 정도에 따라 세탁비용이 추가발생 할 수 있으며 <Text style={{color:'#d22828'}}>추가 발생된 금액은 선택된 결제카드에 의해 자동 결제됩니다</Text></Text>
+              </View>
+              <TouchableHighlight
+                style={{justifyContent:'center',alignItems:'center',paddingBottom:20,}}
+                underlayColor="#fff"
+                onPress={()=>{}}
+              >
+                <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',height:40,borderRadius:20,backgroundColor:'#f2f2f2',paddingLeft:10,paddingRight:15}}>
+                  <Icon name="check-circle" style={{marginRight:10,color:'#c2c2c2'}} size={24}></Icon>
+                  <Text style={{fontSize:16}}>위 내용에 동의합니다</Text>
+                </View>
+              </TouchableHighlight>
             </View>
           </View>
+          
 
-   
-          <Text style={{marginBottom:10,}}>쿠폰할인</Text>
+          <View style={styles.section}>
+            <View style={styles.sectionTitle}>
+              <Text style={styles.sectionTitleText}>쿠폰할인</Text>
+              <Text>보유쿠폰<Text style={{color:'#01a1dd'}}>(1개)</Text></Text>
+            </View>
 
-          <TouchableOpacity
-            onPress={()=> setCouponList(true)}
-            style={{borderWidth:1,borderColor:'#e2e2e2',flexDirection:'row',justifyContent:'space-between',alignItems:'center',height:40,borderRadius:5,paddingHorizontal:15}}
-          >
-            <Text>쿠폰선택</Text>
-            <Icon name={'arrow-right'}/>
-          </TouchableOpacity>
+            <View style={styles.sectionCont}>
+              <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'center'}}>
+                <Text style={{fontSize:16,color:'#D20A61'}}>0원</Text>
+                <TouchableOpacity
+                  onPress={()=> setCouponList(true)}
+                  style={{borderWidth:1,borderColor:'#e2e2e2',justifyContent:'center',alignItems:'center',height:40,paddingHorizontal:15,marginLeft:10,}}
+                >
+                  <Text>쿠폰적용</Text>
+                </TouchableOpacity>
 
-          <View style={{alignItems:'flex-end',marginTop:10}}>
-            <TouchableOpacity>
-              <Text style={{color:'#888'}}>쿠폰 선택취소</Text>
-            </TouchableOpacity>
+                <TouchableOpacity
+                  style={{borderWidth:1,borderColor:'#e2e2e2',justifyContent:'center',alignItems:'center',width:40,height:40,marginLeft:5,}}
+                >
+                  <Icon name="close" size={24}></Icon>
+                </TouchableOpacity>
+              </View>
+            </View>
+           
           </View>
+          
 
           <CouponModal visible={couponList} close={()=>setCouponList(false)} />
 
-          <Text style={{marginBottom:10,marginTop:40}}>최종 결제정보</Text>
-          <View style={{borderWidth:1,borderColor:'#e2e2e2',borderRadius:5,padding:15}}>
-            <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
-              <Text>상품금액</Text>
-              <Text>21,400 원</Text>
+          <View style={styles.section}>
+            <View style={styles.sectionTitle}>
+              <Text style={styles.sectionTitleText}>최종 결제정보</Text>
             </View>
-            <View style={{marginTop:10}}>
+            
+            <View style={styles.sectionCont}>
               <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
-                <Text>할인금액</Text>
-                <Text>- 6,000 원</Text>
+                <Text>상품금액</Text>
+                <Text>21,400 원</Text>
               </View>
-              <View style={{marginTop:10,marginLeft:10}}>
-                <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingHorizontal:5,paddingVertical:2,backgroundColor:'#FBF2F2',marginBottom:8,borderRadius:3}}>
-                  <Text style={{fontSize:12,color:'#888'}}>쿠폰할인</Text>
-                  <Text style={{fontSize:12,color:'#d22828'}}>3,000원</Text>
+              <View style={{marginTop:10}}>
+                <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+                  <Text>할인금액</Text>
+                  <Text style={{color:'#01a1dd'}}>- 6,000 원</Text>
                 </View>
-                <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingHorizontal:5,paddingVertical:2,backgroundColor:'#FBF2F2',marginBottom:8,borderRadius:3}}>
-                  <Text style={{fontSize:12,color:'#888'}}>이벤트할인</Text>
-                  <Text style={{fontSize:12,color:'#d22828'}}>3,000원</Text>
+                <View style={{marginTop:10,paddingLeft:10}}>
+                  <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:8}}>
+                    <Text style={{fontSize:14,color:'#888'}}>└ 쿠폰할인</Text>
+                    <Text style={{fontSize:14,color:'#888'}}>- 3,000원</Text>
+                  </View>
+                  <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+                    <Text style={{fontSize:14,color:'#888'}}>└ 이벤트할인</Text>
+                    <Text style={{fontSize:14,color:'#888'}}>- 3,000원</Text>
+                  </View>
                 </View>
               </View>
+              <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginTop:10}}>
+                <Text>수거/배송비</Text>
+                <Text>0 원</Text>
+              </View>
+              <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',borderTopWidth:1,borderColor:'#e2e2e2',marginTop:20,paddingTop:20,}}>
+                <Text style={{fontSize:16,}}>최종결제금액</Text>
+                <Text><Text style={{fontSize:18,fontWeight:'bold',color:'#D20A61'}}>18,840</Text>원</Text>
+              </View>
             </View>
-            <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginTop:10}}>
-              <Text>수거/배송비</Text>
-              <Text>0 원</Text>
-            </View>
-            <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginTop:10}}>
-              <Text>결제금액</Text>
-              <Text><Text style={{fontSize:18,fontWeight:'bold'}}>18,840</Text>원</Text>
-            </View>
+          </View>   
+
+
+        <View style={styles.section}>
+          <View style={styles.sectionTitle}>
+            <Text style={styles.sectionTitleText}>결제카드 선택</Text>
           </View>
-
-
-          <View style={{marginTop:15}}>
-            <Text style={{fontSize:12}}>※ 수거 후 검수시 세탁물의 오염 정도에 따라 세탁비용이 추가발생 할 수 있으며 <Text style={{color:'#d22828'}}>추가 발생된 금액은 선택된 결제카드에 의해 자동 결제됩니다</Text></Text>
+          <View>
+            <Carousel
+              data={cards}
+              itemWidth={200}
+              sliderWidth={sliderWidth}
+              activeSlideAlignment={'start'}
+              containerCustomStyle={{paddingLeft:15,paddingVertical:30,}}
+              slideStyle={{marginRight:10}}
+              inactiveSlideScale={1}
+              inactiveSlideOpacity={1}
+              layoutCardOffset={10}
+              renderItem={({item, index})=> 
+                <CardItem item={item} index={index} cardHandle={cardHandle}/>
+              }
+            />
           </View>
-        </View>
+         </View>
 
+         <View style={styles.section}>
 
-          {/* <View style={{paddingHorizontal:10,marginBottom:30}}>
-            <Text style={{marginBottom:10,}}>쿠폰사용</Text>
-            <View style={{borderWidth:1,borderRadius:5,borderColor:'#e2e2e2',padding:15}}>
-              <Button mode="outlined" labelStyle={{color:'#292929',letterSpacing:-0.7}}>
-                쿠폰을 선택해주세요
-              </Button>
+            <View style={styles.sectionTitle}>
+              <Text style={styles.sectionTitleText}>이용약관 동의</Text>
             </View>
-          </View> */}
+            
+            <View style={styles.sectionCont}>
 
 
-         <View style={{marginBottom:40,overflow:'hidden'}}>
-           <Text style={{marginBottom:10,paddingHorizontal:25}}>결제카드 선택</Text>
-            <View style={{backgroundColor:'#f2f2f2',paddingVertical:15}}>
-              <Carousel
-                data={cards}
-                itemWidth={200}
-                sliderWidth={sliderWidth}
-                activeSlideAlignment={'start'}
-                containerCustomStyle={{paddingLeft:25}}
-                slideStyle={{marginRight:10}}
-                inactiveSlideScale={1}
-                inactiveSlideOpacity={1}
-                layoutCardOffset={10}
-                renderItem={({item, index})=> 
-                  <CardItem item={item} index={index} cardHandle={cardHandle}/>
-                }
-              />
+              <View style={{flex:1,flexDirection:'row',alignItems:'flex-start',marginBottom:10}}>
+                <TouchableOpacity style={{marginRight:10}}>
+                  <Icon name="check-circle" size={24} color={'#e2e2e2'}></Icon>
+                </TouchableOpacity>
+                <Text style={{flex:1}}>서비스 정책(세탁정책, 보상정책, 유실물 처리방침)에 대한 동의</Text>
+              </View>
+
+              <View style={{flex:1,flexDirection:'row',alignItems:'flex-start',marginBottom:10}}>
+                <TouchableOpacity style={{marginRight:10}}>
+                  <Icon name="check-circle" size={24} color={'#e2e2e2'}></Icon>
+                </TouchableOpacity>
+                <Text style={{flex:1}}>개인정보 취급방침에 대한 동의</Text>
+              </View>
+
+              <View style={{flex:1,flexDirection:'row',alignItems:'flex-start'}}>
+                <TouchableOpacity style={{marginRight:10}}>
+                  <Icon name="check-circle" size={24} color={'#e2e2e2'}></Icon>
+                </TouchableOpacity>
+                <Text style={{flex:1}}>생체정보 사용에 대한 동의</Text>
+              </View>
+
+              <TouchableHighlight
+                style={{justifyContent:'center',alignItems:'center',paddingVertical:30,}}
+                underlayColor="#fff"
+                onPress={()=>{}}
+              >
+                <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',height:40,borderRadius:20,backgroundColor:'#f2f2f2',paddingLeft:10,paddingRight:15}}>
+                  <Icon name="check-circle"  color={'#c2c2c2'} style={{marginRight:10}} size={24}></Icon>
+                  <Text style={{fontSize:16}}>위 내용에 모두 동의합니다</Text>
+                </View>
+              </TouchableHighlight>
+
+              <View style={{flexDirection:'row',alignItems:'center',borderWidth:1,borderColor:'#e2e2e2'}}>
+                <TouchableOpacity
+                  style={{flex:1,alignItems:'center',paddingVertical:6,borderRightWidth:1,borderColor:'#e2e2e2'}}
+                  underlayColor="#f2f2f2"
+                  onPress={()=> setAgrmtModal(true)}
+                >
+                  <Text style={{fontSize:13}}>서비스정책</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{flex:1,alignItems:'center',paddingVertical:6,borderRightWidth:1,borderColor:'#e2e2e2'}}
+                  underlayColor="#f2f2f2"
+                  onPress={()=> setAgrmtModal(true)}
+                >
+                  <Text style={{fontSize:13}}>개인정보 취급방침</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{flex:1,alignItems:'center',paddingVertical:6,}}
+                  underlayColor="#f2f2f2"
+                  onPress={()=> setAgrmtModal(true)}
+                >
+                  <Text style={{fontSize:13}}>생체정보 사용안내</Text>
+                </TouchableOpacity>
+              </View>
             </View>
          </View>
 
-         <View style={{paddingHorizontal:25}}>
-
-            <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',}}>
-              <Text style={{marginBottom:10,}}>이용약관 동의</Text>
+         <View style={styles.section}>
+            <View style={styles.sectionTitle}>
+              <Text style={styles.sectionTitleText}>주의사항</Text>
             </View>
-            
-            <View style={{borderWidth:1,borderColor:'#e2e2e2',borderRadius:5,marginBottom:40}}>
-              <View style={{flexDirection:'row',alignItems:'center',borderBottomWidth:1,borderColor:'#e2e2e2',paddingVertical:10}}>
-                  <Checkbox/>
-                  <Text style={{fontWeight:'bold'}}>약관 전체동의</Text>
-              </View>
-              <View style={{paddingVertical:10,}}>
-                <View style={{flex:1,justifyContent:'space-between',alignItems:'center',flexDirection:'row',paddingVertical:5}}>
-                  <Checkbox/>
-                  <Text style={{flex:1,paddingRight:15}}>서비스 정책(세탁정책, 보상정책, 유실물 처리방침)에 대한 동의</Text>
-                  <TouchableOpacity style={{width:40,height:40,justifyContent:'center',alignItems:'center'}}>
-                    <Icon name="call-made" size={20} color={'#888'}/>
-                  </TouchableOpacity>
-                </View>
-                <View style={{flex:1,justifyContent:'space-between',alignItems:'center',flexDirection:'row',paddingVertical:5}}>
-                  <Checkbox/>
-                  <Text style={{flex:1,paddingRight:15}}>개인정보 취급방침에 대한 동의</Text>
-                  <TouchableOpacity style={{width:40,height:40,justifyContent:'center',alignItems:'center'}}>
-                    <Icon name="call-made" size={20} color={'#888'}/>
-                  </TouchableOpacity>
-                </View>
-                <View style={{flex:1,justifyContent:'space-between',alignItems:'center',flexDirection:'row',paddingVertical:5}}>
-                  <Checkbox/>
-                  <Text style={{flex:1,paddingRight:15}}>생체정보 사용에 대한 동의</Text>
-                  <TouchableOpacity style={{width:40,height:40,justifyContent:'center',alignItems:'center'}}>
-                    <Icon name="call-made" size={20} color={'#888'}/>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </View>
-            
-
-            <View>
-              <Text style={{marginBottom:10,}}>주의사항</Text>
+            <View style={styles.sectionCont}>
               <Text style={{marginBottom:10,color:'#9a9a9a',lineHeight:20}}>최소 주문금액은 14,900원 입니다 세탁비가 14,900원 미만이라도 14,900원이 청구됩니다</Text>
-              <Text style={{marginBottom:10,color:'#9a9a9a',lineHeight:20}}>예약시간 1시간 전까지 취소 변경이 가능합니다 이후에는 취소 수수료 3천원이 발생합니다</Text>
+              <Text style={{marginBottom:10,color:'#9a9a9a',lineHeight:20}}>예약시간 1시간 전까지 취소가 가능합니다 이후에는 취소 수수료 3천원이 발생합니다. 취소는 [이용내역] > [상세보기] 페이지에서 취소할 수 있습니다</Text>
               <Text style={{marginBottom:10,color:'#9a9a9a',lineHeight:20}}>케어라벨이 없거나, 세탁표기법상 드라이클리닝 및 물세탁이 모두 금지된 제품은 전문가가 소재와 상태를확인 후 세탁합니다. 다만, 이 때 세탁 결과에 대해서는 책임을 지지 않으니 유의해 주십시오</Text>
             </View>
+          </View>
 
-            <Button
-              mode="contained"
-              icon="check"
-              disabled={false}
-              contentStyle={{height:50,}}
-              labelStyle={{fontSize:16,fontWeight:'bold',letterSpacing:-0.7}}
-              style={{marginTop:30,backgroundColor:'#d22828'}}
-              onPress={()=>props.navigation.navigate('finish')}
-            >
-               예약완료하기
-            </Button>
-         </View>
+          <TouchableHighlight
+            style={{backgroundColor:'#01a1dd'}}
+            onPress={()=>props.navigation.navigate('finish')}
+            underlayColor="#00B9FF"
+          >
+            <View style={{height:50,flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+              <Icon name="check" size={24} color="#fff" style={{marginRight:5}}></Icon>
+              <Text style={{fontSize:16,color:'#fff'}}>예약완료하기</Text>
+            </View>
+          </TouchableHighlight>
 
-         <AgrmtModal visible={agrmtModal} close={()=> setAgrmtModal(false)}/>
+          <AgrmtModal visible={agrmtModal} close={()=> setAgrmtModal(false)}/>
       </ScrollView>
-
-      
-               
     </View>
   )
 }
+
+
+const styles = StyleSheet.create({
+  section:{
+    borderBottomWidth:1,
+    borderColor:'#e2e2e2',
+    backgroundColor:'#fff',
+    marginBottom:15,
+  },
+  sectionTitle:{
+    flexDirection:'row',
+    justifyContent:"space-between",
+    alignItems:'center',
+    height:50,
+    paddingHorizontal:15,
+    borderBottomWidth:1,
+    borderColor:'#e2e2e2',
+  },
+  sectionTitleText:{
+    color:'#01a1dd',
+    fontSize:16,
+
+  },
+  sectionCont:{
+    padding:15,
+  },
+
+  couponItem:{
+    flexDirection:'row',
+    alignItems:'flex-start',
+    borderBottomWidth:1,
+    borderColor:'#e2e2e2',
+    padding:20,
+},
+
+couponImg:{
+    backgroundColor:'#01a1dd',
+    justifyContent:'center',
+    alignItems:'flex-start',
+    width:100,
+    height:54,
+    borderRadius:5,
+},
+
+couponImgInner:{
+    width:80,
+    height:50,
+    marginLeft:2,
+    borderRadius:5,
+    backgroundColor:'#fff',
+    padding:10,
+    justifyContent:'center',
+    alignItems:'center'
+},
+
+couponCont:{
+    marginLeft:20,
+    flex:1,
+},
+
+emptyItem:{
+    padding:20,
+    borderBottomWidth:1,
+    borderColor:'#e2e2e2',
+    justifyContent:'center',
+    alignItems:'center',
+    flexDirection:'row',
+    minHeight:90,
+}
+
+})

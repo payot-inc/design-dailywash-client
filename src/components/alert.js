@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, Text, Modal, TouchableOpacity,TouchableHighlight } from 'react-native';
+import React, { Children } from 'react';
+import {View, Text, Modal, TouchableOpacity,TouchableHighlight,ScrollView } from 'react-native';
 
 export default props => {
   return(
@@ -10,20 +10,22 @@ export default props => {
       onRequestClose={props.close}
     >
       <View style={{flex:1,justifyContent:'center'}}>
-          <View style={{zIndex:2,padding:50,}}>
+          <View style={{zIndex:2,padding:20,}}>
               <View style={{backgroundColor:'#fff',borderRadius:10,overflow:'hidden',backgroundColor:'#fff',elevation:10,}}>
-                <View style={{padding:20,alignItems:'center'}}>
-                  <Text style={{fontSize:18,fontWeight:'bold'}}>{props.title}</Text>
-                  <Text style={{marginTop:10,color:'#888'}}>{props.description}</Text>
-                </View>
+                <ScrollView
+                  contentContainerStyle={{padding:20}}
+                >
+                  {/* <Text style={{fontSize:18,fontWeight:'bold'}}>{props.title}</Text>
+                  <Text style={{marginTop:10,color:'#888'}}>{props.description}</Text> */}
+                    {props.children}
+                </ScrollView>
                 <View style={{alignItems:'center',borderTopWidth:1,borderColor:'#e2e2e2',width:'100%'}}>
-                    <TouchableHighlight
-                      underlayColor={'#f2f2f2'}
+                    <TouchableOpacity
                       onPress={props.close}
                       style={{height:50,width:'100%',justifyContent:'center',alignItems:'center'}}
                     >
                       <Text>확인</Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
               </View>
           </View>

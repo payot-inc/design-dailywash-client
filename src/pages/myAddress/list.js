@@ -1,12 +1,9 @@
 import React,{Component} from 'react';
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import SubHeader from '../../components/subHeader';
-import BaseStyles from '../../assets/css/thema';
-
-
 
 export default props => {
 
@@ -26,26 +23,19 @@ export default props => {
     ]
     
     return(
-        <View style={{flex:1, backgroundColor:'#F5F6F8'}}>
+        <View style={{flex:1, backgroundColor:'#fff'}}>
 
             <SubHeader navigation={props.navigation} title={'수거/배달 장소관리'}/>
 
             <View style={{flex:1,paddingTop:22.5}}>
-                <View style={{flexDirection:'row',flexBasis:30,paddingHorizontal:25}}>
-                    <Text style={{marginRight:10}}>등록된 주소지</Text>
-                    <Text style={{color:'#5D21FF',fontSize:16,fontWeight:'bold'}}>2</Text>
-                </View>
                 <View style={{flex:1,}}>
                     <FlatList
                         data = {Data}
-                        contentContainerStyle={{paddingHorizontal:25}}
+                        contentContainerStyle={{paddingHorizontal:20}}
                         renderItem={({item, index}) => 
-                            <View style={[BaseStyles.shadowBox, styles.addressCard,{flexDirection:'row',alignItems:'flex-start',justifyContent:'space-between'}]}>
+                            <View style={[styles.addressCard,{flexDirection:'row',alignItems:'flex-start',justifyContent:'space-between',}]}>
                                 <View style={{flex:1,}}>
-                                    <View style={{flexDirection:'row',alignItems:'center'}}>
-                                        {(item.favorite) ? <Text style={{fontSize:11,borderRadius:3,borderWidth:1,borderColor:'#03C1E8',color:'#03C1E8',paddingHorizontal:2,marginRight:5,}}>대표</Text> : <Text></Text> }
-                                        <Text style={{fontSize:16}}>{item.addressTitle}</Text>                
-                                    </View>
+                                    <Text style={{fontSize:16,color:'#01a1dd'}}>{item.addressTitle}</Text> 
                                     <Text style={{fontSize:14,marginTop:5,color:'#9a9a9a'}}>{item.address}</Text>
                                     <View style={{flexDirection:'row',marginTop:5}}>
                                         <Text style={{fontSize:14,marginRight:5}}>공동출입문:</Text>
@@ -55,24 +45,27 @@ export default props => {
                                 <View style={{flexBasis:40,alignItems:'center'}}>
 
                                     <TouchableOpacity onPress={() => showMenu(index)} style={{width:40,alignItems:'flex-end'}}>
-                                        <Icon name={'ellipsis-v'} size={18} color={'#c2c2c2'}></Icon>
+                                        <Icon name={'close'} size={18} color={'#c2c2c2'}></Icon>
                                     </TouchableOpacity>
                                 </View>
                             </View>
                         }
                         keyExtractor={item => item.index}
                         ListEmptyComponent={
-                            <View style={{height:120,justifyContent:'center',alignItems:'center',borderWidth:1,borderRadius:10,borderStyle:'dashed',borderColor:'#d2d2d2',marginHorizontal:10}}>
-                                <Text style={{fontSize:16}}>등록된 주소지가 없습니다</Text>
+                            <View style={{justifyContent:'center',alignItems:'center',borderWidth:1,borderColor:'#e2e2e2',borderRadius:5,padding:20}}>
+                                <View style={{width:90,height:90,borderRadius:45,backgroundColor:'#01a1dd',justifyContent:'center',alignItems:'center'}}>
+                                    <Icon name="map-marker-circle" size={40} color={'#fff'}></Icon>
+                                </View>
+                                <Text style={{fontSize:16,marginTop:20,color:'#888'}}>등록된 주소가 없습니다</Text>
                             </View>
                         }
 
                         ListFooterComponent = {
                             <TouchableOpacity
                                 onPress={() => props.navigation.navigate('addressAdd')}
-                                style={{marginTop:20}}
+                                style={{marginTop:10}}
                             >
-                                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',borderWidth:1,borderRadius:10,height:50,borderColor:'#292929'}}>
+                                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',borderWidth:1,height:50,borderColor:'#e2e2e2',borderRadius:5,}}>
                                     <Icon name={'plus-circle'} size={18}></Icon>
                                     <Text style={{fontSize:16,marginLeft:10}}>주소지 추가하기</Text>
                                 </View>
@@ -89,9 +82,11 @@ export default props => {
 
 const styles = StyleSheet.create({
     addressCard:{
-        borderRadius:10,
         marginVertical:5,
         backgroundColor:'#fff',
         padding:15,
+        borderWidth:1,
+        borderColor:'#e2e2e2',
+        borderRadius:5
     }
 })

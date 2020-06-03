@@ -14,28 +14,26 @@ export default props => {
      >
       <View style={{flex:1,justifyContent:'center'}}>
           <View style={{zIndex:2,padding:40,}}>
-              <View style={{backgroundColor:'#fff',borderRadius:0,overflow:'hidden',backgroundColor:'#fff',elevation:10}}>
+              <View style={{backgroundColor:'#fff',borderRadius:10,overflow:'hidden',backgroundColor:'#fff',elevation:10}}>
                    <View style={{backgroundColor:'#fff'}}>
                       <View style={{padding:20}}>
                         <Text style={{fontSize:18}}>{props.title}</Text>
                         <Text style={{marginTop:10,color:'#9a9a9a'}}>{props.description}</Text>
-                        <Text style={{marginTop:10,color:'#9a9a9a'}}>{props.guide}</Text>
+                        {/* <Text style={[props.guide === '' ? {display:'none'} : {marginTop:10,color:'#9a9a9a'}]}>{props.guide}</Text> */}
                       </View>
                       <View style={{flexDirection:'row',justifyContent:'flex-end',alignItems:'center',borderTopWidth:1,borderColor:'#e2e2e2'}}>
-                          <TouchableHighlight
+                          <TouchableOpacity
                               onPress={props.close}
-                              underlayColor={'#9a9a9a'}
-                              style={{flex:1,alignItems:'center',backgroundColor:'#aaa',height:45,justifyContent:'center'}}
+                              style={{flex:1,alignItems:'center',height:50,justifyContent:'center'}}
                           >
-                              <Text style={{color:'#fff'}}>취소</Text>
-                          </TouchableHighlight>
-                          <TouchableHighlight 
+                              <Text style={{color:'#494949'}}>취소</Text>
+                          </TouchableOpacity>
+                          <TouchableOpacity
                               onPress={props.close}
-                              style={{flex:1,alignItems:'center',backgroundColor:'#396EEE',height:45,justifyContent:'center'}}
-                              underlayColor={'#3566DC'}
+                              style={{flex:1,alignItems:'center',height:50,justifyContent:'center'}}
                           >
-                              <Text style={{color:'#fff'}}>확인</Text>
-                          </TouchableHighlight>
+                              <Text style={{color:'#01a1dd'}}>확인</Text>
+                          </TouchableOpacity>
                       </View>
                   </View>
               </View>

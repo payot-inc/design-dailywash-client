@@ -16,13 +16,7 @@ const MyOrderStack = createStackNavigator(
     myOrderDetail: {
       screen: MyOrderDetail,
       navigationOptions: () => ({
-        title: '이용내역 상세보기',
-        headerStyle: {
-          backgroundColor: '#F5F6F8',
-          elevation: 0,
-          height: 60,
-          zIndex:1,
-        },
+        headerShown: false,
       }),
     },
 

@@ -1,9 +1,9 @@
 import React,{useState} from 'react';
-import {View, Text, ScrollView, Image, TouchableHighlight, Linking, Modal, StyleSheet,Dimensions,TouchableOpacity} from 'react-native';
-import { Divider, IconButton } from 'react-native-paper';
-import Timeline from 'react-native-timeline-flatlist';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import {View, Text, ScrollView, Image, Modal, StyleSheet,Dimensions,TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import faker from 'faker';
+import SubHeader from '../../components/subHeader';
+import ImageView from '../../components/imageView';
 
 import Confirm from '../../components/confirm'
 
@@ -18,256 +18,334 @@ export default props => {
         ]
     }
 
-    const orderTimeLine = [
-        {date:'2019-11-23' ,time:'09:45', title:'수거예약완료', description: '예약이 완료되었습니다'},
-        {time:'11:16', title:'세탁물 수거완료', description: '기사님께서 세탁물을 수거하였습니다', image:faker.image.abstract(),},
-        {date:'24일', time:'16:00', title:'세탁완료&배송시작', description: '배송을 시작합니다'},
-        {time:'17:56', title:'배송완료', description: '배송이 완료되었습니다', image:faker.image.abstract(),},
-    ]
-
     const data = props.navigation.getParam('item', {});
 
     const screen = {
         width:Dimensions.get('window').width,
     }
 
-    const [modalVisible, setModalVisible] = useState(false)
-    
-
-    const modalHandle = {
-        modalOpen: () => setModalVisible(true),
-        modalClose: () => setModalVisible(false)
-    }
+    const [imageView, setImageView] = useState(false);
 
     const [CancleConfirm, setCancleConfirm] = useState(false);
-    const [CancleConfirm2, setCancleConfirm2] = useState(false);
 
     return(
         
-        <View style={{flex:1,backgroundColor:'#F5F6F8',paddingTop:10,}}>
-            <View style={{flex:1,backgroundColor:'#fff',borderTopEndRadius:45,elevation:15,overflow:'hidden'}}>
+        <View style={{paddingBottom:60}}>
 
-                <ScrollView 
-                    contentContainerStyle={{paddingHorizontal:25,paddingVertical:30,}}
-                    alwaysBounceHorizontal={false}
-                    alwaysBounceVertical={true}
-                >
-                    <View style={{marginBottom:30,}}>
-                        <Text style={{marginBottom:10,fontSize:16}}>주문현황</Text>
-                        <View style={{flexDirection:'row',borderWidth:1,borderColor:'#e2e2e2',borderRadius:10,overflow:'hidden',position:'relative',padding:10,alignItems:'center'}}>
-                            <View style={{flexBasis:90,justifyContent:'flex-start',alignItems:'center'}}>
-                                <Image 
-                                    style={{width:90,height:90,borderRadius:45,zIndex:3}}
-                                    source={{uri:faker.image.avatar()}}
-                                />
-                            </View>
-                            <View style={{flex:1,zIndex:2}}>
-                                <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
-                                    <View style={{paddingHorizontal:20}}>
-                                        <Text style={{color:'#292929',fontSize:18,fontWeight:'bold'}}>박수민</Text>
-                                        <Text style={{color:'#898989',fontSize:12,}}>(헌옷장수)</Text>
-                                        <Text style={{color:'#9a9a9a',marginTop:10}}>휴무일: 매주 수요일입니다</Text>
-                                    </View>
-                                    <View style={{position:'absolute',right:0,top:-10}}>
-                                        <TouchableHighlight
-                                            onPress={() => Linking.openURL('tel://01083102486')}
-                                            style={{height:34,width:34,justifyContent:'center',alignItems:'center',borderRadius:17,backgroundColor:'#0DC244'}}
-                                        >
-                                            <Icon name={'phone'} size={18} color={'#fff'} style={{transform: [{ rotate: '90deg' }]}}></Icon>
-                                        </TouchableHighlight>
-                                    </View>
-                                </View>
-                             </View>
-                        </View>
-                    </View>
+            <SubHeader navigation={props.navigation} title={'이용내역 상세'}/>
 
-  
-                    <Timeline
-                        data={orderTimeLine}
-                        lineWidth={1}
-                        lineColor={'#396eee'}
-                        circleColor={'#396eee'}
-                        circleSize={12}
-                        renderTime={ item => 
-                            <View style={{width:56}}>
-                                {item.date ? <Text style={styles.date}>{item.date}</Text> : null}
-                                <Text style={styles.time}>{item.time}</Text>
-                            </View>
-                        }
-                        detailContainerStyle={{
-                            backgroundColor:'#fff',
-                            borderRadius:5,
-                            marginBottom:10,
-                            paddingHorizontal:10,
-                            backgroundColor:'#f8f8f8'
-                        }}
-                        renderDetail={ item =>
-                            <View style={{flexDirection:'row',alignItems:'center'}}>
-                            {item.image ?
-                                <TouchableOpacity
-                                    onPress={modalHandle.modalOpen}
-                                >
-                                    <Image source={{uri: item.image}} style={styles.image}/> 
-                                </TouchableOpacity>
-
-                                : null
-                            }
-                                <View style={{flex:1}}>
-                                    <Text style={styles.title}>{item.title}</Text>
-                                    <Text style={styles.description}>{item.description}</Text>
-                                </View>
-                            </View> 
-                        }
-                    />
-
-                    <TouchableHighlight
-                        onPress={()=> setCancleConfirm(true)}
-                        style={{background:'#f2f2f2',borderWidth:1,borderColor:'#e2e2e2',justifyContent:'center',alignItems:'center',height:40,marginTop:20}}
-                        underlayColor={'#f2f2f2'}
-                    >   
-                        <View style={{flexDirection:'row'}}>
-                            <Text>무료주문취소</Text>
-                            <Text style={{fontSize:12,color:'#d22828'}}> (가능시간 29:34)</Text>
-                        </View>
-                        
-                    </TouchableHighlight>
-
-                    <TouchableHighlight
-                        onPress={()=> setCancleConfirm2(true)}
-                        style={{background:'#f2f2f2',borderWidth:1,borderColor:'#e2e2e2',justifyContent:'center',alignItems:'center',height:40,marginTop:20}}
-                        underlayColor={'#f2f2f2'}
-                    >   
-                        <View style={{flexDirection:'row'}}>
-                            <Text>주문취소</Text>
-                            <Text style={{fontSize:12,color:'#d22828'}}> (수수료: 3,000원)</Text>
-                        </View>
-                        
-                    </TouchableHighlight>
-
-                    <Divider style={{height:1,backgroundColor:'#e2e2e2',marginVertical:30,}}/>
-
-                    <View>
-                        <View style={{flex:1,}}>
-                            <View style={{marginBottom:30}}>
-                                <Text style={{marginBottom:15,color:'#9a9a9a'}}>수거/배달 장소</Text>
-                                <View style={{backgroundColor:'#f8f8f8',padding:10,borderRadius:5}}>
-                                    <Text style={{marginBottom:5,}}>우리집</Text>
-                                    <Text style={{fontSize:13,color:'#9a9a9a'}}>부산광역시 금정구 부산대학로 63번길 2</Text>
-                                    <Text style={{fontSize:13,color:'#9a9a9a'}}>과학기술연구동 201호</Text>
-                                </View>
-                            </View>
-                            <View style={{marginBottom:30}}>
-                                <Text style={{marginBottom:15,color:'#9a9a9a'}}>선택정보</Text>
-                                <View style={{backgroundColor:'#f8f8f8',padding:10,borderRadius:5}}>
-                                    <View style={{flexDirection:'row',marginVertical:5,justifyContent:'space-between'}}>
-                                        <Text style={{fontSize:13,marginRight:10}}>선택한 수거날짜</Text>
-                                        <Text style={{color:'#9a9a9a',fontSize:13}}>2019년 12월 24일</Text>
-                                    </View>
-                                    <View style={{flexDirection:'row',marginVertical:5,justifyContent:'space-between'}}>
-                                        <Text style={{fontSize:13,marginRight:10}}>선택한 수거시간</Text>
-                                        <Text style={{color:'#9a9a9a',fontSize:13}}>오후 08:00~11:00</Text>
-                                    </View>
-                                    <View style={{flexDirection:'row',marginVertical:5,justifyContent:'space-between'}}>
-                                        <Text style={{fontSize:13,marginRight:10}}>대면수거여부</Text>
-                                        <Text style={{color:'#9a9a9a',fontSize:13}}>직접만남</Text>
-                                    </View>
-                                    <View style={{flexDirection:'row',marginVertical:5,justifyContent:'space-between'}}>
-                                        <Text style={{fontSize:13,marginRight:10}}>기타요청사항</Text>
-                                        <Text style={{color:'#9a9a9a',fontSize:13}}>-</Text>
-                                    </View>
-                                </View>
-                            </View>
-
-        
-
-                            <View style={{marginBottom:30}}>
-                                <Text style={{marginBottom:15,color:'#9a9a9a'}}>상품정보</Text>
-                                <View style={{backgroundColor:'#f8f8f8',padding:10,borderRadius:5}}>
-                                    {state.goodsItem.map((item) => (
-                                        <View style={{flexDirection:'row',justifyContent:'space-between',marginVertical:5,}}>
-                                            <Text style={{flex:1}}>{item.name}</Text>
-                                            <Text style={{flexBasis:40,textAlign:'center'}}>{item.amount}</Text>
-                                            <Text style={{flexBasis:80,textAlign:'right'}}>{item.price} 원</Text>
-                                        </View>
-                                    
-                                    ))}
-                                </View>
-                            </View>
-
-
-                            <View style={{marginBottom:30}}>
-                                <Text style={{marginBottom:15,color:'#9a9a9a'}}>할인금액</Text>
-                                <View style={{backgroundColor:'#f8f8f8',padding:10,borderRadius:5}}>
-                                    <View style={{flexDirection:'row',marginVertical:5,justifyContent:'space-between'}}>
-                                        <Text style={{fontSize:13,marginRight:10}}>쿠폰할인</Text>
-                                        <Text style={{color:'#9a9a9a',fontSize:13}}>-3,000 원</Text>
-                                    </View>
-                                    <View style={{flexDirection:'row',marginVertical:5,justifyContent:'space-between'}}>
-                                        <Text style={{fontSize:13,marginRight:10}}>이벤트할인</Text>
-                                        <Text style={{color:'#9a9a9a',fontSize:13}}>-3,000 원</Text>
-                                    </View>
-                                </View>
-                            </View>
-
-                    
-
-                            <View>
-                                <Text style={{marginBottom:15,color:'#9a9a9a'}}>결제정보</Text>
-                                <View style={{backgroundColor:'#f8f8f8',padding:10,borderRadius:5}}>
-                                    <View style={{flexDirection:'row',marginVertical:5,justifyContent:'space-between'}}>
-                                        <Text style={{fontSize:13,marginRight:10}}>결제금액</Text>
-                                        <Text style={{color:'#d22828',fontSize:18}}>32,800 원</Text>
-                                    </View>
-                                    <View style={{flexDirection:'row',marginVertical:5,justifyContent:'space-between'}}>
-                                        <Text style={{fontSize:13,marginRight:10}}>결제수단</Text>
-                                        <Text style={{color:'#9a9a9a',fontSize:13}}>신한카드(0811)</Text>
-                                    </View>
-                                </View>
-                            </View>
-                        </View>
-                    </View>
-                </ScrollView>
-            </View>
-
-            <Modal
-                visible={modalVisible}
-                animationType="fade"
-                transparent={true}
+            <ScrollView 
+                contentContainerStyle={{backgroundColor:'#f2f2f2'}}
             >
-                <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                    <View style={{backgroundColor:'#e2e2e2',width:screen.width-60,height:screen.width-60,borderRadius:10,overflow:'hidden',zIndex:2}}>
-                        <Image source={{uri:faker.image.abstract()}} style={{width:screen.width,height:screen.width}}/>
-                        <IconButton
-                            style={{position:'absolute',right:5,top:5,backgroundColor:'#292929'}}
-                            onPress={modalHandle.modalClose}
-                            icon="close"
-                            size={24}
-                            color={'#fff'}
-                        />
+                <View style={styles.section}>
+                    <View style={styles.sectionCont}>
+                        <View style={{alignItems:'center',justifyContent:'center',marginBottom:30}}>
+                            <Text style={{fontSize:20,textAlign:'left'}}>현재 <Text style={{color:'#01a1dd',fontWeight:'bold'}}>수거완료</Text>되었습니다</Text>
+                        </View>
+                        <View style={[{flexDirection:'row',justifyContent:'space-around',alignItems:'center',position:'relative',marginBottom:40,}]}>
+                            <View style={{position:'relative',flex:1,alignItems:'center'}}>
+                                <View style={{height:5,backgroundColor:'#f2f2f2',position:'absolute',top:25,left:0,width:'100%'}}></View>
+                                <View style={{width:50,height:50,alignItems:'center',justifyContent:'center',borderRadius:30,backgroundColor:'#f2f2f2'}}>
+                                    <Icon name="clipboard-check-outline" size={24} color={'#c2c2c2'}></Icon>
+                                </View>
+                                <Text style={{marginTop:10,textAlign:'center',color:'#494949'}}>접수완료</Text>
+                            </View>
+                            <View style={{position:'relative',flex:1,alignItems:'center'}}>
+                                <View style={{height:5,borderRadius:2,backgroundColor:'#01a1dd',position:'absolute',top:30,left:0,width:'100%'}}></View>
+                                <View style={{width:60,height:60,alignItems:'center',justifyContent:'center',borderRadius:30,backgroundColor:'#01a1dd'}}>
+                                    <Icon name="cube-outline" size={32} color={'#fff'}></Icon>
+                                </View>
+                                <Text style={{marginTop:10,textAlign:'center', color:'#01a1dd',fontWeight:'bold'}}>수거완료</Text>
+                            </View>
+                            <View style={{position:'relative',flex:1,alignItems:'center'}}>
+                                <View style={{height:5,backgroundColor:'#f2f2f2',position:'absolute',top:25,left:0,width:'100%'}}></View>
+                                <View style={{width:50,height:50,alignItems:'center',justifyContent:'center',borderRadius:30,backgroundColor:'#f2f2f2'}}>
+                                    <Icon name="truck-fast" size={24} color={'#c2c2c2'}></Icon>
+                                </View>
+                                <Text style={{marginTop:10,textAlign:'center',color:'#494949'}}>배송중</Text>
+                            </View>
+                            <View style={{position:'relative',flex:1,alignItems:'center'}}>
+                                <View style={{height:5,backgroundColor:'#f2f2f2',position:'absolute',top:25,left:0,width:'100%'}}></View>
+                                <View style={{width:50,height:50,alignItems:'center',justifyContent:'center',borderRadius:30,backgroundColor:'#f2f2f2'}}>
+                                    <Icon name="gift-outline" size={24} color={'#c2c2c2'}></Icon>
+                                </View>
+                                <Text style={{marginTop:10,textAlign:'center',color:'#494949'}}>배송완료</Text>
+                            </View>                            
+                        </View>
+                        <View style={[styles.boxItem]}>
+                            <View  style={styles.contRow}>
+                                <Text style={{color:'#494949'}} >주문확인</Text>
+                                <Text style={{color:'#888'}}>2020.05.20 11:34</Text>
+                            </View>
+                        </View>
+                        <View style={[styles.boxItem]}>
+                            <View  style={styles.contRow}>
+                                <Text style={{color:'#494949'}}>수거완료</Text>
+                                <Text style={{color:'#888'}}>2020.05.20 11:34</Text>
+                            </View>
+                            <View style={styles.divider}/>
+                            <View style={[styles.contRow,{justifyContent:'flex-start'}]}>
+                                <TouchableOpacity 
+                                    onPress={()=> setImageView(true)}
+                                    style={{width:60,height:60,backgroundColor:'#f2f2f2',marginRight:10,}}
+                                
+                                >
+                                    <Image source={{uri:faker.image.business()}}/>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View style={[styles.boxItem]}>
+                            <View  style={styles.contRow}>
+                                <Text style={{color:'#494949'}}>주문취소</Text>
+                                <Text style={{color:'#888'}}>2020.05.20 12:10</Text>
+                            </View>                            
+                        </View>
+                        <View style={[styles.boxItem]}>
+                            <View  style={styles.contRow}>
+                                <Text style={{color:'#494949'}}>주문취소 수수료 결제</Text>
+                                <Text style={{color:'#888'}}>3,000원</Text>
+                            </View>                            
+                        </View>
+                        
                     </View>
-                    <TouchableHighlight 
-                        onPress={modalHandle.modalClose}
-                        style={{position:'absolute',width:'100%',height:'100%',top:0,zIndex:1}}                    
-                    >
-                        <View style={{backgroundColor:'rgba(0,0,0,0.7)',flex:1,}}/>
-                    </TouchableHighlight>          
                 </View>
-         
-            </Modal>
 
-            <Confirm 
-                title="주문취소"
-                description="해당 주문건을 취소하시겠습니까?"
-                visible={CancleConfirm}
-                close={()=> setCancleConfirm(false)}
-            />
+                <View style={styles.section}>
+                    <View style={styles.sectionTitle}>
+                        <Text style={styles.sectionTitleText}>기사정보</Text>
+                    </View>
+                    <View style={styles.sectionCont}>
+                        <View style={{flexDirection:'row',alignItems:'center',backgroundColor:'#fff',borderRadius:5}}>
+                            <Image source={{uri:faker.image.avatar()}} style={{width:70,height:70,borderRadius:5}}/>
+                            <View style={{marginLeft:20}}>
+                                <Text style={{fontSize:16}}>박수민<Text style={{fontSize:12,color:'#888'}}>(베르나딘)</Text></Text>
+                                <Text style={{marginTop:5}}>010-8525-0000</Text>
+                                <Text style={{marginTop:5,fontSize:12,color:'#888'}}>오늘도 즐거운 하루되세요!</Text>
+                            </View>
+                            <TouchableOpacity
+                                style={{position:'absolute',top:15,right:15,width:40,height:40,borderRadius:20,backgroundColor:'#46BF33',justifyContent:'center',alignItems:'center'}}
+                            >
+                                <Icon name="phone" color="#fff" size={20}></Icon>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
 
-            <Confirm 
-                title="주문취소"
-                description="해당 주문건은 무료주문취소 가능시간을 초과하였습니다. 지금 취소시 수수료(3,000원)이 발생되며 등록된카드에서 자동결제됩니다"
-                guide="취소하시겠습니까?"
-                visible={CancleConfirm2}
-                close={()=> setCancleConfirm2(false)}
+                <View style={styles.section}>
+                    <View style={styles.sectionTitle}>
+                        <Text style={styles.sectionTitleText}>주문정보</Text>
+                    </View>
+                    <View style={styles.sectionCont}>
+                        <View style={styles.lineItem}>
+                            <Text style={{marginBottom:10,}}>수거/배달장소</Text>
+                            <Text style={{color:'#888'}}>부산광역시 금정구 부산대학로 63번길 2</Text>
+                            <Text style={{marginBottom:10,color:'#888'}}>과학기술연구동 201호</Text>
+                            <Text style={{color:'#888'}}>출입구정보: 비밀번호 #2214</Text>
+                        </View>
+                        <View style={styles.divider}/>
+                        <View style={[styles.contRow,{marginBottom:10,}]}>
+                            <Text>수거일</Text>
+                            <View style={styles.contRow}>
+                                <Text style={{color:'#888'}}>2020년 5월 20일</Text>
+                            </View>
+                        </View>
+                        <View style={[styles.contRow,{marginBottom:10,}]}>
+                            <Text>수거시간</Text>
+                            <View style={styles.contRow}>
+                                <Text style={{color:'#888'}}>오전 10시~12시</Text>
+                            </View>
+                        </View>
+                        <View style={styles.contRow}>
+                            <Text>수거방법</Text>
+                            <View>
+                                <Text style={{color:'#888'}}>대면수거</Text>
+                            </View>
+                        </View>
+                        
+                        <View style={styles.divider}/>
+                        <View>
+                            <Text style={{marginBottom:10,}}>요구사항</Text>
+                            <View>
+                                <Text style={{color:'#888'}}>-</Text>
+                            </View>
+                        </View>
+                        <View style={styles.divider}/>
+
+                        
+                        <TouchableOpacity
+                            style={{height:50,width:'100%',backgroundColor:'#494949',borderRadius:5,justifyContent:'center',alignItems:'center'}}
+                            onPress={()=>setCancleConfirm(true)}
+                        >
+                            <Text style={{color:'#fff'}}>주문취소</Text>
+                        </TouchableOpacity>
+
+                        <Text style={{color:'#888',marginTop:20,lineHeight:21,}}>수거 2시간이전 취소시 3,000원에 취소수수료가 부과되며 수거완료이후에는 취소가 불가능한 점을 알려드립니다</Text>
+                      
+                    </View>
+                </View>
+
+                <Modal
+                    visible={CancleConfirm}
+                    transparent={true}
+                    animationType={'fade'}
+                    onRequestClose={()=>setCancleConfirm(false)}
+                    >
+                    <View style={{flex:1,justifyContent:'center'}}>
+                        <View style={{zIndex:2,padding:40,}}>
+                            <View style={{backgroundColor:'#fff',borderRadius:5,padding:20,}}>
+                                <Text style={{fontSize:18,fontWeight:'bold'}}>세탁예약 취소하기</Text>
+                                <Text style={{marginTop:10,color:'#888'}}>지금은 <Text style={{color:'#D20A61'}}>무료취소</Text>가 가능합니다.</Text>
+                                <Text style={{marginTop:2,color:'#888'}}>취소를 진행할까요?</Text>
+                                <View style={{flexDirection:'row',alignItems:'center',marginTop:20,}}>
+                                    <TouchableOpacity
+                                        style={{flex:1,height:40,alignItems:'center',justifyContent:'center',borderWidth:1,borderColor:'#e2e2e2',borderRadius:5,marginRight:5,}}
+                                        onPress={()=>setCancleConfirm(false)}
+                                    >
+                                        <Text style={{color:'#494949'}}>아니오</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity
+                                        style={{flex:1,height:40,alignItems:'center',justifyContent:'center',marginLeft:5,backgroundColor:'#494949',borderRadius:5,}}
+                                        onPress={()=>setCancleConfirm(false)}
+                                    >
+                                        <Text style={{color:'#fff'}}>네, 취소할게요</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </View>
+
+                        <TouchableOpacity
+                            onPress={()=> setCancleConfirm(false)}
+                            activeOpacity={1}
+                            style={{flex:1,backgroundColor:'rgba(0,0,0,0.8)',position:'absolute',zIndex:1,width:'100%',height:'100%'}}
+                        >
+                        </TouchableOpacity>
+                    </View>
+                </Modal>
+
+                <View style={styles.section}>
+                    <View style={styles.sectionTitle}>
+                        <Text style={styles.sectionTitleText}>선택한 상품</Text>
+                    </View>
+                    <View style={styles.sectionCont}>
+                        <View style={styles.contRow}>
+                            <View>
+                                <Text styles={styles.productItemName}>생활빨래 80리터</Text>
+                                <Text style={{color:'#888'}}>1개 x 19,800원</Text>
+                            </View>
+                            <Text style={{fontSize:14,}}>19,800원</Text>
+                        </View>
+                
+                        <View style={styles.divider}/>
+            
+                        <View style={styles.contRow}>
+                            <View>
+                                <Text styles={styles.productItemName}>와이셔츠</Text>
+                                <Text style={{color:'#888'}}>2개 x 3,000원</Text>
+                            </View>
+                            <Text style={{fontSize:14,}}>19,800원</Text>
+                        </View>   
+                    </View>
+                </View>
+
+                <View style={styles.section}>
+                    <View style={styles.sectionTitle}>
+                        <Text style={styles.sectionTitleText}>검수된 상품</Text>
+                    </View>
+                    <View style={styles.sectionCont}>
+                        <View>
+                            <View style={styles.contRow}>
+                                <View>
+                                    <Text styles={styles.productItemName}>생활빨래 80리터</Text>
+                                    <Text style={{color:'#888'}}>1개 x 19,800원</Text>
+                                </View>
+                                <Text style={{fontSize:14,}}>19,800원</Text>
+                            </View>
+                        </View>
+                
+                        <View style={styles.divider}/>
+            
+                        <View>
+                            <View style={styles.contRow}>
+                                <View>
+                                    <Text styles={styles.productItemName}>와이셔츠</Text>
+                                    <Text style={{color:'#888'}}>2개 x 3,000원</Text>
+                                </View>
+                                <Text style={{fontSize:14,}}>19,800원</Text>
+                            </View>
+                            <Text style={{fontSize:11,marginTop:10,color:'#D20A61',padding:5,backgroundColor:'#FBEEF3'}}>- 수량이 변경되었습니다</Text>
+                        </View>
+
+                        <View style={styles.divider}/>
+                        <View>
+                            <View style={styles.contRow}>
+                                <View>
+                                    <Text styles={styles.productItemName}>청바지</Text>
+                                    <Text style={{color:'#888'}}>1개 x 4,000원</Text>
+                                </View>
+                                <Text style={{fontSize:14,}}>4,000원</Text>
+                            </View>
+                            <Text style={{fontSize:11,marginTop:10,color:'#D20A61',padding:5,backgroundColor:'#FBEEF3'}}>- 상품이 추가되었습니다</Text>
+                        </View>
+                    </View>
+                </View>
+
+                <View style={styles.section}>
+                    <View style={styles.sectionTitle}>
+                        <Text style={styles.sectionTitleText}>결제정보</Text>
+                    </View>
+                    <View style={styles.sectionCont}>
+                        <View>
+                            <View style={[styles.contRow,{marginBottom:10,}]}>
+                                <Text style={{color:'#888'}}>상품합계</Text>
+                                <Text>29,800원</Text>
+                            </View>
+                            <View style={[styles.contRow,{marginBottom:10,}]}>
+                                <Text style={{color:'#888'}}>검수 후 추가</Text>
+                                <Text>4,500원</Text>
+                            </View>
+                            <View style={[styles.contRow,{marginBottom:10,}]}>
+                                <Text style={{color:'#888'}}>배송비</Text>
+                                <Text>0원</Text>
+                            </View>
+                            <View style={[styles.contRow,]}>
+                                <Text style={{color:'#888'}}>취소수수료</Text>
+                                <Text>0원</Text>
+                            </View>
+                        </View>
+                       <View style={styles.divider}></View>
+                        <View>
+                            <View style={[styles.contRow,{marginBottom:10,}]}>
+                                <Text style={{color:'#888'}}>쿠폰할인</Text>
+                                <Text>-5,000원</Text>
+                            </View>
+                            <View style={styles.contRow}>
+                                <Text style={{color:'#888'}}>이벤트할인</Text>
+                                <Text>-3,000원</Text>
+                            </View>
+                        </View>
+                       <View style={styles.divider}></View>
+                       <View>
+                            <View style={[styles.contRow,{marginBottom:10}]}>
+                                <Text style={{color:'#888'}}>결제금액</Text>
+                                <Text style={{color:'#D20A61'}}>32,000원</Text>
+                            </View>
+                            <View style={[styles.contRow,{marginBottom:10}]}>
+                                <Text style={{color:'#888'}}>추가결제금액</Text>
+                                <Text>4,500원</Text>
+                            </View>
+                            <View style={styles.contRow}>
+                                <Text style={{color:'#888'}}>결제수단</Text>
+                                <Text>신한카드(0811)</Text>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+              
+            </ScrollView>
+
+            <ImageView 
+                visible={imageView}
+                close={()=>setImageView(false)}
             />
 
         </View>
@@ -275,19 +353,51 @@ export default props => {
 }
 
 const styles = StyleSheet.create({
-    date:{
-        fontSize:10,color:'#292929',marginBottom:3
+    section:{
+        marginBottom:20,
+        backgroundColor:'#fff'
     },
-    time:{
-        fontSize:12,color:'#292929',borderWidth:1,textAlign:'center',borderRadius:3,borderColor:'#396eee'
+    sectionTitle:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between',
+        height:50,
+        paddingHorizontal:20,
+        borderBottomWidth:1,
+        borderColor:'#e2e2e2',
     },
-    image:{
-        width:50,height:50,borderRadius:50,marginRight:10
+    sectionTitleText:{
+        fontSize:16,
+        color:'#01a1dd'
     },
-    title:{
+    sectionCont:{       
+        padding:20,
+    },
+    sectionContTitle:{
+        fontSize:16,
+        color:'#494949',
+        marginBottom:10,
+    },
+    contRow:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between',
+    },
+    boxItem:{
+        marginBottom:10,
+        padding:15,
+        borderWidth:1,
+        borderColor:'#e2e2e2',
+        borderRadius:5,
+    },
+    productItemName:{
+        marginBottom:5,
         fontSize:16,
     },
-    description:{
-        fontSize:12,color:'#898989'
+
+    divider:{
+        height:1,
+        backgroundColor:'#e2e2e2',
+        marginVertical:20
     }
 })

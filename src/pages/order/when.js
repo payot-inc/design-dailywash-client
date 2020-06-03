@@ -2,45 +2,49 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet, TouchableHighlight, ScrollView, Dimensions, TouchableOpacity,TextInput, Modal, Image} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import ImageConfirm from '../../components/imageConfirm';
+import OrderFirstGuide from '../../components/orderFirstGuide';
 import faker from 'faker';
 
 export default props => {
 
-    const DateSelect = [
+    const dayTable = [
         {
-            on:true,
-            date:'내일',
-            dateText:'',
+            state:false,
+            day:'24일',
+            dayText:'월요일',
         },
         {
-            on:false,
-            date:'25일',
-            dateText:'화요일'
+            state:false,
+            day:'25일',
+            dayText:'화요일'
         },
         {
-            on:false,
-            date:'26일',
-            dateText:'목요일'
+            state:false,
+            day:'26일',
+            dayText:'수요일'
         },
         {
-            on:false,
-            date:'27일',
-            dateText:'금요일'
+            state:false,
+            day:'27일',
+            dayText:'목요일'
         },
     ]
 
-    const itemSelectHandle = {
+    const [dayItem, setDayItem] = useState(dayTable);
 
+    const daySelectHandle = index => {
+        const baseData = [...dayTable];
+        baseData[index].state = !dayItem[index].state
+        setDayItem(baseData);
     }
 
     const [modalVisible, setModalVisible] = useState(false);
     const sliderWidth = Dimensions.get('window').width;
 
     return(
-        <View style={{flex:1,backgroundColor:'#F5F6F8'}}>
+        <View style={{flex:1,}}>
 
-            <ImageConfirm
+            <OrderFirstGuide
                 goTo={()=> props.navigation.navigate('priceTable')}
                 visible={modalVisible}
                 close={()=> setModalVisible(false)}
@@ -50,135 +54,136 @@ export default props => {
             />
 
             <ScrollView
-                contentContainerStyle={{paddingVertical:20,paddingHorizontal:25}}
+                contentContainerStyle={{}}
             >
-                <View style={{marginBottom:25,paddingBottom:25,borderBottomWidth:1,borderColor:'#e2e2e2'}}>
-                    <View style={{marginBottom:15}}>
-                        <Text style={{fontSize:16}}>수거기사</Text>
-                    </View>
-                    <View style={{flexDirection:'row',alignItems:'center',borderWidth:1,borderColor:'#e2e2e2',padding:15,backgroundColor:'#fff',borderRadius:10}}>
-                        <Image source={{uri:faker.image.avatar()}} style={{width:70,height:70,borderRadius:10}}/>
-                        <View style={{marginLeft:15}}>
-                            <Text style={{fontSize:16}}>박수민<Text style={{fontSize:12,color:'#888'}}>(베르나딘)</Text></Text>
-                            <Text style={{marginTop:5}}>010-8525-0000</Text>
-                            <Text style={{marginTop:5,fontSize:12,color:'#888'}}>오늘도 즐거운 하루되세요!</Text>
-                        </View>
-                    </View>
-                </View>
-                <View style={{marginBottom:25,paddingBottom:25,borderBottomWidth:1,borderColor:'#e2e2e2'}}>
-                    <View style={{marginBottom:15}}>
+                <View style={{borderBottomWidth:1,borderColor:'#e2e2e2',paddingVertical:30,backgroundColor:'#f2f2f2'}}>
+                    <View style={{marginBottom:30,alignItems:'center'}}>
                         <Text style={{fontSize:16}}>수거날짜 선택</Text>
-                        <Text style={{fontSize:13,color:'#9a9a9a',marginTop:5}}>희망하시는 수거날짜를 선택해주세요</Text>
+                        <Text style={{fontSize:13,color:'#888',marginTop:5}}>희망하시는 수거날짜를 선택해주세요</Text>
                     </View>
                     <Carousel
-                        data={DateSelect}
-                        itemWidth={90}
+                        data={dayTable}
+                        itemWidth={110}
                         sliderWidth={sliderWidth}
                         activeSlideAlignment={'start'}
-                        containerCustomStyle={{}}
+                        containerCustomStyle={{paddingLeft:30,}}
                         slideStyle={{marginRight:10}}
                         inactiveSlideScale={1}
                         layoutCardOffset={10}
-                        renderItem={({item, index})=>
+                        renderItem={({item, index}) => 
                             <TouchableOpacity 
-                                 style={item.on === true ? styles.selectOn : styles.selectOff} 
+                                onPress={()=> daySelectHandle(index)}
                             >
-                                <Text style={{fontSize:20}}>{item.date}</Text>
-                                {item.dateText === '' ? null : <Text style={{fontSize:12,}}>{item.dateText}</Text>}
+                                <View style={[item.state ? styles.dayActive : styles.dayItem ]}>
+                                    <Text style={item.state ? styles.dayActiveNumber : styles.dayItemNumber}>{item.day}</Text>
+                                    <Text style={item.state ? styles.dayActiveText : styles.dayItemText}>{item.dayText}</Text>
+                                </View>
                             </TouchableOpacity>
                         }
                     />
                 </View>
 
+                <View style={styles.inner}>
 
-                <View style={{marginBottom:25,paddingBottom:25,borderBottomWidth:1,borderColor:'#e2e2e2'}}>
-                    <View style={{marginBottom:15}}>
-                        <Text style={{fontSize:16}}>수거시간 선택</Text>
-                        <Text style={{fontSize:13,color:'#9a9a9a',marginTop:5}}>주문량에 따라 수거시간이 변경될 수 있습니다</Text>
-                    </View>
-                    <View style={{flexDirection:'row'}}>
-                        <TouchableOpacity 
-                            style={[styles.selectOff,{marginRight:5}]}
-                        >
-                            <Image source={require('../../assets/img/morning.png')} resizeMode={'contain'} style={{width:'100%',height:120}}/>
-                            <View style={{marginTop:5}}>
-                                <Text style={{color:'#396EEE',textAlign:'center'}}>
-                                    오전
-                                </Text>
-                                <Text style={{textAlign:'center'}}>
-                                    08:00 ~ 11:00
-                                </Text>
+                    <View style={{marginBottom:40}}>
+                        <View style={{marginBottom:15}}>
+                            <Text style={{fontSize:16}}>담당기사</Text>
+                        </View>
+                        <View style={{flexDirection:'row',alignItems:'center',borderWidth:1,borderColor:'#e2e2e2',padding:15,backgroundColor:'#fff',borderRadius:5}}>
+                            <Image source={{uri:faker.image.avatar()}} style={{width:70,height:70,borderRadius:5}}/>
+                            <View style={{marginLeft:15}}>
+                                <Text style={{fontSize:16}}>박수민<Text style={{fontSize:12,color:'#888'}}>(베르나딘)</Text></Text>
+                                <Text style={{marginTop:5}}>010-8525-0000</Text>
+                                <Text style={{marginTop:5,fontSize:12,color:'#888'}}>오늘도 즐거운 하루되세요!</Text>
                             </View>
-                        </TouchableOpacity>
+                        </View>
+                    </View>
                     
-                        <TouchableOpacity
-                            style={[styles.selectOff,{marginLeft:5}]}
-                        >
-                            <Image source={require('../../assets/img/evening.png')} resizeMode={'contain'} style={{width:'100%',height:120}}/>
-                            <View style={{marginTop:5}}>
-                                <Text style={{color:'#E33A16',textAlign:'center'}}>
-                                    오후
-                                </Text>
-                                <Text style={{textAlign:'center'}}>
-                                    15:00 ~ 17:00
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>
 
-                <View style={{marginBottom:25,paddingBottom:25,borderBottomWidth:1,borderColor:'#e2e2e2'}}>
-                    <View style={{marginBottom:15}}>
-                        <Text style={{fontSize:16}}>수거방식 선택</Text>
+                    <View style={{marginBottom:40,}}>
+                        <View style={{marginBottom:15}}>
+                            <Text style={{fontSize:16}}>수거시간 선택</Text>
+                            <Text style={{fontSize:13,color:'#9a9a9a',marginTop:5}}>주문량에 따라 수거시간이 변경될 수 있습니다</Text>
+                        </View>
+                        <View>
+                            <TouchableOpacity 
+                                style={[{borderWidth:1,borderColor:'#01a1dd',borderRadius:5},styles.activeBar]}
+                            >
+                                <View style={{height:40,flexDirection:'row',alignItems:'center',paddingHorizontal:10}}>
+                                    <Icon name="check-circle" size={20} color={'#01a1dd'} style={styles.activeIcon}></Icon>
+                                    <Text style={{marginLeft:10,}}>
+                                        오전 08:00 ~ 11:00
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
+                        
+                            <TouchableOpacity 
+                                style={[{borderWidth:1,borderColor:'#e2e2e2',marginTop:10,borderRadius:5}]}
+                            >
+                                <View style={{height:40,flexDirection:'row',alignItems:'center',paddingHorizontal:10,}}>
+                                    <Icon name="check-circle" size={20} color={'#c2c2c2'} ></Icon>
+                                    <Text style={{marginLeft:10,}}>
+                                        오후 15:00 ~ 17:00
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={{flexDirection:'row'}}>
-                        <TouchableOpacity
-                            style={[styles.selectOff,{marginRight:5}]}
-                        >
-                            <Image source={require('../../assets/img/service01.png')} resizeMode={'contain'} style={{width:'100%',height:120}}/>
-                            <View style={{marginTop:20}}>
-                                <Text style={{textAlign:'center'}}>
-                                    만나서 드릴게요
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={[styles.selectOff,{marginLeft:5}]}
-                        >
-                            <Image source={require('../../assets/img/service02.png')} resizeMode={'contain'} style={{width:'100%',height:120}}/>
-                            <View style={{marginTop:20}}>
-                                <Text style={{textAlign:'center'}}>
-                                    집앞에 둘게요
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>
 
-                <View style={{}}>
-                    <View style={{marginBottom:15}}>
-                        <Text style={{fontSize:16}}>요청사항</Text>
+                    <View style={{marginBottom:40,}}>
+                        <View style={{marginBottom:15}}>
+                            <Text style={{fontSize:16}}>수거방식 선택</Text>
+                        </View>
+                        <View style={{}}>
+                            <TouchableOpacity 
+                                style={[{borderWidth:1,borderColor:'#01a1dd',borderRadius:5}]}
+                            >
+                                <View style={{height:40,flexDirection:'row',alignItems:'center',paddingHorizontal:10,}}>
+                                    <Icon name="check-circle" size={20} color={'#01a1dd'} ></Icon>
+                                    <Text style={{marginLeft:10,}}>
+                                        문 앞에 둘게요 비대면 수거 부탁드려요
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity 
+                                style={[{borderWidth:1,borderColor:'#e2e2e2',borderRadius:5,marginTop:10}]}
+                            >
+                                <View style={{height:40,flexDirection:'row',alignItems:'center',paddingHorizontal:10,}}>
+                                    <Icon name="check-circle" size={20} color={'#c2c2c2'} ></Icon>
+                                    <Text style={{marginLeft:10,}}>
+                                        직접 만나서 드릴게요
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <TextInput
-                        multiline
-                        numberOfLines={5}
-                        style={{borderWidth:1,borderRadius:10,borderColor:'#d2d2d2',padding:10,textAlignVertical:'top',backgroundColor:'#fff'}}
-                        placeholder={'필요하신 사항을 입력해주세요'}
-                        maxLength={50}
-                    >
-                    </TextInput>
-                </View>   
+
+                    <View style={{marginBottom:50,}}>
+                        <View style={{marginBottom:15}}>
+                            <Text style={{fontSize:16}}>요청사항</Text>
+                        </View>
+                        <TextInput
+                            multiline
+                            numberOfLines={5}
+                            style={{borderWidth:1,borderColor:'#d2d2d2',padding:10,textAlignVertical:'top',backgroundColor:'#fff',borderRadius:5}}
+                            placeholder={'필요하신 사항을 입력해주세요'}
+                            maxLength={50}
+                        >
+                        </TextInput>
+                    </View>
+                </View> 
             </ScrollView>
 
-            <View style={{borderTopWidth:1,paddingHorizontal:10,paddingVertical:10,borderColor:'#d2d2d2',backgroundColor:'#fff'}}>
-                <TouchableHighlight
-                    onPress={() => {setModalVisible(true)}}
-                    style={{height:45,backgroundColor:'#292929',borderRadius:5,alignItems:'center',justifyContent:'center',}}
-                >
-                    <Text style={{color:'#fff'}}>다음으로</Text>
-                </TouchableHighlight>
-            </View>
-            
+        
+            <TouchableHighlight
+                onPress={() => {setModalVisible(true)}}
+                style={{height:50,backgroundColor:'#01a1dd',alignItems:'center',justifyContent:'center',}}
+                underlayColor="#00B9FF"
+            >
+                <Text style={{color:'#fff',fontSize:16}}>다음으로</Text>
+            </TouchableHighlight>
+           
         </View>
 
     )
@@ -186,12 +191,45 @@ export default props => {
 }
 
 const styles = StyleSheet.create({
-    selectOff:{
-        flex:1,padding:15,borderWidth:1,borderColor:'#e2e2e2',borderRadius:10,backgroundColor:'#fff',
-        justifyContent:'center',alignItems:'center'
+    inner:{
+        padding:20
     },
-    selectOn:{
-        flex:1,padding:15,borderWidth:1,borderColor:'#396EEE',borderRadius:10,backgroundColor:'#fff',
-        justifyContent:'center',alignItems:'center'
-    }
+
+    dayItem:{
+        borderWidth:1,
+        borderColor:'#e2e2e2',
+        backgroundColor:'#fff',
+        borderRadius:5,
+        height:80,
+        padding:10,
+        justifyContent:'space-between'
+    },
+    dayActive:{
+        borderWidth:0,
+        borderColor:'#e2e2e2',
+        backgroundColor:'#01a1dd',
+        borderRadius:5,
+        height:80,
+        padding:10,
+        justifyContent:'space-between'
+    },
+    dayItemNumber:{
+        fontSize:18,
+        color:'#494949'
+    },
+    dayActiveNumber:{
+        fontSize:18,
+        color:'#fff'
+    },
+    dayItemText:{
+        fontSize:14,
+        textAlign:'right',
+        color:'#494949'
+    },
+    dayActiveText:{
+        fontSize:14,
+        textAlign:'right',
+        color:'#fff'
+    },
+
 })

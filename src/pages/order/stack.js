@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {createStackNavigator} from 'react-navigation-stack';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Spot from './spot';
 import When from './when';
@@ -47,37 +47,46 @@ const orderStack = createStackNavigator(
 
         return (
 
-        <View style={position === 2 || position === 3 ? {backgroundColor:'#fff'} : {backgroundColor:'#F5F6F8'}}>
-            <View style={{height:120,backgroundColor:'#396eee'}}>
-              <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+          <View style={{height:130,backgroundColor:'#fff'}}>
+            <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+              <TouchableOpacity
+                  style={{width:60,height:60,alignItems:'center',justifyContent:'center'}}
+                  onPress={()=>{
+                      if (position === 0) { navigation.goBack() }
+                      else {navigation.pop()}
+                  }}
+              >
+                  <Icon name={'arrow-left'} color={'#494949'} size={24}></Icon>
+              </TouchableOpacity>
+              <View style={{flexDirection:'row',alignItems:'center'}}>
                 <TouchableOpacity
-                    style={{width:50,height:50,alignItems:'center',justifyContent:'center'}}
-                    onPress={()=>{
-                        if (position === 0) { navigation.goBack() }
-                        else {navigation.pop()}
-                    }}
+                  onPress={()=> navigation.navigate('main')}
+                  style={{width:60,height:60,alignItems:'center',justifyContent:'center'}}
                 >
-                    <Icon name={'arrow-left'} color={'#fff'} size={18}></Icon>
+                  <Icon name={'chat-processing'} color={'#01a1dd'} size={24} />
+                  <Text style={{fontSize:10}}>문의하기</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={()=> navigation.navigate('main')}
-                  style={{width:50,height:50,alignItems:'center',justifyContent:'center'}}
+                  style={{width:60,height:60,alignItems:'center',justifyContent:'center'}}
                 >
-                  <Icon name={'home'} color={'#fff'} size={18} />
+                  <Icon name={'home'} color={'#c2c2c2'} size={24} />
+                  <Text style={{fontSize:10}}>메인으로</Text>
                 </TouchableOpacity>
               </View>
-              <View style={{height:70,justifyContent:'flex-start',paddingHorizontal:15}}>
-                  <View style={{flexDirection:'row',alignItems:'center'}}>
-                      <Text style={{color:'#fff',marginRight:5,}}>STEP</Text>
-                      <Text style={{color:'#fff',marginRight:5,fontWeight:'bold',fontSize:16}}>{pageNumber}</Text>
-                      <Text style={{color:'rgba(255,255,255,0.6)'}}>/ 04</Text>
-                  </View>
-                  <Text style={{fontSize:21,color:'#fff'}}>
-                    {title}
-                  </Text>
-              </View>
             </View>
-        </View>
+            <View style={{height:70,justifyContent:'flex-start',paddingHorizontal:15}}>
+                <View style={{flexDirection:'row',alignItems:'center'}}>
+                    <Text style={{color:'#494949',marginRight:5,}}>STEP</Text>
+                    <Text style={{color:'#01a1dd',marginRight:5,fontWeight:'bold',fontSize:16}}>{pageNumber}</Text>
+                    <Text style={{color:'#888'}}>/ 4</Text>
+                </View>
+                <Text style={{fontSize:21,color:'#494949',marginTop:5}}>
+                  {title}
+                </Text>
+            </View>
+          </View>
+
         );
       },
     },
