@@ -74,7 +74,7 @@ export default props => {
             // </TouchableOpacity>
 
             <TouchableOpacity
-              style={{flexDirection:'row',alignItems:'center',paddingVertical:20,borderWidth:1,borderColor:'#e2e2e2',borderRadius:5,marginBottom:10,}}
+              style={{flexDirection:'row',alignItems:'center',paddingVertical:15,borderWidth:1,borderColor:'#e2e2e2',borderRadius:5,marginBottom:10,}}
               onPress={() => props.navigation.navigate('myOrderDetail', { item: item })}
             >
               <View style={{justifyContent:'center',alignItems:'center',width:80,}}>
@@ -83,14 +83,14 @@ export default props => {
                 <Text style={{fontSize:12,color:'#888'}}>10:15</Text>
               </View>
     
-              <View style={{flex:1,flexDirection:'row',justifyContent:'space-between',alignItems:'flex-end',paddingRight:20,borderLeftWidth:1,paddingLeft:20,borderColor:'#e2e2e2'}}>
-                <View style={{flex:1,marginRight:15,}}>
+              <View style={{flex:1,flexDirection:'row',justifyContent:'space-between',alignItems:'flex-end',borderLeftWidth:1,paddingHorizontal:15,borderColor:'#e2e2e2'}}>
+                <View style={{flex:1}}>
                   <View style={{flexDirection:'row',marginBottom:10}}>
-                    <Text style={{fontSize:11,backgroundColor:'#01a1dd',color:'#fff',height:20,lineHeight:20,paddingHorizontal:5,borderRadius:3,marginRight:5,}}>배송완료</Text>
-                    {/* <Text style={{fontSize:11,backgroundColor:'#46BF33',color:'#fff',height:20,lineHeight:20,paddingHorizontal:5,borderRadius:3,marginRight:5,}}>배송중</Text>
+                    {/* <Text style={{fontSize:11,backgroundColor:'#01a1dd',color:'#fff',height:20,lineHeight:20,paddingHorizontal:5,borderRadius:3,marginRight:5,}}>배송완료</Text> */}
+                    {/* <Text style={{fontSize:11,backgroundColor:'#46BF33',color:'#fff',height:20,lineHeight:20,paddingHorizontal:5,borderRadius:3,marginRight:5,}}>배송중</Text> */}
                     <Text style={{fontSize:11,backgroundColor:'#5D21FF',color:'#fff',height:20,lineHeight:20,paddingHorizontal:5,borderRadius:3,marginRight:5,}}>접수완료</Text>
-                    <Text style={{fontSize:11,backgroundColor:'#FF7700',color:'#fff',height:20,lineHeight:20,paddingHorizontal:5,borderRadius:3,marginRight:5,}}>수거중</Text>
-                    <Text style={{fontSize:11,backgroundColor:'#aaa',color:'#fff',height:20,lineHeight:20,paddingHorizontal:5,borderRadius:3}}>주문취소</Text> */}
+                    {/* <Text style={{fontSize:11,backgroundColor:'#FF7700',color:'#fff',height:20,lineHeight:20,paddingHorizontal:5,borderRadius:3,marginRight:5,}}>수거중</Text> */}
+                    {/* <Text style={{fontSize:11,backgroundColor:'#aaa',color:'#fff',height:20,lineHeight:20,paddingHorizontal:5,borderRadius:3}}>주문취소</Text> */}
                   </View>
                   <View style={{flexDirection:'row',alignItems:'flex-start',marginBottom:5}}>
                     <Text style={{width:60,fontSize:12,color:'#888'}}>주소</Text>
@@ -105,7 +105,7 @@ export default props => {
                     <Text style={{fontSize:12,flex:1,}}>-</Text>
                   </View>
                   <View style={{borderTopWidth:1,borderColor:'#e2e2e2',marginTop:10,borderStyle:'dashed'}}>
-                    <Text style={{fontSize:16,marginTop:10,fontWeight:'bold',color:'#D20A55',textAlign:'right'}}>{numeral(item.amount).format('0,0')} 원</Text>
+                    <Text style={{fontSize:14,marginTop:10,fontWeight:'bold',color:'#D20A55',textAlign:'right'}}>{numeral(item.amount).format('0,0')} 원</Text>
                   </View>
                 </View>
               </View>

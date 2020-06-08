@@ -58,7 +58,16 @@ const TabContainer = props => {
                 ListHeaderComponent={()=>
                     <View style={{paddingHorizontal:20,paddingVertical:10,flexDirection:'row',alignItems:'center',backgroundColor:'#E4F2F8',borderBottomWidth:1,borderColor:'#e2e2e2'}}>
                         <Icon name="alert-circle" size={50} color={'#01a1dd'}></Icon>
-                        <Text style={{flex:1,marginLeft:10}}>세탁물의 소재, 오염정도, 고가명품등에 따라 추가요금이 발생될 수 있습니다</Text>
+                        <View style={{flex:1,marginLeft:10,}}>
+                            <Text style={{fontSize:12}}>세탁물의 소재, 오염정도, 고가명품등에 따라 추가요금이 발생될 수 있습니다</Text>
+                            <TouchableOpacity
+                                style={{marginTop:3,flexDirection:'row',alignItems:'center'}}
+                                onPress={()=>setAlertModal(true)}
+                            >
+                                <Text style={{fontSize:12,color:'#01a1dd',marginRight:2}}>이용불가품목 확인하기</Text>
+                                <Icon name="chevron-right" size={16} color={'#01a1dd'}/>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 }
             />
@@ -109,7 +118,7 @@ const TabContainer = props => {
     }
 
     const [basketVisible , setBasketVisible] = useState(false)
-    const [alertModal, setAlertModal] = useState(true);
+    const [alertModal, setAlertModal] = useState(false);
 
     return(
         <View style={{flex:1}}>
