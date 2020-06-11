@@ -36,72 +36,116 @@ export default props => {
  return (
     <Modal 
       visible={props.visible}
-      animationType="fade"
+      animationType="slide"
       onRequestClose={props.close}
-      transparent={true}
     >
-      <View style={{padding:20,flex:1,justifyContent:'center'}}>
-        <View style={{backgroundColor:'#fff',elevation:10,borderRadius:10,position:'relative',paddingVertical:20,zIndex:2,maxHeight:'100%'}}>
-          <View style={{paddingHorizontal:20,}}>
-            <TouchableOpacity
-              onPress={props.close}
-              style={{position:'absolute',right:20,top:0,width:30,height:30,justifyContent:'center',alignItems:'center',backgroundColor:'#f2f2f2',zIndex:99,borderRadius:5}}
-            >
-              <Icon name="close" size={30} color={'#d2d2d2'}></Icon>
-            </TouchableOpacity>
+      <View style={{flex:1,justifyContent:'flex-start'}}>
 
-            <View style={{justifyContent:'center',alignItems:'center'}}>
-              <Image source={require('../assets/img/logo_v_blue.png')} style={{resizeMode:'contain',height:100}}/>
-              <Text style={{marginTop:10,fontSize:12,color:'#888',textAlign:'center'}}>데일리세탁 부산 금정구</Text>
-            </View>
+        <View style={{padding:20,paddingBottom:0,}}>
+          <TouchableOpacity
+            onPress={props.close}
+            style={{position:'absolute',right:10,top:10,width:40,height:40,justifyContent:'center',alignItems:'center',backgroundColor:'#f2f2f2',zIndex:99,borderRadius:20}}
+          >
+            <Icon name="close" size={30} color={'#d2d2d2'}></Icon>
+          </TouchableOpacity>
 
-            <View style={{flexDirection:'row',borderTopWidth:1,borderBottomWidth:1,paddingVertical:10,marginVertical:20,borderColor:'#e2e2e2'}}>
-              <View style={{flex:1,justifyContent:'space-between',borderRightWidth:1,paddingRight:10,borderColor:'#e2e2e2'}}>
-                <Text style={{fontSize:11,color:'#888'}}>RECEIPT NO:</Text>
-                <Text style={{textAlign:'right',marginTop:5,fontSize:13,}}> 0809</Text>
-              </View>
-              <View style={{flex:1,justifyContent:'space-between',marginHorizontal:10}}>
-                <Text style={{fontSize:11,color:'#888'}}>DATE:</Text>
-                <Text style={{textAlign:'right',marginTop:5,fontSize:13,}}>12/06/2020</Text>
-              </View>
-              <View style={{flex:1,justifyContent:'space-between',borderLeftWidth:1,paddingLeft:10,borderColor:'#e2e2e2'}}>
-                <Text style={{fontSize:11,color:'#888'}}>STAFF:</Text>
-                <Text style={{textAlign:'right',marginTop:5,fontSize:13,}}>김지민</Text>
-              </View>
-            </View>
+          <View style={{justifyContent:'center',alignItems:'center'}}>
+            <Image source={require('../assets/img/logo_v_blue.png')} style={{resizeMode:'contain',height:100}}/>
+            <Text style={{marginTop:10,fontSize:12,color:'#888',textAlign:'center'}}>데일리세탁 부산 금정구</Text>
           </View>
 
-          <FlatList 
-            data={data}
-            contentContainerStyle={{
-              paddingHorizontal:20,
-            }}
-            renderItem={({item}) => (
-              <View style={{flexDirection:'row',marginBottom:10}}>
-                <Text style={{flex:1,}}>{item.itemName}</Text>
-                <Text style={{width:30,textAlign:'center'}}>{item.amount}</Text>
-                <Text style={{width:80,textAlign:'right'}}>{item.price}</Text>
-              </View>
-            )}
-            keyExtractor={ (index) => {index}}
-          />
-
-          <View style={{paddingHorizontal:20,}}>
-            <View style={{marginBottom:10,borderTopWidth:1,borderColor:'#e2e2e2',marginTop:20,paddingTop:15,}}>
-              <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                <Text style={{flex:1,}}>주문금액</Text>
-                <Text style={{flexBasis:80,textAlign:'right',fontWeight:'bold'}}>21,800</Text>
-              </View>
-            </View> 
-
-            <Text style={{textAlign:'center',fontSize:11,color:'#ccc',marginTop:20,}}>THANK YOU</Text>
-
+          <View style={{flexDirection:'row',borderTopWidth:1,borderBottomWidth:1,borderColor:'#e2e2e2',marginTop:20,paddingVertical:10,}}>
+            <View style={{flex:1,justifyContent:'space-between',borderRightWidth:1,paddingRight:10,borderColor:'#e2e2e2'}}>
+              <Text style={{fontSize:10,color:'#888'}}>RECEIPT NO:</Text>
+              <Text style={{textAlign:'right',marginTop:5,fontSize:13,}}> 0809</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'space-between',marginHorizontal:10}}>
+              <Text style={{fontSize:10,color:'#888'}}>DATE:</Text>
+              <Text style={{textAlign:'right',marginTop:5,fontSize:13,}}>12/06/2020</Text>
+            </View>
+            <View style={{flex:1,justifyContent:'space-between',borderLeftWidth:1,paddingLeft:10,borderColor:'#e2e2e2'}}>
+              <Text style={{fontSize:10,color:'#888'}}>STAFF:</Text>
+              <Text style={{textAlign:'right',marginTop:5,fontSize:13,}}>김지민</Text>
+            </View>
           </View>
         </View>
+
+        <ScrollView>
+
+          <View style={{paddingHorizontal:20,paddingVertical:30,}}>
+            <View style={{marginBottom:10,justifyContent:'space-around'}}>
+              <Text style={{color:'#494949',zIndex:2,fontSize:16,}}>고객님이 주문한 상품</Text>
+            </View>
+
+            <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center',backgroundColor:'#f8f8f8',padding:5,marginBottom:5,}}>
+              <Text style={{flex:1,fontSize:12}}>생활빨래 80리터</Text>
+              <Text style={{width:30,fontSize:12}}>1개</Text>
+              <Text style={{width:60,textAlign:'right',fontSize:12}}>19,800원</Text>
+            </View>
+            <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center',backgroundColor:'#f8f8f8',padding:5,marginBottom:5,}}>
+              <Text style={{flex:1,fontSize:12}}>와이셔츠</Text>
+              <Text style={{width:30,fontSize:12}}>3개</Text>
+              <Text style={{width:60,textAlign:'right',fontSize:12}}>4,500원</Text>
+            </View>
+   
+          <View style={{height:1,backgroundColor:'#e2e2e2',marginVertical:30,}}/>
+         
+            <View style={{marginBottom:10,justifyContent:'space-around'}}>
+              <Text style={{color:'#494949',zIndex:2,fontSize:16,}}>검수완료된 품목</Text>
+            </View>
+            <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center',backgroundColor:'#EFF4F6',padding:5,marginBottom:5,}}>
+              <Text style={{width:70,color:'#01a1dd',fontSize:12}}>변경없음</Text>
+              <Text style={{flex:1,fontSize:12}}>생활빨래 80리터</Text>
+              <Text style={{width:30,fontSize:12}}>1개</Text>
+              <Text style={{width:60,textAlign:'right',fontSize:12}}>19,800원</Text>
+            </View>
+            <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center',backgroundColor:'#EFF4F6',padding:5,marginBottom:5,}}>
+              <Text style={{width:70,color:'#d22828',fontSize:12}}>수량변경</Text>
+              <Text style={{flex:1,fontSize:12}}>와이셔츠</Text>
+              <Text style={{width:30,fontSize:12,color:'#d22828'}}>4개</Text>
+              <Text style={{width:60,textAlign:'right',fontSize:12,color:'#d22828'}}>6,000원</Text>
+            </View>
+  
+
+          <View style={{height:1,backgroundColor:'#e2e2e2',marginVertical:30,}}/>
+
+      
+          <View style={{marginBottom:10,justifyContent:'space-around'}}>
+            <Text style={{color:'#494949',zIndex:2,fontSize:16,}}>추가 세탁금액</Text>
+          </View>
+          <View>
+            <Text style={{marginBottom:10,color:'#888',fontSize:12,}}>와이셔츠에 심각한 오염이 있어 고급세탁을 진행하였습니다</Text>
+            <Text style={{textAlign:'right',color:'#d22828'}}>3,000원</Text>
+          </View>
+        </View>
+
+        <View style={{paddingHorizontal:20,paddingVertical:30,backgroundColor:'#F9EEF3'}}>
+          <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginBottom:10,}}>
+            <Text style={{color:'#888'}}>검수로 변경된 금액</Text>
+            <Text style={{color:'#494949'}}>9,000원</Text>
+          </View>
+          <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',}}>
+            <Text style={{color:'#888'}}>추가 세탁금액</Text>
+            <Text style={{color:'#494949'}}>3,000원</Text>
+          </View>
+          <View style={{height:1,backgroundColor:'#c2c2c2',marginVertical:15,}}/>
+          <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+            <Text>합계</Text>
+            <Text style={{color:'#D20A61',fontWeight:'bold'}}>12,000원</Text>
+          </View>
+        </View>
+
+        </ScrollView>
+
+      <TouchableOpacity
+        style={{height:50,backgroundColor:'#D20A61',justifyContent:'center',alignItems:'center'}}
+      >
+        <Text style={{color:'#fff'}}><Text style={{fontWeight:'bold'}}>12,000원</Text> 추가금 결제하기</Text>
+      </TouchableOpacity>
+
+ 
       </View>
 
-      <View style={{position:'absolute',top:0,left:0,backgroundColor:'#000',zIndex:1,width:'100%',height:'100%',opacity:0.7}}/>
-      
     </Modal>
   )
 }

@@ -92,7 +92,7 @@ export default props => {
           style={{elevation:0}}
           disabled={false}
           labelStyle={{color:'#fff',letterSpacing:-0.7,fontSize:16,fontWeight:'bold'}}
-          contentStyle={{height:50,backgroundColor:'#396eee'}}
+          contentStyle={{height:50,backgroundColor:'#01a1dd'}}
           style={{borderRadius:0}}
           mode="contained"
           onPress={()=> props.navigation.navigate('home')}

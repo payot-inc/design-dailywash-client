@@ -43,20 +43,6 @@ export default props => {
   const [imageView, setImageView] = useState(false);
   const [receiptModal, setReceiptModal] = useState(false);
 
-  const styles = StyleSheet.create({
-    receiptBtn:{
-      borderWidth:1,
-      borderColor:'#e2e2e2',
-      width:200,
-      marginTop:10,
-      borderRadius:5,
-      justifyContent:'center',
-      alignItems:'center',
-      flexDirection:'row',
-      height:40
-    }
-  })
-
   return(
     <View style={{flex:1,backgroundColor:'#fff'}}>
       <View style={{backgroundColor:'#fff',flexDirection:'row',height:60}}>
@@ -78,13 +64,17 @@ export default props => {
         renderItem={({item, index})=>
           <View style={{flex:1,flexDirection:'row',alignItems:'flex-start',}}>
             <View style={{width:50,justifyContent:'flex-start',alignItems:'center'}}>
-              <View style={{width:10,height:10,backgroundColor:'#01a1dd',borderRadius:2,top:29,zIndex:2}}></View>
+              <View style={{width:10,height:10,backgroundColor:'#01a1dd',borderRadius:5,top:29,zIndex:2}}></View>
               <View style={{width:1,height:'100%',backgroundColor:'#01a1dd'}}></View>
             </View>
             <View style={[index === 0 ? {flex:1,paddingVertical:25,paddingRight:20,borderTopWidth:0} : {flex:1,paddingVertical:25,paddingRight:20,borderTopWidth:1,borderColor:'#e2e2e2',}]}>
-              <Text style={{color:'#01a1dd'}}>{item.date}</Text>
-              <Text style={{marginTop:5,fontSize:16,}}>{item.text}</Text>
-              { item.receipt ? <TouchableOpacity style={styles.receiptBtn} onPress={()=>setReceiptModal(true)}><Icon name="receipt" size={20} color={'#aaa'}></Icon><Text style={{marginLeft:10}}>인수증 확인하기</Text></TouchableOpacity> : null }
+              <Text style={{color:'#01a1dd',fontSize:12}}>{item.date}</Text>
+              <Text style={{marginTop:3,fontSize:14,}}>{item.text}</Text>
+              { item.receipt ? 
+              <TouchableOpacity style={styles.receiptBtn} onPress={()=>setReceiptModal(true)}>
+                <Icon name="receipt" size={20} color={'#01a1dd'}></Icon>
+                <Text style={{marginLeft:10}}>인수증 확인하기</Text>
+              </TouchableOpacity> : null }
               <View style={[item.image1 === null ? {display:'none'} : {flexDirection:'row',alignItems:'center',marginTop:15,}]}>
                 <TouchableOpacity
                   onPress={()=>setImageView(true)}
@@ -126,4 +116,18 @@ export default props => {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  receiptBtn:{
+    borderWidth:1,
+    borderColor:'#01a1dd',
+    width:200,
+    marginTop:10,
+    borderRadius:5,
+    justifyContent:'center',
+    alignItems:'center',
+    flexDirection:'row',
+    height:40
+  }
+})
 
