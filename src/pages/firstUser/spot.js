@@ -12,7 +12,7 @@ export default props => {
   }
 
   return(
-    <View style={{flex:1,backgroundColor:'#F4F5F8'}}>
+    <View style={{flex:1,backgroundColor:'#fff'}}>
       <ScrollView>
  
         <View style={{height:360,backgroundColor:'#292929',justifyContent:'center',alignItems:'center'}}>

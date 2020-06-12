@@ -75,33 +75,35 @@ export default props => {
                     }
                 }}
             >
-                <View style={styles.orderBtnWrap}>
-                    <TouchableHighlight
-                        onPress={()=>{props.navigation.navigate('order')}}
-                        underlayColor={'#E4F2F8'}
-                        style={{width:200,height:60,borderTopLeftRadius:30,borderBottomLeftRadius:30,backgroundColor:'#fff',zIndex:10}}
-                    >
-                        <View style={styles.orderStart}>
-                            <View style={{
-                                borderRadius:20,
-                                width:40,height:40,
-                                alignItems:'center',
-                                justifyContent:'center',
-                                backgroundColor:'#01a1dd',
-                                marginLeft:10,
-                            }}>
-                                <Icon name="arrow-right" color="#fff" size={20}></Icon>
-                            </View>
-                            <Text style={{fontSize:18,fontWeight:'bold',color:'#494949',marginLeft:10}}>세탁 예약하기</Text>
-                            
-                        </View>
-                    </TouchableHighlight>
-                </View>
+                
                 <View style={styles.mainVisual}>
                     <View style={styles.mainVisualInner}>
                         <MainVisual></MainVisual>
                     </View>
+                    
                 </View>
+                <View style={[styles.orderBtnWrap,{top:sliderWidth-30}]}>
+                        <TouchableHighlight
+                            onPress={()=>{props.navigation.navigate('order')}}
+                            underlayColor={'#E4F2F8'}
+                            style={{width:200,height:60,borderTopLeftRadius:30,borderBottomLeftRadius:30,backgroundColor:'#fff',zIndex:10}}
+                        >
+                            <View style={styles.orderStart}>
+                                <View style={{
+                                    borderRadius:20,
+                                    width:40,height:40,
+                                    alignItems:'center',
+                                    justifyContent:'center',
+                                    backgroundColor:'#01a1dd',
+                                    marginLeft:10,
+                                }}>
+                                    <Icon name="arrow-right" color="#fff" size={20}></Icon>
+                                </View>
+                                <Text style={{fontSize:18,fontWeight:'bold',color:'#494949',marginLeft:10}}>세탁 예약하기</Text>
+                                
+                            </View>
+                        </TouchableHighlight>
+                    </View>
 
                 
                 <View style={styles.inner}>
@@ -193,13 +195,13 @@ export default props => {
                     </View>
                 </View>
                 
-                <View style={{paddingVertical:20}}>
+                <View style={{paddingVertical:30}}>
                     <View style={{paddingHorizontal:20,}}>
                         <Text style={{fontSize:18,fontWeight:'bold'}}>데일리세탁 가이드</Text>
                         <Text style={{fontSize:12,color:'#888',marginTop:3}}>간편한 세탁예약시스템 직접 사용해보세요</Text>
                     </View>
                     
-                    <View style={{marginVertical:20}}>
+                    <View style={{marginTop:20}}>
                         <Carousel
                             layout={'default'}
                             layoutCardOffset={0}
@@ -230,18 +232,16 @@ export default props => {
                         />
 
                     </View>
+                </View>
 
-                    <View style={[styles.inner,{backgroundColor:'#fff',marginTop:20,}]}>
-                        <TouchableOpacity 
-                            onPress={()=>{}}
-                            style={{borderRadius:5,flexDirection:'row',backgroundColor:'#F9E000',justifyContent:'center',alignItems:'center',height:50,}}
-                        >
-                    
-                            <Icon name={'chat-processing'} color={'#3B1C1C'} size={24} />
-                            <Text style={{marginLeft:5,}}>그래도 궁금증이 해결이 안되셨나요?</Text>
-                    
-                        </TouchableOpacity>
-                    </View>
+                <View style={[{backgroundColor:'#fff',padding:20,}]}>
+                    <TouchableOpacity 
+                        onPress={()=>{}}
+                        style={{borderRadius:5,flexDirection:'row',backgroundColor:'#F9E000',justifyContent:'center',alignItems:'center',height:50,}}
+                    >
+                        <Icon name={'chat-processing'} color={'#3B1C1C'} size={24} />
+                        <Text style={{marginLeft:5,}}>그래도 궁금증이 해결이 안되셨나요?</Text>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
 
@@ -259,13 +259,11 @@ const styles = StyleSheet.create({
         backgroundColor:'#fff'
     },
     mainVisual:{
-        height:500,
         backgroundColor:'#01a1dd',
         borderWidth:0,
     },
     mainVisualInner:{
         backgroundColor:'#fff',
-        height:450,
         overflow:'visible',
         zIndex:1,
         elevation:5,
@@ -291,9 +289,8 @@ const styles = StyleSheet.create({
     orderBtnWrap:{
         position:'absolute',
         right:0,
-        top:420,
         height:50,
-        zIndex:1,
+        zIndex:3,
     },
 
     orderStart:{
@@ -315,7 +312,8 @@ const styles = StyleSheet.create({
 
     inner:{
         paddingHorizontal:20,
-        paddingBottom:30,
+        paddingTop:50,
+        paddingBottom:40,
         backgroundColor:'#01a1dd'
     },
 

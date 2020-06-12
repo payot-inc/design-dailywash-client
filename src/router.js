@@ -49,7 +49,7 @@ const AppSwitch = createSwitchNavigator(
     firstUser:FirstUser,
   },
   {
-    initialRouteName:'splash',
+    initialRouteName:'home',
   }
 )
 

@@ -31,7 +31,7 @@ const FirstUser = createStackNavigator(
     initialRouteName:'login',
     defaultNavigationOptions:{
       title:null,
-      headerStyle:{backgroundColor:'#F4F5F8',elevation:0,height:70},
+      headerStyle:{backgroundColor:'#F4F5F8',elevation:0,height:60},
     }
     
   }

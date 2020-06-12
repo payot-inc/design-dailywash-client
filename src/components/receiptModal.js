@@ -1,6 +1,5 @@
 import React,{useState} from 'react';
 import {View, Text, Modal,TouchableOpacity, Image, ScrollView, FlatList} from 'react-native';
-import {Appbar} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default props => {
@@ -137,13 +136,11 @@ export default props => {
 
         </ScrollView>
 
-      <TouchableOpacity
-        style={{height:50,backgroundColor:'#D20A61',justifyContent:'center',alignItems:'center'}}
-      >
-        <Text style={{color:'#fff'}}><Text style={{fontWeight:'bold'}}>12,000원</Text> 추가금 결제하기</Text>
-      </TouchableOpacity>
-
- 
+        <TouchableOpacity
+          style={{height:50,backgroundColor:'#D20A61',justifyContent:'center',alignItems:'center'}}
+        >
+          <Text style={{color:'#fff'}}><Text style={{fontWeight:'bold'}}>12,000원</Text> 추가금 결제하기</Text>
+        </TouchableOpacity>
       </View>
 
     </Modal>

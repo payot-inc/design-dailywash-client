@@ -87,7 +87,7 @@ export default props => {
                             <View style={[styles.contRow,{justifyContent:'flex-start'}]}>
                                 <TouchableOpacity 
                                     onPress={()=> setImageView(true)}
-                                    style={{width:60,height:60,backgroundColor:'#f2f2f2',marginRight:10,}}
+                                    style={{width:60,height:60,backgroundColor:'#f2f2f2',marginRight:10,borderRadius:5}}
                                 
                                 >
                                     <Image source={{uri:faker.image.business()}}/>
@@ -191,7 +191,7 @@ export default props => {
                     onRequestClose={()=>setCancleConfirm(false)}
                     >
                     <View style={{flex:1,justifyContent:'center'}}>
-                        <View style={{zIndex:2,padding:40,}}>
+                        <View style={{zIndex:2,padding:20,}}>
                             <View style={{backgroundColor:'#fff',borderRadius:5,padding:20,}}>
                                 <Text style={{fontSize:18,fontWeight:'bold'}}>세탁예약 취소하기</Text>
                                 <Text style={{marginTop:10,color:'#888'}}>지금은 <Text style={{color:'#D20A61'}}>무료취소</Text>가 가능합니다.</Text>

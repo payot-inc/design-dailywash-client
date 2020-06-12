@@ -1,5 +1,5 @@
 import React, { Children } from 'react';
-import {View, Text, Modal, TouchableOpacity,TouchableHighlight,ScrollView } from 'react-native';
+import {View, Text, Modal, TouchableOpacity,ScrollView } from 'react-native';
 
 export default props => {
   return(

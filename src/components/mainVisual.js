@@ -27,16 +27,16 @@ export default props => {
     return(
         <View>
             <View style={{
-                marginHorizontal:20,
                 overflow:'hidden',
-                position:'relative',zIndex:2
+                position:'relative',
+                zIndex:2
             }}>
                 <Carousel
                     layout={'default'}
                     layoutCardOffset={0}
                     data={mainVisualData}
-                    itemWidth={sliderWidth-20}
-                    sliderWidth={sliderWidth-20}
+                    itemWidth={sliderWidth}
+                    sliderWidth={sliderWidth}
                     inactiveSlideScale={1}
                     loop={true}
                     zIndex={1}
@@ -44,14 +44,8 @@ export default props => {
                     autoplayInterval={5000}
                     autoplay={true}
                     renderItem={({item, index})=>
-                        <View style={{height:400,zIndex:1}}>
-                            <View style={styles.visualText}>
-                                <Text style={{color:'#292929',fontSize:24,fontWeight:'bold'}}>{item.text1}</Text>
-                                <Text style={{color:'#888',fontSize:16,marginTop:5}}>{item.text2}</Text>
-                            </View>
-                            <View style={{height:320,alignItems:'center'}}>
-                                <Image source={item.image} resizeMode="contain" style={{width:'100%',height:'100%'}}/>
-                            </View>
+                        <View style={{height:sliderWidth,zIndex:1}}>
+                            <Image source={item.image} resizeMode="contain" style={{width:'100%',height:'100%'}}/>
                         </View>
                     }
                     onSnapToItem={
@@ -64,8 +58,8 @@ export default props => {
                     activeDotIndex={activeSlide}
                     containerStyle={{
                         position:'absolute',
-                        top:80,
-                        left:-20,
+                        bottom:0,
+                        left:0,
                         width:'100%',
                         justifyContent:'flex-start',
                         zIndex:2,
